@@ -27,19 +27,19 @@ open Matrix UpperHalfPlane CongruenceSubgroup ModularGroup
 local notation "Γ " n:100 => Gamma n
 
 private lemma zmod_two_natCast_self : (2 : ZMod 2) = 0 := by
-  simpa using ZMod.natCast_self 2
+  rfl
 
 /-- The element `-I` of `Γ(2)`. -/
-@[expose] public def negI : Γ 2 := ⟨⟨!![-1, 0; 0, -1], by simp⟩, by simp⟩
+@[expose] public def negI : Γ 2 := ⟨⟨!![-1, 0; 0, -1], by rfl⟩, by simp⟩
 
 /-- The standard generator `α = [[1,2],[0,1]]` of `Γ(2)`. -/
 @[expose] public def α : Γ 2 :=
-  ⟨⟨!![1, 2; 0, 1], by simp⟩, by
+  ⟨⟨!![1, 2; 0, 1], by rfl⟩, by
     simp [Gamma_mem, zmod_two_natCast_self]⟩
 
 /-- The standard generator `β = [[1,0],[2,1]]` of `Γ(2)`. -/
 @[expose] public def β : Γ 2 :=
-  ⟨⟨!![1, 0; 2, 1], by simp⟩, by
+  ⟨⟨!![1, 0; 2, 1], by rfl⟩, by
     simp [Gamma_mem, zmod_two_natCast_self]⟩
 
 /-- Identify `α` with `T^2` in `SL(2, ℤ)` (as an element of `Γ(2)`). -/
@@ -147,7 +147,7 @@ theorem β_zpow_val (k : ℤ) : (β ^ k : SL(2, ℤ)).val = !![1, 0; 2 * k, 1] :
   | zero => exact Matrix.one_fin_two
   | succ n ih =>
     simp only [zpow_add, zpow_one, SpecialLinearGroup.coe_mul, ih]
-    ext i j; fin_cases i <;> fin_cases j <;> simp [β, Matrix.mul_apply]; ring
+    ext i j; fin_cases i <;> fin_cases j <;> simp [β, Matrix.mul_apply]; rfl
   | pred n ih =>
     simp only [zpow_sub, zpow_one, SpecialLinearGroup.coe_mul, SpecialLinearGroup.coe_inv,
       Matrix.adjugate_fin_two, ih]

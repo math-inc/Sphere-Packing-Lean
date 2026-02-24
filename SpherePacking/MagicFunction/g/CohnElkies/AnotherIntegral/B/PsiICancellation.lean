@@ -168,7 +168,7 @@ public lemma exists_bound_norm_psiI'_mul_I_sub_exp_add_const_Ici_one :
     have hx0_le : ‖x0‖ ≤ 2 + 48 * u := by
       have h2 : ‖(2 : ℂ)‖ = (2 : ℝ) := by simp
       calc
-        ‖x0‖ = ‖(2 : ℂ) + (48 : ℂ) * (u : ℂ)‖ := by simp [x0]
+        ‖x0‖ = ‖(2 : ℂ) + (48 : ℂ) * (u : ℂ)‖ := by rfl
         _ ≤ ‖(2 : ℂ)‖ + ‖(48 : ℂ) * (u : ℂ)‖ := norm_add_le _ _
         _ = 2 + 48 * u := by
               rw [h2, huNorm]
@@ -541,10 +541,10 @@ public lemma exists_bound_norm_psiI'_mul_I_sub_exp_add_const_Ici_one :
         have hab' : ‖a + b‖ + ‖c‖ ≤ (‖a‖ + ‖b‖) + ‖c‖ := by
           exact add_le_add hab le_rfl
         calc
-          ‖a + b + c‖ = ‖(a + b) + c‖ := by simp [add_assoc]
+          ‖a + b + c‖ = ‖(a + b) + c‖ := by rfl
           _ ≤ ‖a + b‖ + ‖c‖ := norm_add_le _ _
           _ ≤ (‖a‖ + ‖b‖) + ‖c‖ := hab'
-          _ = ‖a‖ + ‖b‖ + ‖c‖ := by simp [add_assoc]
+          _ = ‖a‖ + ‖b‖ + ‖c‖ := by rfl
       have ha : ‖a‖ ≤ (Csum + Csum / 256) * Real.exp (-Real.pi * t) := by
         simpa [a] using hxdy
       have hb : ‖b‖ ≤ (50 * Cinv2) * Real.exp (-Real.pi * t) := by
@@ -564,7 +564,7 @@ public lemma exists_bound_norm_psiI'_mul_I_sub_exp_add_const_Ici_one :
           exact add_le_add hab hc
         calc
           ‖a + b + c‖ ≤ ‖a‖ + ‖b‖ + ‖c‖ := htri'
-          _ = (‖a‖ + ‖b‖) + ‖c‖ := by simp [add_assoc]
+          _ = (‖a‖ + ‖b‖) + ‖c‖ := by rfl
           _ ≤
               ((Csum + Csum / 256) * Real.exp (-Real.pi * t) +
                     (50 * Cinv2) * Real.exp (-Real.pi * t)) +

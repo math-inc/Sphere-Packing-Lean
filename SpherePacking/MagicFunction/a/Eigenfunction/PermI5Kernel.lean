@@ -108,7 +108,7 @@ public lemma aestronglyMeasurable_perm_I₅_kernel (w : ℝ⁸) :
         continuous_const
     refine (harg.cexp.continuousOn).congr ?_
     intro p hp
-    simp [permI5Phase]
+    rfl
   have hkernel : ContinuousOn (permI5Kernel w) (univ ×ˢ Ici (1 : ℝ)) := by
     simpa [permI5Kernel] using (hphase.mul continuousOn_I₅_g)
   have hmeas :

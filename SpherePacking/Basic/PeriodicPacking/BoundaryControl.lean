@@ -623,7 +623,7 @@ lemma div_mul_div_cancel_right {a b c : ℝ≥0∞} (hb0 : b ≠ 0) (hb : b ≠ 
     ((a * b) / c) / b = a / c := by
   calc
     ((a * b) / c) / b = (a * b) * c⁻¹ * b⁻¹ := by
-      simp [div_eq_mul_inv, mul_assoc]
+      rfl
     _ = a * c⁻¹ * (b * b⁻¹) := by
       ac_rfl
     _ = a / c := by
@@ -703,7 +703,7 @@ theorem exists_periodicSpherePacking_sep_one_density_gt_of_lt_density (hd : 0 < 
     volume (((PeriodicConstantApprox.shellVec (d := d) (- (1 / 2 : ℝ))) +ᵥ
         coordCubeInner (d := d) (L + 1) 0) \ coordCubeInner (d := d) L 1)
   have hcubeShell : cubeShellErr L = shellVol / volCube := by
-    simp [cubeShellErr, shellVol, volCube]
+    rfl
   have hvolCube_ne0 : volCube ≠ 0 := by
     have hvol : volCube = (ENNReal.ofReal L) ^ d := by
       simpa [volCube] using (PeriodicConstant.volume_coordCube (d := d) (L := L))

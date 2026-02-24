@@ -82,7 +82,7 @@ lemma iteratedDerivWithin_mul' (f g : ℂ → ℂ) (s : Set ℂ) (hs : IsOpen s)
   | succ m hm =>
     have h1 :=
       derivWithin_mul2 f g s (hf.differentiableOn (by simp)) (hg.differentiableOn (by simp))
-    have h2 : (fun y => f y * g y) = f * g := by ext y; simp
+    have h2 : (fun y => f y * g y) = f * g := by rfl
     rw [iteratedDerivWithin_succ']
     have hset : s.EqOn (derivWithin (f * g) s) (derivWithin f s * g + f * derivWithin g s) := by
       intro z hz
@@ -93,7 +93,7 @@ lemma iteratedDerivWithin_mul' (f g : ℂ → ℂ) (s : Set ℂ) (hs : IsOpen s)
       have := Finset.sum_choose_succ_mul (fun i => fun j =>
         ((iteratedDerivWithin i f s x) * (iteratedDerivWithin j g s x)) ) m
       simp only [Nat.succ_eq_add_one, restrict_eq_restrict_iff] at *
-      rw [show m + 1 + 1 = m + 2 by ring]
+      rw [show m + 1 + 1 = m + 2 by rfl]
       simp_rw [← mul_assoc] at *
       rw [this, add_comm]
       congr 1
@@ -102,8 +102,8 @@ lemma iteratedDerivWithin_mul' (f g : ℂ → ℂ) (s : Set ℂ) (hs : IsOpen s)
       congr
       simp at hi
       omega
-    · exact ContDiffOn.derivWithin hf (by exact IsOpen.uniqueDiffOn hs) (m := ⊤) (by simp)
-    · exact ContDiffOn.derivWithin hg (by exact IsOpen.uniqueDiffOn hs) (m := ⊤) (by simp)
+    · exact ContDiffOn.derivWithin hf (by exact IsOpen.uniqueDiffOn hs) (m := ⊤) (by rfl)
+    · exact ContDiffOn.derivWithin hg (by exact IsOpen.uniqueDiffOn hs) (m := ⊤) (by rfl)
     · apply ContDiffOn.mul
       · exact ContDiffOn.derivWithin hf (by exact IsOpen.uniqueDiffOn hs) (m := m) (by simp)
       · apply ContDiffOn.of_le hg (by simp)
@@ -136,7 +136,7 @@ variable {F : Type*} [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 lemma IteratedDeriv_smul (a : ℂ) (f : ℂ → ℂ) (m : ℕ) :
     iteratedDeriv m (a • f) = a • iteratedDeriv m f := by
   induction m with
-  | zero => simp
+  | zero => rfl
   | succ m hm =>
     rw [iteratedDeriv_succ, iteratedDeriv_succ, hm]
     ext x
@@ -156,8 +156,7 @@ public lemma qExpansion_smul2 (a : ℂ) (f : ModularForm Γ(n) k) [NeZero n] :
       rw [Filter.limUnder_eq_iff ]
       · have hl : ((a • ⇑f) ∘ ↑ofComplex) ∘ Periodic.invQParam ↑n = fun x => a * (f ∘ ↑ofComplex)
           (Periodic.invQParam ↑n x) := by
-          ext y
-          simp
+          rfl
         rw [hl]
         simp only [comp_apply]
         apply Filter.Tendsto.const_mul
@@ -172,7 +171,7 @@ public lemma qExpansion_smul2 (a : ℂ) (f : ModularForm Γ(n) k) [NeZero n] :
     · simp only [cuspFunction, Pi.smul_apply, smul_eq_mul]
       rw [Function.Periodic.cuspFunction_eq_of_nonzero _ _ h,
         Function.Periodic.cuspFunction_eq_of_nonzero _ _ h]
-      simp
+      rfl
   simp only [PowerSeries.coeff_mk, this]
   conv =>
     enter [2,2]
@@ -209,7 +208,7 @@ public lemma qExpansion_sub1 {a b : ℤ} (f : ModularForm Γ(1) a) (g : ModularF
 @[simp] --generalize this away from ℂ
 lemma IteratedDeriv_zero_fun (n : ℕ) (z : ℂ) : iteratedDeriv n (fun _ : ℂ => (0 : ℂ)) z = 0 := by
   induction n with
-  | zero => simp
+  | zero => rfl
   | succ n hn =>
     simp
 

@@ -244,7 +244,7 @@ lemma hasDerivAt_integral_gN_of_gt_neg2 (n : ℕ) (r₀ : ℝ) (hr₀ : -2 < r�
             gcongr
       _ = (π ^ (n + 1)) * (t ^ (n + 1) * rexp (-(π * ε) * t)) * C₀ := by
             simp [mul_pow, mul_assoc, mul_left_comm, mul_comm]
-      _ = bound t := by simp [bound, mul_left_comm, mul_comm]
+      _ = bound t := by rfl
   have h_diff :
       ∀ᵐ t ∂μ, ∀ r ∈ Metric.ball r₀ ε,
         HasDerivAt (fun r : ℝ ↦ gN n r t) (gN (n + 1) r t) r := by

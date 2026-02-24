@@ -121,7 +121,7 @@ lemma exists_bound_norm_hf : ∃ M, ∀ t ∈ Ioo (0 : ℝ) 1, ‖hf t‖ ≤ M 
     ‖hf t‖ = ‖φ₀'' (arg t)‖ * ‖((z₂' t : ℂ) + 1) ^ (2 : ℕ)‖ := by
       simp [hf]
     _ ≤ (C₀ * rexp (-π)) * ((3 : ℝ) ^ (2 : ℕ)) := by gcongr
-    _ = C₀ * rexp (-π) * ((3 : ℝ) ^ (2 : ℕ)) := by simp [mul_assoc]
+    _ = C₀ * rexp (-π) * ((3 : ℝ) ^ (2 : ℕ)) := by rfl
 
 /-- Smoothness of `RealIntegrals.I₂'` as a function `ℝ → ℂ`. -/
 public theorem I₂'_contDiff : ContDiff ℝ (⊤ : ℕ∞) I₂' := by

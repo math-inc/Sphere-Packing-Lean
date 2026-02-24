@@ -81,7 +81,7 @@ lemma integral_norm_permI2Kernel_bound (w : ℝ⁸) (t : ℝ) (ht : t ∈ Ioc (0
         _ =
             (((Real.pi : ℂ) * I * (r : ℂ) * ((t - 1 : ℝ) : ℂ)).re +
                   ((Real.pi : ℂ) * I * (r : ℂ) * I).re) := by
-              simp
+              rfl
         _ = 0 + (-Real.pi * r) := by
               simp
         _ = -Real.pi * r := by simp

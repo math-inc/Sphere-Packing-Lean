@@ -52,7 +52,7 @@ public lemma Icc_sum_even (f : ℤ → ℂ) (hf : ∀ n, f n = f (-n)) (N : ℕ)
       simp only [neg_add_rev, Int.reduceNeg] at HF
       rw [← HF]
       ring_nf
-      norm_cast
+      rfl
     · omega
     simp only [Int.reduceNeg, Finset.disjoint_insert_right, Finset.mem_Icc, le_add_iff_nonneg_left,
       Left.nonneg_neg_iff, Int.reduceLE, add_neg_le_iff_le_add, false_and, not_false_eq_true,

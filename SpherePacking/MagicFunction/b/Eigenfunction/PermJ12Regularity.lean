@@ -123,7 +123,7 @@ public lemma tendsto_Ψ₁'_one_within_closure_wedgeSet (r : ℝ) :
   have hg :
       g =
         ⟨!![-1, 0; 1, -1], by
-          norm_num [Matrix.det_fin_two_of]⟩ := by
+          rfl⟩ := by
     ext i j; fin_cases i <;> fin_cases j <;> simp [g, ModularGroup.S, ModularGroup.T]
   have hgAct_im :
       ∀ {z : ℂ} (hz : 0 < z.im),
@@ -161,8 +161,7 @@ public lemma tendsto_Ψ₁'_one_within_closure_wedgeSet (r : ℝ) :
       _ = -ψS (gAct zH) * ((z : ℂ) - 1) ^ (2 : ℤ) := by
             simp [hdenom]
       _ = -ψS (gAct zH) * (z - 1) ^ (2 : ℕ) := by
-            simpa using
-              congrArg (fun t : ℂ => -ψS (gAct zH) * t) (zpow_ofNat (z - 1) 2)
+            rfl
   simpa using
     (SpherePacking.Contour.tendsto_Ψ₁'_one_within_closure_wedgeSet_of
       (h := ({

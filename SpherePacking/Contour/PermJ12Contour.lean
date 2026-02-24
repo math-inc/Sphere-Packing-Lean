@@ -167,9 +167,9 @@ private lemma perm_J12_contour_h_aux
       _ = (Path.segment (γ yI) (δ yI) xI : ℂ) := by
         rfl
       _ = (AffineMap.lineMap (γ yI) (δ yI) x : ℂ) := by
-        simp [Path.segment_apply, xI]
+        rfl
       _ = (F (x, y) : ℂ) := by
-        simp [F, γ, δ, yI, Path.map', Path.segment_apply]
+        rfl
   have hmain :=
     ContinuousMap.Homotopy.curveIntegral_add_curveIntegral_eq_of_diffContOnCl
       (𝕜 := ℂ) (E := ℂ) (F := ℂ) (γ₁ := γ) (γ₂ := δ) (t := wedgeSet) (ω := ω) (φ := φ)

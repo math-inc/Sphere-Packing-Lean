@@ -280,7 +280,7 @@ lemma eta_logDeriv_eql (z : ℍ) : (logDeriv (η ∘ (fun z : ℂ => -1/z))) z =
       simp only [deriv.fun_neg', one_div]
       rw [deriv_inv]
       simp only [neg_neg]
-      norm_cast
+      rfl
     · simpa only using
       eta_DifferentiableAt_UpperHalfPlane (⟨-1 / z, by simpa using pnat_div_upper 1 z⟩ : ℍ)
     conv =>

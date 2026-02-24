@@ -61,7 +61,7 @@ lemma norm_Theta2_term_resToImagAxis (n : ℤ) (t : ℝ) (ht : 0 < t) :
 
 /-- Rewrite `Θ₃` in terms of the one-variable Jacobi theta function `jacobiTheta`. -/
 public lemma Theta3_eq_jacobiTheta (τ : ℍ) : Θ₃ τ = jacobiTheta (τ : ℂ) := by
-  simp [Θ₃, Θ₃_term, jacobiTheta]
+  rfl
 
 lemma exp_pi_I_mul_sq_int (n : ℤ) :
     Complex.exp (Real.pi * Complex.I * (n : ℂ) ^ 2) = (-1 : ℂ) ^ n := by
@@ -83,7 +83,7 @@ lemma Theta4_eq_jacobiTheta_add_one (τ : ℍ) : Θ₄ τ = jacobiTheta ((τ : �
   calc
     Θ₄_term n τ
         = (-1 : ℂ) ^ n * Complex.exp (Real.pi * Complex.I * (n : ℂ) ^ 2 * (τ : ℂ)) := by
-            simp [Θ₄_term]
+            rfl
     _ = Complex.exp (Real.pi * Complex.I * (n : ℂ) ^ 2 * (τ : ℂ)) *
           Complex.exp (Real.pi * Complex.I * (n : ℂ) ^ 2) := by
           simp [mul_assoc, mul_comm, (exp_pi_I_mul_sq_int n).symm]

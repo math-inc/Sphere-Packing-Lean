@@ -109,7 +109,7 @@ lemma aestronglyMeasurable_kernel (w : ℝ⁸) :
   have hker : ContinuousOn (kernel w) (univ ×ˢ Ici (1 : ℝ)) := by
     refine (hphase.continuousOn.mul continuousOn_J₅_g).congr ?_
     intro p hp
-    simp [kernel]
+    rfl
   have hmeas :
       AEStronglyMeasurable (kernel w)
         (((volume : Measure ℝ⁸).prod (volume : Measure ℝ)).restrict (univ ×ˢ Ici (1 : ℝ))) := by
@@ -230,7 +230,7 @@ public lemma integrable_kernel (w : ℝ⁸) :
           _ = s ^ (-4 : ℤ) := by
             exact abs_of_pos hs_zpow_pos
       have hs_pow : s ^ 4 ≠ 0 := pow_ne_zero 4 hs_ne0
-      have hz : (s ^ (-4 : ℤ)) = (s ^ 4)⁻¹ := by simpa using (zpow_negSucc s 3)
+      have hz : (s ^ (-4 : ℤ)) = (s ^ 4)⁻¹ := by rfl
       have hscal : (‖(s ^ (-4 : ℤ) : ℂ)‖) * (s ^ 4) = (1 : ℝ) := by
         rw [habs]
         rw [hz]

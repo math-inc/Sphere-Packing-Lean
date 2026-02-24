@@ -297,7 +297,7 @@ lemma f0_norm_bound_on_strip :
       _ ≤ 1 + |2 * z.im| := add_le_add hRe le_rfl
       _ = 2 * z.im + 1 := by simp [hIm, add_comm]
   calc
-    ‖f0 z‖ = ‖φ₀'' z * ((2 : ℂ) * z - 1)‖ := by simp [f0]
+    ‖f0 z‖ = ‖φ₀'' z * ((2 : ℂ) * z - 1)‖ := by rfl
     _ = ‖φ₀'' z‖ * ‖(2 : ℂ) * z - 1‖ := by simp
     _ ≤ (C₀ * Real.exp (-2 * π * z.im)) * (2 * z.im + 1) := by
           gcongr
@@ -635,7 +635,7 @@ lemma integral_f0_height_one_eq_neg_I6 :
               _ = Complex.I •
                     (∫ t in Set.Ioi (1 : ℝ), (2 : ℂ) * φ₀'' ((t : ℂ) * Complex.I)
                       ∂MeasureTheory.volume) := by
-                    simp [smul_eq_mul]
+                    rfl
   -- Solve for `bottom`.
   have : bottom = -I₆' (0 : ℝ) := by
     -- from `bottom + I•limit = 0`

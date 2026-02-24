@@ -442,7 +442,7 @@ lemma base₂_continuousOn : ContinuousOn base₂ (Ι (0 : ℝ) 1) := by
     set z : ℂ := (t : ℂ) + (Complex.I : ℂ)
     have him : (arg₂ t).im = 1 / Complex.normSq z := by
       calc
-        (arg₂ t).im = ((-1 : ℂ) * z⁻¹).im := by simp [arg₂, z, div_eq_mul_inv]
+        (arg₂ t).im = ((-1 : ℂ) * z⁻¹).im := by rfl
         _ = -z⁻¹.im := by simp
         _ = -(-z.im / Complex.normSq z) := by simp [Complex.inv_im]
         _ = z.im / Complex.normSq z := by ring
@@ -482,7 +482,7 @@ lemma base₄_continuousOn : ContinuousOn base₄ (Ι (0 : ℝ) 1) := by
     set z : ℂ := (-(t : ℂ) + (Complex.I : ℂ))
     have him : (arg₄ t).im = 1 / Complex.normSq z := by
       calc
-        (arg₄ t).im = ((-1 : ℂ) * z⁻¹).im := by simp [arg₄, z, div_eq_mul_inv]
+        (arg₄ t).im = ((-1 : ℂ) * z⁻¹).im := by rfl
         _ = -z⁻¹.im := by simp
         _ = -(-z.im / Complex.normSq z) := by simp [Complex.inv_im]
         _ = z.im / Complex.normSq z := by ring
@@ -848,7 +848,7 @@ lemma I₆'C_differentiableAt (u0 : ℂ) (hu0 : u0 ∈ rightHalfPlane) :
             fun_prop
           exact this.continuousOn
         simpa [I₆IntegrandC] using base₆_continuousOn.mul hexp
-      refine (hlin.mul hint).congr ?_; intro t _ht; simp [I₆IntegrandC_deriv, mul_assoc]
+      refine (hlin.mul hint).congr ?_; intro t _ht; rfl
     exact
       hcont.aestronglyMeasurable (measurableSet_Ici : MeasurableSet (Set.Ici (1 : ℝ)))
   let bound : ℝ → ℝ := fun t => (C₀ * Real.pi) * t * Real.exp (-(Real.pi * ε) * t)

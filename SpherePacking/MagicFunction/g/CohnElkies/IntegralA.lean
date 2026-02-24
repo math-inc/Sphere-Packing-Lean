@@ -52,7 +52,7 @@ public theorem gRadial_eq_integral_A {u : ℝ} (hu : 2 < u) :
   have hg :
       gRadial u =
         ((↑π * Complex.I) / 8640 : ℂ) * a' u - (Complex.I / (240 * (↑π)) : ℂ) * b' u := by
-    simp [gRadial, sub_eq_add_neg, SchwartzMap.add_apply, SchwartzMap.smul_apply, smul_eq_mul]
+    rfl
   -- Compute the scalar coefficients.
   have hcoefA :
       ((↑π * Complex.I) / 8640 : ℂ) * (4 * (Complex.I : ℂ)) = -(π / 2160 : ℂ) := by

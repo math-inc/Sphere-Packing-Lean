@@ -14,10 +14,10 @@ open scoped ArithmeticFunction.sigma
 
 private lemma sigma_le_pow_succ (k n : ℕ) : σ k n ≤ n ^ (k + 1) := by
   rcases eq_or_ne n 0 with rfl | hn
-  · simp
+  · rfl
   calc
     σ k n = Finset.sum (Nat.divisors n) (fun d => d ^ k) := by
-      simp [ArithmeticFunction.sigma_apply]
+      rfl
     _ ≤ Finset.sum (Nat.divisors n) (fun _d => n ^ k) := by
       refine Finset.sum_le_sum ?_
       intro d hd

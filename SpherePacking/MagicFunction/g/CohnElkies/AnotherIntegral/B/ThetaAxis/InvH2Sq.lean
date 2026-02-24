@@ -245,7 +245,7 @@ lemma hw_tail_bound (t : ℝ) (ht : 1 ≤ t) (CH2 : ℝ)
   have heu : e * u = 1 := by
     calc
       e * u = Real.exp (2 * Real.pi * t) * Real.exp (-(2 : ℝ) * Real.pi * t) := by
-              simp [e, u]
+              rfl
         _ = Real.exp ((2 * Real.pi * t) + (-(2 : ℝ) * Real.pi * t)) := by
                 simpa using
                   (Real.exp_add (2 * Real.pi * t) (-(2 : ℝ) * Real.pi * t)).symm
@@ -321,7 +321,7 @@ lemma hw_tail_bound (t : ℝ) (ht : 1 ≤ t) (CH2 : ℝ)
           set q1 : ℂ := (Real.exp (-Real.pi * t) : ℂ)
           set q3 : ℂ := (Real.exp (-(3 : ℝ) * Real.pi * t) : ℂ)
           have hmain' : main = (16 : ℂ) * q1 + (64 : ℂ) * q3 := by
-            simp [main, q1, q3, -Complex.ofReal_exp]
+            rfl
           have hq1_sq' : q1 ^ (2 : ℕ) = (u : ℂ) := by
             simpa [q1] using hq1_sq_c
           have hq1q3' : q1 * q3 = ((u ^ (2 : ℕ) : ℝ) : ℂ) := by
@@ -452,7 +452,7 @@ lemma hw_tail_bound (t : ℝ) (ht : 1 ≤ t) (CH2 : ℝ)
             (2 * Real.pi * t) + (-(6 : ℝ) * Real.pi * t) = (-(4 : ℝ) * Real.pi * t) := by ring
         calc
           e * Real.exp (-(6 : ℝ) * Real.pi * t)
-              = Real.exp (2 * Real.pi * t) * Real.exp (-(6 : ℝ) * Real.pi * t) := by simp [e]
+              = Real.exp (2 * Real.pi * t) * Real.exp (-(6 : ℝ) * Real.pi * t) := by rfl
           _ = Real.exp ((2 * Real.pi * t) + (-(6 : ℝ) * Real.pi * t)) := by
                 simpa using h
           _ = Real.exp (-(4 : ℝ) * Real.pi * t) := by
@@ -538,7 +538,7 @@ lemma hw_tail_bound (t : ℝ) (ht : 1 ≤ t) (CH2 : ℝ)
         have hsum : a + b = (-(8 : ℝ) * Real.pi * t) := by
           simp [a, b] ; ring
         calc
-          e * Real.exp (-(10 : ℝ) * Real.pi * t) = Real.exp a * Real.exp b := by simp [e, a, b]
+          e * Real.exp (-(10 : ℝ) * Real.pi * t) = Real.exp a * Real.exp b := by rfl
           _ = Real.exp (a + b) := h
           _ = Real.exp (-(8 : ℝ) * Real.pi * t) := by simp [hsum]
       have h8 :
@@ -646,7 +646,7 @@ public lemma exists_bound_norm_inv_H2_sq_sub_exp_add_const_Ici_one :
   have heu : e * u = 1 := by
     calc
       e * u = Real.exp (2 * Real.pi * t) * Real.exp (-(2 : ℝ) * Real.pi * t) := by
-              simp [e, u]
+              rfl
         _ = Real.exp ((2 * Real.pi * t) + (-(2 : ℝ) * Real.pi * t)) := by
                 simpa using
                   (Real.exp_add (2 * Real.pi * t) (-(2 : ℝ) * Real.pi * t)).symm
@@ -717,7 +717,7 @@ public lemma exists_bound_norm_inv_H2_sq_sub_exp_add_const_Ici_one :
           (-(2 : ℝ) * Real.pi * t) + (-(2 : ℝ) * Real.pi * t) = (-(4 : ℝ) * Real.pi * t) := by
         ring
       calc
-        u ^ (2 : ℕ) = (Real.exp (-(2 : ℝ) * Real.pi * t)) ^ (2 : ℕ) := by simp [u]
+        u ^ (2 : ℕ) = (Real.exp (-(2 : ℝ) * Real.pi * t)) ^ (2 : ℕ) := by rfl
         _ = Real.exp ((-(2 : ℝ) * Real.pi * t) + (-(2 : ℝ) * Real.pi * t)) := by
               simp [pow_two, Real.exp_add]
         _ = Real.exp (-(4 : ℝ) * Real.pi * t) := by
@@ -811,7 +811,7 @@ public lemma exists_bound_norm_inv_H2_sq_sub_exp_add_const_Ici_one :
                 (8 + (16 + (160 / 256) * CH2 + (CH2 ^ 2) / 256)) ^ 2 +
                     (16 + (160 / 256) * CH2 + (CH2 ^ 2) / 256) =
                   K := by
-              simp [K, C0]
+              rfl
             have hE :
                 (e / 256) * Real.exp (-(4 : ℝ) * Real.pi * t) =
                   (1 / 256 : ℝ) * Real.exp (-(2 : ℝ) * Real.pi * t) := hexp
@@ -821,7 +821,7 @@ public lemma exists_bound_norm_inv_H2_sq_sub_exp_add_const_Ici_one :
                       (16 + (160 / 256) * CH2 + (CH2 ^ 2) / 256)) *
                     Real.exp (-(4 : ℝ) * Real.pi * t))
                   = (e / 256) * (K * Real.exp (-(4 : ℝ) * Real.pi * t)) := by
-                      simp [hK', mul_assoc]
+                      rfl
               _ = K * ((e / 256) * Real.exp (-(4 : ℝ) * Real.pi * t)) := by
                     ac_rfl
               _ = K * ((1 / 256 : ℝ) * Real.exp (-(2 : ℝ) * Real.pi * t)) := by

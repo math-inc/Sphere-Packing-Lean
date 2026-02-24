@@ -67,7 +67,7 @@ lemma continuousOn_bAnotherBase : ContinuousOn bAnotherBase (Set.Ioi (0 : ℝ)) 
         (Set.Ioi (0 : ℝ)) := (hψ.sub continuousOn_const).sub hexp
   refine h.congr ?_
   intro t ht
-  simp [bAnotherBase]
+  rfl
 
 /-!
 ## Global boundedness on the positive imaginary axis

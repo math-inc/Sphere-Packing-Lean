@@ -251,7 +251,7 @@ public theorem decay_J₅' :
       _ = (-2 : ℂ) • iteratedDeriv n (fun y : ℝ => I 0 y) x := by
             simp
       _ = (-2 : ℂ) • I n x := by simp [hiterI']
-      _ = (-2 : ℂ) * I n x := by simp [smul_eq_mul]
+      _ = (-2 : ℂ) * I n x := by rfl
   -- Bound the integral `I n x` by `Kn * exp(-2π*sqrt x)`.
   have hIn :
       ‖I n x‖ ≤ Kn * Real.exp (-2 * Real.pi * Real.sqrt x) := by
@@ -311,7 +311,7 @@ public theorem decay_J₅' :
     _ ≤ x ^ k * (2 * (Kn * Real.exp (-2 * Real.pi * Real.sqrt x))) := by gcongr
     _ = (2 * Kn) * (x ^ k * Real.exp (-2 * Real.pi * Real.sqrt x)) := by ring_nf
     _ ≤ (2 * Kn) * B := by simpa using (mul_le_mul_of_nonneg_left hpoly hpow0)
-    _ = C := by simp [C, mul_assoc]
+    _ = C := by rfl
 
 end
 

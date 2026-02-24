@@ -86,8 +86,7 @@ public def bPrimeC (u : ℂ) : ℂ :=
 
 /-- On real parameters, `bPrimeC` agrees with the real function `b'`. -/
 public lemma bPrimeC_ofReal (u : ℝ) : bPrimeC (u : ℂ) = MagicFunction.b.RealIntegrals.b' u := by
-  simp [bPrimeC, MagicFunction.b.RealIntegrals.b', J₁'C, J₂'C, J₃'C, J₄'C, J₅'C, J₆'C,
-    J₁', J₂', J₃', J₄', J₅', J₆']
+  rfl
 
 
 open ModularForm ModularGroup UpperHalfPlane
@@ -156,7 +155,7 @@ lemma exists_bound_norm_ψI'_z₅' :
   have hψS : ‖ψS.resToImagAxis (1 / t)‖ ≤ M := hM (1 / t) htIci
   have ht2 : t ^ 2 ≤ (1 : ℝ) := by
     simpa using (pow_le_pow_left₀ ht0.le ht1 2)
-  have hM0 : 0 ≤ M := (norm_nonneg (ψS.resToImagAxis 1)).trans (hM 1 (by norm_num))
+  have hM0 : 0 ≤ M := (norm_nonneg (ψS.resToImagAxis 1)).trans (hM 1 (by rfl))
   have hEqIoc :
       ∀ t : ℝ, t ∈ Ioc (0 : ℝ) 1 →
         ψI' (z₅' t) = ψS.resToImagAxis (1 / t) * ((Complex.I : ℂ) * (t : ℂ)) ^ (2 : ℕ) := by
@@ -673,7 +672,7 @@ lemma J₆'C_differentiableOn : DifferentiableOn ℂ J₆'C rightHalfPlane := by
     -- Convert both sides to integrals over `Ici 1`.
     simp only [J₆'C, μ]
     have hμ : (∫ t, F u t ∂μIciOne) = ∫ t in Set.Ici (1 : ℝ), F u t := by
-      simp [μIciOne]
+      rfl
     -- Match the integrands almost everywhere on `Ici 1`.
     have hInt :
         (∫ t in Set.Ici (1 : ℝ), F u t) =

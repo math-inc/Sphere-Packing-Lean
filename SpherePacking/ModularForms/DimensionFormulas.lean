@@ -36,13 +36,11 @@ lemma mcast_apply {a b : ℤ} {Γ : Subgroup SL(2, ℤ)} (h : a = b) (f : Modula
 
 lemma mul_Delta_map_eq (k : ℤ) (f : ModularForm (CongruenceSubgroup.Gamma 1) (k - 12)) (z : ℍ) :
   (mul_Delta_map k f) z = f z * Delta z := by
-  rw [mul_Delta_map, mcast_apply ]
   rfl
 
 lemma mul_Delta_map_eq_mul (k : ℤ) (f : ModularForm (CongruenceSubgroup.Gamma 1) (k - 12)) :
   ((mul_Delta_map k f) : ℍ → ℂ) = (f.mul (ModForm_mk _ 12 Delta)) := by
-  ext z
-  rw [mul_Delta_map, mcast_apply ]
+  rfl
 
 /-
 lemma mul_Delta_IsCuspForm (k : ℤ) (f : ModularForm (CongruenceSubgroup.Gamma 1) (k - 12)) :
@@ -144,8 +142,7 @@ public lemma Delta_E4_E6_eq : ModForm_mk _ _ Delta_E4_E6_aux =
 
 private lemma qExpansion_Delta_E4_E6_aux_eq :
     qExpansion 1 Delta_E4_E6_aux = qExpansion 1 (ModForm_mk Γ(1) 12 Delta_E4_E6_aux) := by
-  simpa [ModForm_mk] using qExpansion_ext2 Delta_E4_E6_aux
-    (ModForm_mk Γ(1) 12 Delta_E4_E6_aux) rfl
+  rfl
 
 lemma Delta_E4_E6_aux_q_one_term : (qExpansion 1 Delta_E4_E6_aux).coeff 1 = 1 := by
   rw [qExpansion_Delta_E4_E6_aux_eq, Delta_E4_E6_eq]
@@ -225,13 +222,13 @@ public lemma Delta_q_exp_two : (qExpansion 1 Delta).coeff 2 = (-24 : ℂ) := by
   have h6 := qExpansion_pow E₆ 2
   simp only [Nat.cast_ofNat, Int.reduceMul] at h4 h6
   rw [h4, h6]
-  have hσ3 : (σ 3 2 : ℕ) = 9 := by decide
-  have hσ5 : (σ 5 2 : ℕ) = 33 := by decide
+  have hσ3 : (σ 3 2 : ℕ) = 9 := by rfl
+  have hσ5 : (σ 5 2 : ℕ) = 33 := by rfl
   have hE4_2 : (qExpansion 1 E₄).coeff 2 = (240 : ℂ) * (9 : ℂ) := by
     simpa [hσ3] using congr_fun E4_q_exp 2
   have hE6_2 : (qExpansion 1 E₆).coeff 2 = (-(504 : ℂ)) * (33 : ℂ) := by
     simpa [hσ5] using congr_fun E6_q_exp 2
-  have hanti2 : Finset.antidiagonal 2 = {(0, 2), (1, 1), (2, 0)} := by decide
+  have hanti2 : Finset.antidiagonal 2 = {(0, 2), (1, 1), (2, 0)} := by rfl
   suffices h :
       1728⁻¹ *
           (240 * 9 + (240 * 240 + 240 * 9) +
@@ -242,7 +239,7 @@ public lemma Delta_q_exp_two : (qExpansion 1 Delta).coeff 2 = (-24 : ℂ) := by
               (-(504 * 33) + (504 * 504 + -(504 * 33)))) = (-24 : ℂ) by
     simpa [pow_three, pow_two, PowerSeries.coeff_mul, hanti2, E4_q_exp_zero, E4_q_exp_one, hE4_2,
       E6_q_exp_zero, E6_q_exp_one, hE6_2] using h
-  have hanti1 : Finset.antidiagonal 1 = {(0, 1), (1, 0)} := by decide
+  have hanti1 : Finset.antidiagonal 1 = {(0, 1), (1, 0)} := by rfl
   have hs :
       (∑ x ∈ Finset.antidiagonal 1, (qExpansion 1 E₄).coeff x.1 * (qExpansion 1 E₄).coeff x.2) =
         (480 : ℂ) := by
@@ -458,14 +455,14 @@ public lemma ModularForm.dimension_level_one (k : ℕ) (hk : 3 ≤ (k : ℤ)) (h
       · have h12k : 12 ∣ (k : ℤ) -12 - 2 := by
           omega
         simp only [h12k, ↓reduceIte, h12]
-        have := floor_lem1 k 12 (by norm_num)
+        have := floor_lem1 k 12 (by rfl)
         norm_cast at *
         apply this
         omega
       · have h12k : ¬ 12 ∣ (k : ℤ) -12 - 2 := by
           omega
         simp only [h12k, ↓reduceIte, Nat.cast_add, Nat.cast_one, h12]
-        have := floor_lem1 k 12 (by norm_num)
+        have := floor_lem1 k 12 (by rfl)
         norm_cast at *
         rw [← add_assoc, this]
         omega
@@ -479,7 +476,7 @@ public lemma ModularForm.dimension_level_one (k : ℕ) (hk : 3 ≤ (k : ℤ)) (h
       simp only [Finset.mem_filter, Finset.mem_Icc, hk2, and_true]
       omega
     have : Finset.filter Even (Finset.Icc 3 14) = ({4,6,8,10,12, 14} : Finset ℕ) := by
-        decide
+        rfl
     rw [this] at hkop
     fin_cases hkop
     · simp only [Nat.cast_ofNat, Int.reduceSub, Int.reduceNeg, Nat.cast_ite]

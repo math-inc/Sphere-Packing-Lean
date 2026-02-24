@@ -277,7 +277,7 @@ public theorem D_qexp_tsum_pnat (a : ℕ+ → ℂ) (z : ℍ)
     obtain ⟨u, hu_sum, hu_bound⟩ := hsum_deriv K hK hKc
     let u' : ℕ → ℝ := fun n => if h : 0 < n then u ⟨n, h⟩ else 0
     have hu' : ∀ n : ℕ+, u' n = u n := fun n => dif_pos n.pos
-    refine ⟨u', (nat_pos_tsum2 u' (by simp [u'])).mp (hu_sum.congr fun n => by rw [hu']), ?_⟩
+    refine ⟨u', (nat_pos_tsum2 u' (by rfl)).mp (hu_sum.congr fun n => by rw [hu']), ?_⟩
     intro n k; by_cases hn : 0 < n
     · simpa [a', u', dif_pos hn] using hu_bound ⟨n, hn⟩ k
     · simp [a', u', hn]
@@ -357,14 +357,14 @@ lemma deriv_denom (z : ℂ) :
     deriv (fun w => denom γ w) z = ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) := by
   simp only [denom]
   rw [deriv_add_const, deriv_const_mul _ differentiableAt_id, deriv_id'', mul_one]
-  simp
+  rfl
 
 /-- Derivative of the numerator function: d/dz[az + b] = a. -/
 lemma deriv_num (z : ℂ) :
     deriv (fun w => num γ w) z = ((γ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) := by
   simp only [num]
   rw [deriv_add_const, deriv_const_mul _ differentiableAt_id, deriv_id'', mul_one]
-  simp
+  rfl
 
 /-- Differentiability of denom. -/
 public lemma differentiableAt_denom (z : ℂ) :
@@ -543,7 +543,7 @@ public lemma E₂_slash (γ : SL(2, ℤ)) :
       simpa [sub_eq_add_neg, mul_add, add_assoc, add_left_comm, add_comm] using
         congrArg (fun t => a * G₂ z + t) hcorr
     _ = E₂ z + (12 : ℂ) * (2 * π * I)⁻¹ * (γ 1 0 / denom γ z) := by
-      simp [E₂, Pi.smul_apply, smul_eq_mul, mul_assoc, a]
+      rfl
 
 /-- Serre derivative is equivariant under the slash action. -/
 public theorem serre_D_slash_equivariant (k : ℤ) (F : ℍ → ℂ) (hF : MDiff F) :
@@ -570,7 +570,7 @@ public theorem serre_D_slash_equivariant (k : ℤ) (F : ℍ → ℂ) (hF : MDiff
     _ = (D F ∣[k + 2] γ) z - (c • ((E₂ * F) ∣[k + 2] γ)) z := by
           simp [sub_eq_add_neg, SlashAction.neg_slash]
     _ = (D F ∣[k + 2] γ) z - c * ((E₂ * F) ∣[k + 2] γ) z := by
-          simp [Pi.smul_apply, smul_eq_mul]
+          rfl
     _ = (D F ∣[k + 2] γ) z - c * ((E₂ ∣[(2 : ℤ)] γ) z * (F ∣[k] γ) z) := by
           simp [hmul, Pi.mul_apply]
     _ = (D F ∣[k + 2] γ) z - c * ((E₂ z + corr z) * (F ∣[k] γ) z) := by
@@ -939,7 +939,7 @@ public lemma closedBall_center_subset_upperHalfPlane (z : ℍ) :
   intro w hw
   have hdist : dist w z ≤ z.im / 2 := Metric.mem_closedBall.mp hw
   have habs : |w.im - z.im| ≤ z.im / 2 := calc |w.im - z.im|
-    _ = |(w - z).im| := by simp [Complex.sub_im]
+    _ = |(w - z).im| := by rfl
     _ ≤ dist w z := by simpa [dist_eq_norm] using (abs_im_le_norm (w - z))
     _ ≤ z.im / 2 := hdist
   have hlower : z.im / 2 ≤ w.im := by linarith [(abs_le.mp habs).1]
@@ -971,7 +971,7 @@ lemma norm_D_le_div_pi_im_of_bounded {f : ℍ → ℂ}
     have hw_im_pos : 0 < w.im := hclosed (Metric.sphere_subset_closedBall hw)
     have hdist : dist w z = z.im / 2 := Metric.mem_sphere.mp hw
     have habs : |w.im - z.im| ≤ z.im / 2 := by
-      calc |w.im - z.im| = |(w - z).im| := by simp [Complex.sub_im]
+      calc |w.im - z.im| = |(w - z).im| := by rfl
         _ ≤ dist w z := by simpa [dist_eq_norm] using (abs_im_le_norm (w - z))
         _ = z.im / 2 := hdist
     have hmax : max A 0 ≤ z.im / 2 := by linarith [hz]
@@ -1160,8 +1160,7 @@ noncomputable def serreD_modularForm (k : ℤ) (F : ModularForm Γ(1) k) :
         calc
           serre_D k F.toFun ∣[(k + 2 : ℤ)] (Matrix.SpecialLinearGroup.mapGL ℝ γ) =
               serre_D k F.toFun ∣[(k + 2 : ℤ)] γ := by
-                simpa using
-                  (ModularForm.SL_slash (f := serre_D k F.toFun) (k := (k + 2 : ℤ)) γ).symm
+                rfl
           _ = serre_D k F.toFun := hSerre
       rw [hSerreGL]
       exact hbdd }
@@ -1290,10 +1289,10 @@ public theorem ramanujan_E₂' : serre_D 1 E₂ = - 12⁻¹ * E₄.toFun := by
         calc
           ((denom γ z) ^ (-(2 : ℤ))) ^ (2 : ℕ)
               = ((denom γ z) ^ (-(2 : ℤ))) ^ ((2 : ℤ)) := by
-                  simpa using (zpow_natCast ((denom γ z) ^ (-(2 : ℤ))) 2).symm
+                  rfl
           _ = (denom γ z) ^ (-(2 : ℤ) * (2 : ℤ)) := by
                   simpa using (zpow_mul (denom γ z) (-(2 : ℤ)) (2 : ℤ)).symm
-          _ = (denom γ z) ^ (-(4 : ℤ)) := by norm_num
+          _ = (denom γ z) ^ (-(4 : ℤ)) := by rfl
       have hpow :
           (E₂ (γ • z) * (denom γ z) ^ (-(2 : ℤ))) ^ (2 : ℕ) =
             (E₂ z + corr γ z) ^ (2 : ℕ) := by
@@ -1353,7 +1352,7 @@ public theorem ramanujan_E₂' : serre_D 1 E₂ = - 12⁻¹ * E₄.toFun := by
         have hcast :
             serre_D 1 E₂ ∣[(4 : ℤ)] (Matrix.SpecialLinearGroup.mapGL ℝ γ) =
               serre_D 1 E₂ ∣[(4 : ℤ)] γ := by
-          simpa using (ModularForm.SL_slash (f := serre_D 1 E₂) (k := (4 : ℤ)) γ).symm
+          rfl
         have hSerreSL : serre_D 1 E₂ ∣[(4 : ℤ)] γ = serre_D 1 E₂ := hSerre_slash γ
         have hSerreGL :
             serre_D 1 E₂ ∣[(4 : ℤ)] (Matrix.SpecialLinearGroup.mapGL ℝ γ) =

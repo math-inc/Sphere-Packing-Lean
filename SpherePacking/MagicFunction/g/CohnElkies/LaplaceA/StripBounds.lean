@@ -100,8 +100,8 @@ public lemma exists_phi2'_phi4'_bound_exp :
       calc
         ‖φ₄' z‖
             = ‖(E₄ z) ^ (2 : ℕ) / (Δ z)‖ := by
-                simp [φ₄', div_eq_mul_inv, pow_two, mul_assoc]
-        _ = ‖(E₄ z) ^ (2 : ℕ) * (Δ z)⁻¹‖ := by simp [div_eq_mul_inv]
+                rfl
+        _ = ‖(E₄ z) ^ (2 : ℕ) * (Δ z)⁻¹‖ := by rfl
         _ ≤ ‖(E₄ z) ^ (2 : ℕ)‖ * ‖(Δ z)⁻¹‖ := by
               exact norm_mul_le ((E₄ z) ^ (2 : ℕ)) ((Δ z)⁻¹)
         _ = (‖E₄ z‖ ^ (2 : ℕ)) * ‖(Δ z)⁻¹‖ := by simp [norm_pow]
@@ -146,7 +146,7 @@ public lemma exists_phi2'_phi4'_bound_exp :
       calc
         ‖φ₂' z‖
             = ‖(E₄ z) * ((E₂ z) * (E₄ z) - (E₆ z)) * (Δ z)⁻¹‖ := by
-                simp [φ₂', div_eq_mul_inv, mul_assoc]
+                rfl
         _ ≤ ‖(E₄ z) * ((E₂ z) * (E₄ z) - (E₆ z))‖ * ‖(Δ z)⁻¹‖ := by
               exact norm_mul_le ((E₄ z) * ((E₂ z) * (E₄ z) - (E₆ z))) ((Δ z)⁻¹)
         _ ≤ (CE4 * (CE2 * CE4 + CE6)) * ‖(Δ z)⁻¹‖ := by
@@ -240,7 +240,7 @@ lemma integrableOn_Φ₆'_imag_axis {u : ℝ} (hu : 2 < u) :
       -- Unfold `Φ₆'` and apply the two bounds.
       have : ‖Φ₆' u ((t : ℂ) * Complex.I)‖ =
           ‖φ₀'' ((t : ℂ) * Complex.I) * expTerm‖ := by
-        simp [MagicFunction.a.ComplexIntegrands.Φ₆', expTerm]
+        rfl
       rw [this]
       have hmul := norm_mul_le (φ₀'' ((t : ℂ) * Complex.I)) expTerm
       refine norm_mul_le_of_le ?_ hExpLe
@@ -393,7 +393,7 @@ public lemma norm_phi0S_mul_sq_le {t : ℝ} (wH : ℍ) (hw_im : wH.im = t)
               exact add_le_add_left hab ‖36 / ↑π ^ 2 * φ₄' wH‖
       _ = ‖φ₀ wH * ((wH : ℂ) ^ (2 : ℕ))‖ +
             ‖(12 * Complex.I) / π * (wH : ℂ) * φ₂' wH‖ +
-              ‖(36 : ℂ) / (π ^ (2 : ℕ)) * φ₄' wH‖ := by ring
+              ‖(36 : ℂ) / (π ^ (2 : ℕ)) * φ₄' wH‖ := by rfl
   have hexp_ge : (1 : ℝ) ≤ Real.exp (2 * π * t) := by
     have h2pi : 0 ≤ (2 : ℝ) * π := mul_nonneg (by norm_num) Real.pi_pos.le
     have : 0 ≤ (2 : ℝ) * π * t := mul_nonneg h2pi ht_nonneg
@@ -488,7 +488,7 @@ public lemma norm_phi0S_mul_sq_le {t : ℝ} (wH : ℍ) (hw_im : wH.im = t)
       (4 * C₀) + (2 * c12π * Cφ) + (c36π2 * Cφ) ≤
         (4 * C₀ + (2 * c12π + c36π2) * Cφ) := by
     ring_nf
-    nlinarith
+    rfl
   have htot := (le_trans htri (add_le_add (add_le_add hA hB) hC))
   -- Factor out `t^2 * exp(2πt)` and compare coefficients.
   let X : ℝ := t ^ (2 : ℕ) * Real.exp (2 * π * t)
@@ -593,10 +593,9 @@ lemma norm_Φ₂'_imag_axis_le {u t : ℝ} {Cφ Aφ C₀ : ℝ}
         Φ₂' u ((t : ℂ) * I) =
           (φ₀'' ((-1 : ℂ) / (((t : ℂ) * I) + 1)) * (((t : ℂ) * I + 1) ^ (2 : ℕ))) *
             cexp ((π : ℂ) * I * (u : ℂ) * ((t : ℂ) * I)) := by
-      simp [MagicFunction.a.ComplexIntegrands.Φ₂', MagicFunction.a.ComplexIntegrands.Φ₁',
-        mul_assoc]
+      rfl
     have hw' : (wH : ℂ) = ((t : ℂ) * I + 1) := by
-      simp [wH, w]
+      rfl
     have hphi0S :
         φ₀'' ((-1 : ℂ) / (((t : ℂ) * I) + 1)) * (((t : ℂ) * I + 1) ^ (2 : ℕ)) =
           φ₀ (ModularGroup.S • wH) * ((wH : ℂ) ^ (2 : ℕ)) := by
@@ -838,7 +837,7 @@ public lemma I₁'_add_I₃'_add_I₅'_eq_imag_axis (u : ℝ) :
       MagicFunction.a.RealIntegrals.I₅' u =
           (-2 : ℂ) * ((I : ℂ) * (∫ t in (0 : ℝ)..1, Φ₅' u ((t : ℂ) * I))) := h''
       _ = (-2 : ℂ) * ((I : ℂ) * V0) := by
-            simp [hV0]
+            rfl
       _ = (-2 : ℂ) * (I : ℂ) * V0 := by ring
   -- Assemble the three identities.
   have :

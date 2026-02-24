@@ -119,9 +119,9 @@ public lemma norm_z₁'_le_two (t : ℝ) : ‖z₁' t‖ ≤ 2 := by
   have huabs : |u| ≤ 1 := by
     simpa [abs_of_nonneg hu0] using hu1
   have hz : z₁' t = (-1 : ℂ) + (I : ℂ) * (u : ℂ) := by
-    simp [z₁', Set.IccExtend_apply, z₁, hu]
+    rfl
   calc
-    ‖z₁' t‖ = ‖(-1 : ℂ) + (I : ℂ) * (u : ℂ)‖ := by simp [hz]
+    ‖z₁' t‖ = ‖(-1 : ℂ) + (I : ℂ) * (u : ℂ)‖ := by rfl
     _ ≤ ‖(-1 : ℂ)‖ + ‖(I : ℂ) * (u : ℂ)‖ := norm_add_le _ _
     _ = (1 : ℝ) + ‖(u : ℂ)‖ := by simp
     _ = 1 + |u| := by simp [Complex.norm_real]
@@ -145,9 +145,9 @@ public lemma norm_z₂'_le_two (t : ℝ) : ‖z₂' t‖ ≤ 2 := by
         (Complex.norm_real (u - 1))
     simpa [this] using habs
   have hz : z₂' t = ((-1 : ℂ) + (u : ℂ)) + (I : ℂ) := by
-    simp [z₂', Set.IccExtend_apply, z₂, hu]
+    rfl
   calc
-    ‖z₂' t‖ = ‖((-1 : ℂ) + (u : ℂ)) + (I : ℂ)‖ := by simp [hz]
+    ‖z₂' t‖ = ‖((-1 : ℂ) + (u : ℂ)) + (I : ℂ)‖ := by rfl
     _ ≤ ‖(-1 : ℂ) + (u : ℂ)‖ + ‖(I : ℂ)‖ := norm_add_le _ _
     _ ≤ (1 : ℝ) + 1 := add_le_add hnorm (by simp)
     _ = 2 := by ring
@@ -166,9 +166,9 @@ public lemma norm_z₄'_le_two (t : ℝ) : ‖z₄' t‖ ≤ 2 := by
       simpa using Complex.norm_real (1 - u)
     simpa [this] using habs
   have hz : z₄' t = ((1 : ℂ) - (u : ℂ)) + (I : ℂ) := by
-    simp [z₄', Set.IccExtend_apply, z₄, hu, sub_eq_add_neg]
+    rfl
   calc
-    ‖z₄' t‖ = ‖((1 : ℂ) - (u : ℂ)) + (I : ℂ)‖ := by simp [hz]
+    ‖z₄' t‖ = ‖((1 : ℂ) - (u : ℂ)) + (I : ℂ)‖ := by rfl
     _ ≤ ‖(1 : ℂ) - (u : ℂ)‖ + ‖(I : ℂ)‖ := norm_add_le _ _
     _ ≤ (1 : ℝ) + 1 := add_le_add hnorm (by simp)
     _ = 2 := by ring
@@ -283,13 +283,13 @@ public lemma _root_.ModularGroup.ST_eq : S * T = !![(0 : ℤ), -1; 1, 1] := by d
 
 public lemma _root_.ModularGroup.S_eq : S = !![(0 : ℤ), -1; 1, 0] := by rfl
 
-public lemma det_aux : !![(0 : ℤ), -1; 1, 1].det = 1 := by decide
+public lemma det_aux : !![(0 : ℤ), -1; 1, 1].det = 1 := by rfl
 
 public lemma _root_.ModularGroup.ST_eq' : S * T = ⟨!![(0 : ℤ), -1; 1, 1], det_aux⟩ := by
   simp only [← ModularGroup.ST_eq]; norm_cast
 
 public lemma _root_.ModularGroup.S_eq' : S = ⟨!![(0 : ℤ), -1; 1, 0], det_aux⟩ := by
-  simp only [← ModularGroup.S_eq]; norm_cast
+  rfl
 
 public lemma neg_inv_one_add_eq_ST_coe (z : ℍ) :
     -1 / ((z : ℂ) + 1) = UpperHalfPlane.coe ((S * T) • z) := by

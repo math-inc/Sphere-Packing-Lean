@@ -222,7 +222,7 @@ public theorem perm_I₅ : FourierTransform.fourierCLE ℂ (SchwartzMap ℝ⁸ �
     _ =
         (-2 : ℂ) *
           ∫ x : ℝ⁸, ∫ s in Ici (1 : ℝ), f x s := by
-          simp [f, permI5Kernel, permI5Phase]
+          rfl
     _ =
         (-2 : ℂ) *
           ∫ s in Ici (1 : ℝ), ∫ x : ℝ⁸, f x s := by

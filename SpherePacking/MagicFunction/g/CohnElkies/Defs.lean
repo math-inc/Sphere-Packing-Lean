@@ -35,8 +35,7 @@ local notation "ℝ⁸" => EuclideanSpace ℝ (Fin 8)
   ((π * I) / 8640) • a' - (I / (240 * π)) • b'
 
 /-- The function `g` is radial, with profile `gRadial` in the variable `‖x‖ ^ 2`. -/
-public theorem g_apply_eq_gRadial_norm_sq (x : ℝ⁸) : g x = gRadial (‖x‖ ^ 2) := by
-  simp [g, gRadial, a, b, schwartzMap_multidimensional_of_schwartzMap_real, compCLM_apply]
+public theorem g_apply_eq_gRadial_norm_sq (x : ℝ⁸) : g x = gRadial (‖x‖ ^ 2) := rfl
 
 /--
 Auxiliary function `A(t)` from the blueprint, defined as the real part of

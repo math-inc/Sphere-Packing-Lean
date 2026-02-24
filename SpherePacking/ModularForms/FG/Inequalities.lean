@@ -143,7 +143,7 @@ lemma tendsto_mul_t_resToImagAxis_A_E :
       calc
         (r⁻¹ : ℝ) * (((n + 1 : ℕ) : ℝ) ^ 5 * r ^ (n + 1))
             = (r⁻¹ : ℝ) * (((n + 1 : ℕ) : ℝ) ^ 5 * (r ^ n * r)) := by
-                simp [pow_succ, mul_assoc]
+                rfl
         _ = ((n + 1 : ℕ) : ℝ) ^ 5 * (r⁻¹ : ℝ) * (r ^ n * r) := by ac_rfl
         _ = ((n + 1 : ℕ) : ℝ) ^ 5 * r ^ n := by simp [mul_assoc, hcancel]
     have hbound : ∀ n : ℕ,
@@ -165,7 +165,7 @@ lemma tendsto_mul_t_resToImagAxis_A_E :
         calc
           Real.exp (-(2 * π * (1 : ℝ)) * (n : ℝ)) = Real.exp (-2 * Real.pi) ^ n := by
             simpa [mul_assoc, mul_left_comm, mul_comm] using (Real.exp_nat_mul (-2 * Real.pi) n)
-          _ = r ^ n := by simp [r]
+          _ = r ^ n := by rfl
       -- Combine the bounds.
       rw [hnorm_a, hexp]
       have hnexp : 0 ≤ r ^ n := by positivity
@@ -218,12 +218,12 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
   -- Simplify the powers of `z = i*t` appearing in the transformation.
   have hz2 : (z : ℂ) ^ (2 : ℕ) = -((t : ℂ) ^ (2 : ℕ)) := by
     calc
-      (z : ℂ) ^ (2 : ℕ) = (Complex.I * (t : ℂ)) ^ (2 : ℕ) := by simp [z]
+      (z : ℂ) ^ (2 : ℕ) = (Complex.I * (t : ℂ)) ^ (2 : ℕ) := by rfl
       _ = (Complex.I ^ (2 : ℕ)) * ((t : ℂ) ^ (2 : ℕ)) := by simp [mul_pow]
       _ = -((t : ℂ) ^ (2 : ℕ)) := by simp
   have hz4 : (z : ℂ) ^ (4 : ℕ) = (t : ℂ) ^ (4 : ℕ) := by
     calc
-      (z : ℂ) ^ (4 : ℕ) = (Complex.I * (t : ℂ)) ^ (4 : ℕ) := by simp [z]
+      (z : ℂ) ^ (4 : ℕ) = (Complex.I * (t : ℂ)) ^ (4 : ℕ) := by rfl
       _ = (Complex.I ^ (4 : ℕ)) * ((t : ℂ) ^ (4 : ℕ)) := by simp [mul_pow]
       _ = (t : ℂ) ^ (4 : ℕ) := by simp
   have hz6 : (z : ℂ) ^ (6 : ℕ) = -((t : ℂ) ^ (6 : ℕ)) := by
@@ -231,16 +231,14 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
       norm_num1
     calc
       (z : ℂ) ^ (6 : ℕ) = (Complex.I * (t : ℂ)) ^ (6 : ℕ) := by
-        change ((UpperHalfPlane.mk (Complex.I * t) (by simp [ht]) : ℍ) : ℂ) ^ (6 : ℕ) =
-          (Complex.I * (t : ℂ)) ^ (6 : ℕ)
-        simp
+        rfl
       _ = (Complex.I ^ (6 : ℕ)) * ((t : ℂ) ^ (6 : ℕ)) := by simp [mul_pow]
       _ = -((t : ℂ) ^ (6 : ℕ)) := by simp [hI6]
   have hz5 : (z : ℂ) ^ (5 : ℕ) = Complex.I * ((t : ℂ) ^ (5 : ℕ)) := by
     have hI5 : (Complex.I ^ (5 : ℕ) : ℂ) = Complex.I := by
       norm_num1
     calc
-      (z : ℂ) ^ (5 : ℕ) = (Complex.I * (t : ℂ)) ^ (5 : ℕ) := by simp [z]
+      (z : ℂ) ^ (5 : ℕ) = (Complex.I * (t : ℂ)) ^ (5 : ℕ) := by rfl
       _ = (Complex.I ^ (5 : ℕ)) * ((t : ℂ) ^ (5 : ℕ)) := by simp [mul_pow]
       _ = Complex.I * ((t : ℂ) ^ (5 : ℕ)) := by simp [hI5]
   have hdiv : (6 : ℂ) / (π * Complex.I * z) = -((6 : ℂ) / π) * ((t : ℂ)⁻¹) := by
@@ -253,7 +251,7 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
         _ = -(π * (t : ℂ)) := by simp [mul_comm]
     calc
       (6 : ℂ) / (π * Complex.I * z) = (6 : ℂ) / (π * Complex.I * (Complex.I * (t : ℂ))) := by
-        simp [z, mul_assoc]
+        rfl
       _ = (6 : ℂ) / (-(π * (t : ℂ))) := by
         simp [hden]
       _ = -((6 : ℂ) / (π * (t : ℂ))) := by
@@ -303,7 +301,7 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
             E₄
               (Matrix.SpecialLinearGroup.toGL
                     ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) ModularGroup.S) • z) := by
-        simp
+        rfl
       exact this.trans hE4_gl
     have hE6_gl :
         E₆
@@ -323,7 +321,7 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
             E₆
               (Matrix.SpecialLinearGroup.toGL
                     ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) ModularGroup.S) • z) := by
-        simp
+        rfl
       exact this.trans hE6_gl
     rw [hE2', hE4', hE6']
     -- Regroup the main product into `z^6 * (...)`.
@@ -354,15 +352,14 @@ lemma A_E_resToImagAxis_inv (t : ℝ) (ht : 0 < t) :
       simpa [mul_assoc] using hcore
     -- Conclude after rewriting the correction term.
     rw [hcorr]
-    rw [← (E4_apply (z := z)), ← (E6_apply (z := z))]
-    dsimp [A_E]
+    rfl
   -- Convert back to `resToImagAxis`.
   let z0 : ℍ := ⟨Complex.I * t, by simp [ht]⟩
   let zinv : ℍ := ⟨Complex.I * t⁻¹, by simp [htinv]⟩
   have hz0 : z0 = z := by
-    ext1; simp [z0, z]
+    rfl
   have hzinv : UpperHalfPlane.mk (Complex.I * t⁻¹) (by simp [htinv]) = zinv := by
-    ext1; rfl
+    rfl
   have hS' : ModularGroup.S • z = zinv := hS.trans hzinv
   have hres_inv : A_E.resToImagAxis t⁻¹ = A_E (ModularGroup.S • z) := by
     have hleft : A_E.resToImagAxis t⁻¹ = A_E zinv := by
@@ -641,7 +638,7 @@ public theorem FmodG_rightLimitAt_zero :
   -- Rewrite the target constant as `18 * π^(-2)`.
   have hconst : (18 / (π ^ (2 : ℕ)) : ℝ) = 18 * (π ^ (-2 : ℤ)) := by
     -- `π^(-2) = (π^2)⁻¹`.
-    simp [div_eq_mul_inv, zpow_neg, zpow_ofNat]
+    rfl
   simpa [nhdsWithin_univ, hconst] using hR
 
 /--

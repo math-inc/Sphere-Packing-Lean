@@ -117,7 +117,7 @@ public lemma fourier_I₁_eq_curveIntegral (w : ℝ⁸) :
           exact congrArg (fun F : ℝ⁸ → ℂ => ∫ x : ℝ⁸, F x) hmul
     _ =
         ∫ x : ℝ⁸, ∫ t in Ioc (0 : ℝ) 1, f x t := by
-          simp [f, permI1Kernel, mul_assoc]
+          rfl
     _ =
         ∫ t in Ioc (0 : ℝ) 1, (I : ℂ) * Φ₁_fourier (‖w‖ ^ 2) (z₁line t) := hswapEq
     _ =
@@ -197,7 +197,7 @@ public lemma fourier_I₂_eq_curveIntegral (w : ℝ⁸) :
           exact congrArg (fun F : ℝ⁸ → ℂ => ∫ x : ℝ⁸, F x) hmul
     _ =
         ∫ x : ℝ⁸, ∫ t in Ioc (0 : ℝ) 1, f x t := by
-          simp [f, permI2Kernel, mul_assoc]
+          rfl
     _ =
         ∫ t in Ioc (0 : ℝ) 1, Φ₁_fourier (‖w‖ ^ 2) (z₂line t) := hswapEq
     _ =

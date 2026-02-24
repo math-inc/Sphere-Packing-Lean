@@ -405,7 +405,7 @@ theorem calc_steps_part2 (hd : 0 < d) :
                     _ ≤ ‖(𝓕 ⇑f) (m : EuclideanSpace ℝ (Fin d))‖ * (n ^ 2) := by
                           exact mul_le_mul_of_nonneg_right hRe_le (by positivity)
                     _ ≤ g' m := by
-                          simp [g']
+                          rfl
               have hsplit :=
                 (Summable.tsum_eq_add_tsum_ite hSummable
                   (0 : ↥(SchwartzMap.dualLattice (d := d) P.lattice)))
@@ -435,10 +435,9 @@ theorem calc_steps_part2 (hd : 0 < d) :
     _ = ↑(P.numReps' hd hD_isBounded) ^ 2 * (𝓕 f 0).re / ZLattice.covolume P.lattice volume := by
               have hfou :
                   (𝓕 f) (0 : EuclideanSpace ℝ (Fin d)) = (𝓕 ⇑f) (0 : EuclideanSpace ℝ (Fin d)) := by
-                simpa using congrArg (fun g : EuclideanSpace ℝ (Fin d) → ℂ => g 0)
-                  (SchwartzMap.fourier_coe (f := f))
+                rfl
               have hfou_re : (𝓕 ⇑f (0 : EuclideanSpace ℝ (Fin d))).re = (𝓕 f 0).re := by
-                simp [hfou]
+                rfl
               -- Commutative-monoid algebra + `hfou_re` (separate lemma avoids heartbeats).
               have hcomm :
                   (1 / ZLattice.covolume P.lattice volume) *
@@ -465,7 +464,7 @@ theorem calc_steps_part2 (hd : 0 < d) :
                 simpa using hcomm
               -- Apply the conversion and rewrite the final term (`rw` avoids `isDefEq` timeout).
               rw [hcomm']
-              rw [hfou_re]
+              rfl
 
 include d f hP hne_zero hReal hRealFourier hCohnElkies₁ hCohnElkies₂ hD_unique_covers in
 omit hne_zero hReal in
@@ -569,7 +568,6 @@ public theorem LinearProgrammingBound' (hd : 0 < d) :
           (f_nonneg_at_zero hCohnElkies₂)
         rw [Real.toNNReal_of_nonneg (f_nonneg_at_zero hCohnElkies₂),
             Real.toNNReal_of_nonneg haux₁]
-        push_cast
         rfl
       have hLHSCast : (P.numReps : ENNReal) ^ 2 * ((𝓕 f 0).re.toNNReal : ENNReal) /
         ((ZLattice.covolume P.lattice volume).toNNReal : ENNReal) = ((P.numReps) ^ 2 *
@@ -589,8 +587,6 @@ public theorem LinearProgrammingBound' (hd : 0 < d) :
         norm_cast
         rw [Real.toNNReal_of_nonneg (hCohnElkies₂ 0),
             Real.toNNReal_of_nonneg (LT.lt.le (ZLattice.covolume_pos P.lattice volume))]
-        refine NNReal.eq ?_
-        push_cast
         rfl
       -- Drop `toNNReal`s and finish with `hCalc`.
       rw [hRHSCast, hLHSCast, ENNReal.coe_le_coe]

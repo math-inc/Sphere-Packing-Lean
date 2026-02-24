@@ -89,7 +89,7 @@ lemma a'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (a' u
         have hc : (((8640 / π : ℝ) : ℂ) * t) = (cR : ℂ) := by
           simp [cR, Complex.ofReal_mul]
         have hd : (((18144 / (π ^ (2 : ℕ)) : ℝ) : ℂ)) = (dR : ℂ) := by
-          simp [dR]
+          rfl
         -- Now the bracket is `ofReal (aR - bR + cR - dR)`.
         have hcomb :
             (((t ^ (2 : ℕ) : ℝ) : ℂ) * φ₀'' ((Complex.I : ℂ) / (t : ℂ)) -
@@ -122,7 +122,7 @@ lemma a'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (a' u
             _ = ((aR - bR + cR - dR : ℝ) : ℂ) := h3
         -- Finish by unfolding `innerR`.
         have hinner : aR - bR + cR - dR = innerR t := by
-          simp [innerR, aR, bR, cR, dR, φre]
+          rfl
         -- Replace `innerR t` by the real expression and conclude.
         simpa [hinner] using hcomb
       have hmul :
@@ -148,7 +148,7 @@ lemma a'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (a' u
       simpa using
         (setIntegral_im_ofReal (f := fun t => innerR t * Real.exp (-π * u * t)))
     simpa [hcongr] using hReal
-  have hpiIm : ((π : ℂ)).im = 0 := by simp
+  have hpiIm : ((π : ℂ)).im = 0 := by rfl
   have hpi3Im : ((π : ℂ) ^ (3 : ℕ)).im = 0 := by
     simpa using Complex.im_pow_eq_zero_of_im_eq_zero hpiIm 3
   have hfrac36 : ((36 : ℂ) / (π ^ (3 : ℕ) * (u - 2))).im = 0 := by
@@ -158,7 +158,7 @@ lemma a'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (a' u
     simp [Complex.div_im, hden]
   have hfrac8640 : ((8640 : ℂ) / (π ^ (3 : ℕ) * u ^ (2 : ℕ))).im = 0 := by
     have hden : ((π ^ (3 : ℕ) * u ^ (2 : ℕ) : ℂ)).im = 0 := by
-      have huIm : ((u : ℂ)).im = 0 := by simp
+      have huIm : ((u : ℂ)).im = 0 := by rfl
       have hu2Im : ((u : ℂ) ^ (2 : ℕ)).im = 0 := by
         simpa using Complex.im_pow_eq_zero_of_im_eq_zero huIm 2
       rw [Complex.mul_im]
@@ -178,7 +178,7 @@ lemma a'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (a' u
     simp [Complex.ofReal_pow]
   rw [hsin]
   have hsinIm : (((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ) : ℂ).im = 0 := by
-    exact Complex.ofReal_im ((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ)
+    rfl
   have hprodIm : ((((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ) : ℂ) * E).im = 0 := by
     rw [Complex.mul_im]
     rw [hEim, hsinIm]
@@ -273,7 +273,7 @@ lemma b'_re_eq_zero_of_pos_ne_two {u : ℝ} (hu : 0 < u) (hu2 : u ≠ 2) : (b' u
     simp [Complex.ofReal_pow]
   rw [hsin]
   have hsinIm : (((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ) : ℂ).im = 0 := by
-    exact Complex.ofReal_im ((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ)
+    rfl
   have hprodIm : ((((Real.sin (π * u / 2)) ^ (2 : ℕ) : ℝ) : ℂ) * E).im = 0 := by
     rw [Complex.mul_im]
     rw [hEim, hsinIm]

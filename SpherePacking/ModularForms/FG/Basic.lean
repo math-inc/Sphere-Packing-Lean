@@ -217,7 +217,7 @@ public theorem MLDE_F :
   have hB_holo : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) B := by
     simpa [hB] using (
       MDifferentiable.mul E₂_holo' E₆.holo').sub (MDifferentiable.mul E₄.holo' E₄.holo')
-  have hF : F = A ^ 2 := by simp [F, hA]
+  have hF : F = A ^ 2 := by rfl
   -- First compute `∂₁₀ F = - (5/6) A B`.
   have hS5 : serre_D 5 A = ((-5 : ℂ) * 12⁻¹) • B := by simpa [hA, hB] using serre_D_E₂_mul_E₄_sub_E₆
   have hSerre10 : serre_D 10 F = ((-5 : ℂ) * 6⁻¹) • (A * B) := by

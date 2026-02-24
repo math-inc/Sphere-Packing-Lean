@@ -496,7 +496,7 @@ lemma norm_A_E_sq_coeff_le (m : ℕ) :
   calc
     ‖A_E_sq_coeff m‖
         = ‖∑ p ∈ Finset.antidiagonal m, A_E_coeff p.1 * A_E_coeff p.2‖ := by
-            simp [A_E_sq_coeff]
+            rfl
     _ ≤ ∑ p ∈ Finset.antidiagonal m, ‖A_E_coeff p.1 * A_E_coeff p.2‖ := by
             simpa using (norm_sum_le (Finset.antidiagonal m)
               (fun p => A_E_coeff p.1 * A_E_coeff p.2))
@@ -560,19 +560,19 @@ lemma A_E_sq_eq_tsum (z : ℍ) :
           _ = rexp (-2 * π * z.im) ^ (n + 1) := by
                 -- `exp ((n+1) * x) = exp x ^ (n+1)`.
                 simpa using (Real.exp_nat_mul (-2 * π * z.im) (n + 1))
-          _ = r ^ (n + 1) := by simp [r]
+          _ = r ^ (n + 1) := by rfl
       exact le_of_eq (hnorm.trans hrpow)
     have hcoeff : ‖A_E_coeff n‖ ≤ (720 : ℝ) * ((n + 1 : ℕ) : ℝ) ^ 5 :=
       norm_A_E_coeff_le (n := n)
     calc
       ‖t n‖ = ‖A_E_coeff n * cexp (2 * π * I * ((n + 1 : ℕ) : ℂ) * (z : ℂ))‖ := by
-        simp [t, A_E_term]
+        rfl
       _ = ‖A_E_coeff n‖ * ‖cexp (2 * π * I * ((n + 1 : ℕ) : ℂ) * (z : ℂ))‖ := by
         simp
       _ ≤ ((720 : ℝ) * ((n + 1 : ℕ) : ℝ) ^ 5) * (r ^ (n + 1)) := by
         exact mul_le_mul hcoeff hexp (norm_nonneg _) (by positivity)
       _ = g n := by
-        simp [g, mul_assoc, mul_comm]
+        rfl
   -- Apply the Cauchy product formula.
   have hprod :
       (∑' n : ℕ, t n) * (∑' n : ℕ, t n) =
@@ -637,7 +637,7 @@ lemma A_E_sq_eq_tsum (z : ℍ) :
             cexp (2 * π * I * ((m + 2 : ℕ) : ℂ) * (z : ℂ)) := by
             simp [Finset.sum_mul, mul_assoc]
       _ = A_E_sq_coeff m * cexp (2 * π * I * ((m + 2 : ℕ) : ℂ) * (z : ℂ)) := by
-            simp [A_E_sq_coeff, mul_assoc]
+            rfl
   -- Finish.
   calc
     (A_E z) ^ 2 = (∑' n : ℕ, t n) ^ 2 := by simp [hA]
@@ -752,16 +752,16 @@ lemma A_E_sq_fourierCoeff_summable (z : ℍ) (hz : 1 / 2 < z.im) :
         _ = Real.exp (-Real.pi / 2) ^ (n + 4) := by
               simpa using Real.exp_nat_mul (-Real.pi / 2) (n + 4)
         _ = r ^ (n + 4) := by
-              simp [r]
+              rfl
     have hnorm' :
         Real.exp (-Real.pi * ((n + 4 : ℕ) : ℝ) * z.im) =
           Real.exp ((-Real.pi * ((n + 4 : ℕ) : ℝ)) * z.im) := by
-      ring
+      rfl
     exact (le_of_eq (hnorm.trans hnorm')).trans (hmono.trans_eq hpow)
   calc
     ‖fouterm A_E_sq_fourierCoeff z (n + 4)‖ =
         ‖A_E_sq_fourierCoeff (Int.ofNat (n + 4)) * cexp (↑π * I * (Int.ofNat (n + 4)) * z)‖ := by
-          simp [fouterm]
+          rfl
     _ = ‖A_E_sq_fourierCoeff (Int.ofNat (n + 4))‖ *
           ‖cexp (↑π * I * (Int.ofNat (n + 4)) * z)‖ := by
           simp
@@ -813,7 +813,7 @@ lemma A_E_sq_series_summable (x : ℍ) :
                   ring_nf
         _ = Real.exp (-2 * Real.pi * x.im) ^ (m + 2) := by
               simpa using (Real.exp_nat_mul (-2 * Real.pi * x.im) (m + 2))
-        _ = r ^ (m + 2) := by simp [r]
+        _ = r ^ (m + 2) := by rfl
     exact le_of_eq (hnorm.trans hrpow)
   calc
     ‖A_E_sq_coeff m * cexp (2 * π * I * ((m + 2 : ℕ) : ℂ) * (x : ℂ))‖
@@ -833,9 +833,9 @@ lemma A_E_sq_fourierCoeff_hf :
     A_E_sq_coeff m * cexp (2 * π * I * ((m + 2 : ℕ) : ℂ) * (x : ℂ))
   have hodd_term (m : ℕ) : f (2 * m + 1) = 0 := by
     -- Rewrite the index `↑(2*m+1) + 4` as `↑(2*m+5)` and use the `else` branch.
-    have hidxNat : (2 * m + 1) + 4 = 2 * m + 5 := by omega
+    have hidxNat : (2 * m + 1) + 4 = 2 * m + 5 := by rfl
     have hidx : ((2 * m + 1 : ℕ) : ℤ) + (4 : ℤ) = (Int.ofNat (2 * m + 5)) := by
-      simpa [hidxNat] using (Int.ofNat_add_ofNat (2 * m + 1) 4)
+      rfl
     have hcond : ¬(4 ≤ (2 * m + 5) ∧ Even (2 * m + 5)) := by
       intro h
       have : ¬Even (2 * m + 5) := by simp [parity_simps]
@@ -855,12 +855,12 @@ lemma A_E_sq_fourierCoeff_hf :
     let i : ℤ := ((2 * m : ℕ) : ℤ) + 4
     have hiNat : (2 * m) + 4 = 2 * m + 4 := rfl
     have hi : i = Int.ofNat (2 * m + 4) := by
-      dsimp [i]
+      rfl
     have hcond : 4 ≤ (2 * m + 4) ∧ Even (2 * m + 4) := by
       refine ⟨by omega, by simp [parity_simps]⟩
     have hc : A_E_sq_fourierCoeff i = A_E_sq_coeff m := by
       have hdiv : (2 * m + 4) / 2 - 2 = m := by
-        have : 2 * m + 4 = 2 * (m + 2) := by ring
+        have : 2 * m + 4 = 2 * (m + 2) := by rfl
         simp [this]
       have hcNat : A_E_sq_fourierCoeff (Int.ofNat (2 * m + 4)) = A_E_sq_coeff m := by
         simp [A_E_sq_fourierCoeff, hcond, hdiv]
@@ -869,7 +869,7 @@ lemma A_E_sq_fourierCoeff_hf :
         cexp (π * I * ((i : ℂ)) * (x : ℂ)) =
           cexp (2 * π * I * ((m + 2 : ℕ) : ℂ) * (x : ℂ)) := by
       have hcast : ((2 * m + 4 : ℕ) : ℂ) = (2 : ℂ) * ((m + 2 : ℕ) : ℂ) := by
-        have h : 2 * m + 4 = 2 * (m + 2) := by ring
+        have h : 2 * m + 4 = 2 * (m + 2) := by rfl
         simp [h, Nat.cast_mul]
       have harg :
           (π * I * ((2 * m + 4 : ℕ) : ℂ) * (x : ℂ)) =
@@ -888,7 +888,7 @@ lemma A_E_sq_fourierCoeff_hf :
     dsimp [f, g, fouterm]
     -- Keep the index as `i` to avoid unfolding coercions.
     have hidx : 2 * (m : ℤ) + 4 = i := by
-      dsimp [i]
+      rfl
     -- Rewrite indices, then use the computed coefficient/exponent identities.
     -- `simp` here tends to unfold casts aggressively, so we do targeted rewrites.
     -- (The goal is in `ℂ`, so `rw` is safe.)
@@ -979,7 +979,6 @@ public lemma norm_φ₀''_le_mul_exp_neg_pi_of_one_half_lt_im {C₀ : ℝ} (hC�
   calc
     ‖φ₀'' (z : ℂ)‖ = ‖φ₀ z‖ := by
       have hz' : (⟨(z : ℂ), hzpos⟩ : ℍ) = z := by
-        ext
         rfl
       simp [φ₀''_def (z := (z : ℂ)) hzpos, hz']
     _ ≤ C₀ * rexp (-2 * π * z.im) := hφ

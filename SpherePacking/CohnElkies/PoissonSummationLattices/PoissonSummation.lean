@@ -88,7 +88,7 @@ namespace Standard
 @[simp]
 public lemma intVec_apply (k : Fin d → ℤ) (i : Fin d) :
     intVec (d := d) k i = (k i : ℝ) := by
-  simp [intVec]
+  rfl
 
 /-- The image of `intVec` lies in the standard lattice. -/
 public lemma intVec_mem_standardLattice (k : Fin d → ℤ) :

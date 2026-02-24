@@ -78,9 +78,7 @@ lemma gN_integrable (n : ℕ) (x : ℝ) (hx : x ∈ s) : Integrable (gN n x) μ 
   have hx' : -1 < x := by simpa [s] using hx
   let f : ℝ → ℂ := gN_J6_integrand ψS.resToImagAxis n x
   have hf : gN n x = f := by
-    funext t
-    simp [gN, SmoothIntegralIciOne.gN, SmoothIntegralIciOne.g, SmoothIntegralIciOne.coeff, f,
-      gN_J6_integrand, mul_left_comm, mul_comm]
+    rfl
   have hmeas : AEStronglyMeasurable f ((volume : Measure ℝ).restrict (Ici (1 : ℝ))) := by
     simpa [hf, μ, μIciOne] using (gN_measurable (n := n) (x := x))
   have hInt : Integrable f ((volume : Measure ℝ).restrict (Ici (1 : ℝ))) := by
@@ -112,7 +110,7 @@ lemma hasDerivAt_F (n : ℕ) (x : ℝ) (hx : x ∈ s) :
   have hInt : Integrable (gN n x) μ := gN_integrable (n := n) (x := x) hx
   simpa [F, μ] using
     (SmoothIntegralIciOne.hasDerivAt_integral_gN
-      (hf := ψS.resToImagAxis) (shift := (1 : ℝ)) (hshift := (by norm_num))
+      (hf := ψS.resToImagAxis) (shift := (1 : ℝ)) (hshift := (by rfl))
       (exists_bound_norm_hf := exists_bound)
       (gN_measurable := fun n x => by simpa [μ] using gN_measurable (n := n) (x := x))
       (n := n) (x := x) hx' (hF_int := by simpa [μ] using hInt))
@@ -252,7 +250,7 @@ public theorem decay_J₆' :
           ‖F n x‖ ≤ ∫ t, ‖gN n x t‖ ∂μ := by
         -- Rewrite the set integral as an integral over `μ`.
         have : F n x = ∫ t, gN n x t ∂μ := by
-          simp [F, μ, μIciOne]
+          rfl
         -- Apply `‖∫ f‖ ≤ ∫ ‖f‖`.
         simpa [this] using (norm_integral_le_integral_norm (μ := μ) (f := gN n x))
       have hbound_ae :

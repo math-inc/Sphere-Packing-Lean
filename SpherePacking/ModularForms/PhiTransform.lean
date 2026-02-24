@@ -74,6 +74,6 @@ public theorem φ₀_S_transform (z : ℍ) :
               12 / (π * Complex.I * z) * (E₄ z * A / Δ z) := by field_simp
     rw [h1, h_I_factor]; ring
   rw [h_final]
-  simp [hA, A_E]
+  rfl
 
 end

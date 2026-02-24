@@ -145,7 +145,7 @@ theorem summable_zero_pow {G} [NormedField G] (f : ℕ → G) : Summable (fun m 
   refine summable_of_finite_support ((Set.finite_singleton (0 : ℕ)).subset ?_)
   intro m hm
   cases m with
-  | zero => simp
+  | zero => rfl
   | succ m =>
       exact False.elim (hm (by simp))
 
@@ -383,9 +383,9 @@ lemma Ek_q_exp (k : ℕ) (hk : 3 ≤ (k : ℤ)) (hk2 : Even k) :
     have hs : Summable fun m ↦ Ek_q k m • 𝕢 ↑1 ↑z ^ m := qexpsummable k hk z
     have hs' : Summable fun m ↦ Ek_q k m * 𝕢 (1 : ℝ) ↑z ^ m := by
       refine hs.congr fun m => ?_
-      simp [smul_eq_mul]
+      rfl
     refine hs'.congr fun m => ?_
-    simp [c, Ek_q]
+    rfl
   rw [Summable.hasSum_iff]
   · rw [this, tsum_eq_zero_add']
     · have V := tsum_pnat_eq_tsum_succ (f := fun b => c (b) • 𝕢 ↑1 ↑z ^ (b))
@@ -419,7 +419,7 @@ private lemma E4_q_exp_const :
   have hz : riemannZeta (4 : ℕ) = (π : ℂ) ^ 4 / 90 := by
     simpa using (riemannZeta_four : riemannZeta (4 : ℂ) = π ^ 4 / 90)
   have hpi4 : (π : ℂ) ^ 4 ≠ 0 := pow_ne_zero 4 (by simp : (π : ℂ) ≠ 0)
-  have hfac : (4 - 1)! = 6 := by decide
+  have hfac : (4 - 1)! = 6 := by rfl
   rw [hz, hfac]
   simp [div_eq_mul_inv, mul_assoc, mul_left_comm, mul_comm]
   field_simp [hpi4]
@@ -437,7 +437,7 @@ public lemma E4_q_exp : (fun m => (qExpansion 1 E₄).coeff m) =
   rw [E4_eq, hE]
   funext m
   by_cases hm : m = 0
-  · subst hm; simp
+  · subst hm; rfl
   · have hconst := congrArg (fun t : ℂ => t * (σ 3 m : ℂ)) E4_q_exp_const
     simpa [hm, mul_assoc, mul_left_comm, mul_comm] using hconst
 
@@ -471,14 +471,14 @@ private lemma riemannZeta_six :
     simpa [show (2 : ℂ) * 3 = 6 by norm_num] using
       (riemannZeta_two_mul_nat (k := 3) (by decide : (3 : ℕ) ≠ 0))
   rw [Z]
-  have hfac : (6 : ℕ)! = 720 := by decide
+  have hfac : (6 : ℕ)! = 720 := by rfl
   simp [bernoulli, bernoulli'_six, hfac]
   ring_nf
 
 private lemma E6_q_exp_const :
     (1 / riemannZeta 6) * ((-2 * (π : ℂ) * Complex.I) ^ 6 / (6 - 1)!) = (-(504 : ℂ)) := by
   have hpi6 : (π : ℂ) ^ 6 ≠ 0 := pow_ne_zero 6 (by simp : (π : ℂ) ≠ 0)
-  have hfac : (6 - 1)! = 120 := by decide
+  have hfac : (6 - 1)! = 120 := by rfl
   rw [riemannZeta_six, hfac]
   simp [div_eq_mul_inv, mul_assoc, mul_left_comm, mul_comm]
   field_simp [hpi6]
@@ -495,7 +495,7 @@ public lemma E6_q_exp : (fun m => (qExpansion 1 E₆).coeff m) =
   rw [E6_eq, hE]
   funext m
   by_cases hm : m = 0
-  · subst hm; simp
+  · subst hm; rfl
   · have hconst := congrArg (fun t : ℂ => t * (σ 5 m : ℂ)) E6_q_exp_const
     simpa [hm, mul_assoc, mul_left_comm, mul_comm] using hconst
 
@@ -526,15 +526,11 @@ public theorem E4E6_coeff_zero_eq_zero :
     ext z
     rw [pow_three]
     rw [@DirectSum.of_mul_of, DirectSum.of_mul_of]
-    simp only [Int.reduceAdd, DirectSum.of_eq_same]
-    rw [DFunLike.congr_arg (GradedMonoid.GMul.mul E₄ (GradedMonoid.GMul.mul E₄ E₄)) rfl]
     rfl
   have hd6 : ((DirectSum.of (ModularForm Γ(1)) 6) E₆ ^ 2) 12 = E₆.mul E₆ := by
     ext z
     rw [pow_two]
     rw [@DirectSum.of_mul_of]
-    simp only [Int.reduceAdd, DirectSum.of_eq_same]
-    rw [DFunLike.congr_arg (GradedMonoid.GMul.mul E₆ E₆) rfl]
     rfl
   rw [hds, hd6]
   rw [← Nat.cast_one (R := ℝ)]
@@ -756,9 +752,9 @@ public lemma riemannZeta_even_im_eq_zero (k : ℕ) (hk : k ≠ 0) :
   have : ((-1 : ℂ) ^ (k + 1) * (2 : ℂ) ^ (2 * k - 1) * (↑Real.pi : ℂ) ^ (2 * k) *
          ↑(bernoulli (2 * k)) / ↑((2 * k)! : ℕ)) =
          ↑((-1 : ℝ) ^ (k + 1) * (2 : ℝ) ^ (2 * k - 1) * Real.pi ^ (2 * k) *
-           bernoulli (2 * k) / (2 * k)!) := by push_cast; ring
+           bernoulli (2 * k) / (2 * k)!) := by push_cast; rfl
   rw [this]
-  exact ofReal_im _
+  rfl
 
 /-- `E_k(it)` is real for all `t > 0` when `k` is even and `k ≥ 4`.
 This is the generalized theorem from which `E₄_imag_axis_real` and `E₆_imag_axis_real` follow. -/
@@ -810,7 +806,7 @@ theorem E_even_imag_axis_real (k : ℕ) (hk : (3 : ℤ) ≤ k) (hk2 : Even k) :
   -- Step 4: Show the coefficient is real and product with sum is real
   have hpow_im : ((-2 * Real.pi * Complex.I) ^ k : ℂ).im = 0 :=
     neg_two_pi_I_pow_even_real k hk2
-  have hfact_im : ((k - 1).factorial : ℂ).im = 0 := by simp
+  have hfact_im : ((k - 1).factorial : ℂ).im = 0 := by rfl
   -- For ζ(k) when k is even and ≥ 4, it's real
   obtain ⟨m, _⟩ := hk2
   have hzeta_im : (riemannZeta k).im = 0 := by

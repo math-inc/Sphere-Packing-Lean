@@ -56,7 +56,7 @@ theorem upbnd (z : ℍ) (d : ℤ) : (d ^ 2 : ℝ) * r z ^ 2 ≤ ‖((z : ℂ) ^ 
     · refine (auxbound2 z ((d : ℝ)⁻¹) (d := -1) (by norm_num)).trans_eq ?_
       congr
       simp only [ofReal_inv, ofReal_intCast, ofReal_neg, ofReal_one]
-      ring
+      rfl
     · refine (auxbound2 z ((d : ℝ)⁻¹) (d := 1) (by norm_num)).trans_eq ?_
       congr
       simp only [ofReal_inv, ofReal_intCast]
@@ -102,7 +102,7 @@ public theorem summable_diff (z : ℍ) (d : ℤ) :
   · have := lhs_summable ⟨ -d / z, by simpa using pos_nat_div_upper d hd2 z⟩
     apply this.congr
     intro b
-    simp
+    rfl
   let D := (-d).natAbs
   have hd : 0 < D := by
     aesop
@@ -225,7 +225,7 @@ theorem vector_norm_bound (b : Fin 2 → ℤ) (hb : b ≠ 0) (HB1 : b ≠ ![0, -
     exact HB1 this
   rw [show (-3 : ℝ) = -1 -2 by norm_num]
   nth_rw 3 [Real.rpow_of_add_eq (y := -1) (z := -2) (by apply norm_nonneg) (by norm_num)
-    (by norm_num)]
+    (by rfl)]
   rw [← mul_assoc]
   apply mul_le_mul
   · simp_rw [Real.rpow_neg_one]
@@ -298,7 +298,7 @@ public lemma G_2_alt_summable (z : ℍ) : Summable fun (m : Fin 2 → ℤ) =>
     · ring
     · exact (r_pos z).le
     · norm_cast
-    norm_cast
+    rfl
   rw [hsplit]
   have hbnd : ‖![b 0, b 1 + 1]‖ ^ (-1 : ℝ) * ‖b‖ ^ (-2 : ℝ) ≤ 2 * ‖b‖ ^ (-3 : ℝ) := by
     refine vector_norm_bound b ?_ ?_

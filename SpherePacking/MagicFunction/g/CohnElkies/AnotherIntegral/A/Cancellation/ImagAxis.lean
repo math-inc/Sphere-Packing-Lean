@@ -390,7 +390,7 @@ public lemma exists_E2E4_sub_E6_sub_720q_bound :
           ‖((n + 2 : ℂ) * (σ 3 (n + 2) : ℂ))‖ =
               ‖(n + 2 : ℂ)‖ * ‖(σ 3 (n + 2) : ℂ)‖ := by simp
           _ = (n + 2 : ℝ) * (σ 3 (n + 2) : ℝ) := by simp [hn2]
-          _ = ((n + 2) * (σ 3 (n + 2)) : ℝ) := by simp
+          _ = ((n + 2) * (σ 3 (n + 2)) : ℝ) := by rfl
       have hcast : ((n + 2) * (σ 3 (n + 2)) : ℝ) ≤ ((n + 2) ^ 5 : ℝ) := by
         exact_mod_cast hcoeff_nat
       -- Rewrite the left-hand side using `hnorm`, then cast the RHS exponent.
@@ -428,7 +428,7 @@ public lemma exists_E2E4_sub_E6_sub_720q_bound :
     -- Combine the coefficient and exponential bounds.
     calc
       ‖f n‖ = ‖((n + 2 : ℂ) * (σ 3 (n + 2) : ℂ)) * cexp (2 * π * Complex.I * (n + 2 : ℂ) * z)‖ := by
-            simp [f, mul_assoc]
+            rfl
       _ = ‖((n + 2 : ℂ) * (σ 3 (n + 2) : ℂ))‖ *
             ‖cexp (2 * π * Complex.I * (n + 2 : ℂ) * z)‖ := by
             simp [mul_assoc]
@@ -497,7 +497,7 @@ public lemma exists_E2E4_sub_E6_sub_720q_bound :
             ‖((n + 1 : ℂ) * (σ 3 (n + 1) : ℂ))‖ =
                 ‖(n + 1 : ℂ)‖ * ‖(σ 3 (n + 1) : ℂ)‖ := by simp
             _ = (n + 1 : ℝ) * (σ 3 (n + 1) : ℝ) := by simp [hn1]
-            _ = ((n + 1) * (σ 3 (n + 1)) : ℝ) := by simp
+            _ = ((n + 1) * (σ 3 (n + 1)) : ℝ) := by rfl
         have hcast' : ((n + 1) * (σ 3 (n + 1)) : ℝ) ≤ ((n + 1) ^ 5 : ℝ) := by
           exact_mod_cast hcoeff_nat
         have hmain : ‖((n + 1 : ℂ) * (σ 3 (n + 1) : ℂ))‖ ≤ ((n + 1) ^ 5 : ℝ) := by
@@ -512,7 +512,7 @@ public lemma exists_E2E4_sub_E6_sub_720q_bound :
       -- Put together.
       calc
         ‖g n‖ = ‖((n + 1 : ℂ) * (σ 3 (n + 1) : ℂ)) * cexp (2 * π * Complex.I * (n + 1) * z)‖ := by
-              simp [g, mul_assoc]
+              rfl
         _ = ‖((n + 1 : ℂ) * (σ 3 (n + 1) : ℂ))‖ *
               ‖cexp (2 * π * Complex.I * (n + 1) * z)‖ := by simp [mul_assoc]
         _ ≤ ((n + 2 : ℝ) ^ 5 : ℝ) * (q * q1 ^ n) := by gcongr
@@ -544,7 +544,7 @@ public lemma exists_E2E4_sub_E6_sub_720q_bound :
       _ = ∑' n : ℕ, f n := by
             refine tsum_congr ?_
             intro n
-            have hn : n + 1 + 1 = n + 2 := by omega
+            have hn : n + 1 + 1 = n + 2 := by rfl
             have harg :
                 (Complex.I : ℂ) * (↑π * ((↑n + (1 + 1)) * (2 * (z : ℂ)))) =
                   (Complex.I : ℂ) * (↑π * (2 * ((↑n + 2) * (z : ℂ)))) := by

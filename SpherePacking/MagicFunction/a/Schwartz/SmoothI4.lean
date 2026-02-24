@@ -113,7 +113,7 @@ lemma exists_bound_norm_hf : ∃ M, ∀ t ∈ Ioo (0 : ℝ) 1, ‖hf t‖ ≤ M 
     have hz : ‖z₄' t‖ ≤ 2 := norm_z₄'_le_two t
     have hnorm : ‖(z₄' t : ℂ) - 1‖ ≤ 3 := by
       calc
-        ‖(z₄' t : ℂ) - 1‖ = ‖(z₄' t : ℂ) + (-1 : ℂ)‖ := by simp [sub_eq_add_neg]
+        ‖(z₄' t : ℂ) - 1‖ = ‖(z₄' t : ℂ) + (-1 : ℂ)‖ := by rfl
         _ ≤ ‖z₄' t‖ + ‖(-1 : ℂ)‖ := norm_add_le _ _
         _ ≤ 2 + 1 := by
               refine add_le_add hz ?_
@@ -124,7 +124,7 @@ lemma exists_bound_norm_hf : ∃ M, ∀ t ∈ Ioo (0 : ℝ) 1, ‖hf t‖ ≤ M 
     ‖hf t‖ = ‖φ₀'' (arg t)‖ * ‖((z₄' t : ℂ) - 1) ^ (2 : ℕ)‖ := by
       simp [hf]
     _ ≤ (C₀ * rexp (-π)) * ((3 : ℝ) ^ (2 : ℕ)) := by gcongr
-    _ = C₀ * rexp (-π) * ((3 : ℝ) ^ (2 : ℕ)) := by simp [mul_assoc]
+    _ = C₀ * rexp (-π) * ((3 : ℝ) ^ (2 : ℕ)) := by rfl
 
 /-- Smoothness of `RealIntegrals.I₄'` as a function `ℝ → ℂ`. -/
 public theorem I₄'_contDiff : ContDiff ℝ (⊤ : ℕ∞) I₄' := by

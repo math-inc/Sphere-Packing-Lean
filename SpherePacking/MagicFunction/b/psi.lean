@@ -28,7 +28,7 @@ noncomputable section matrices
 -- #check ModularGroup.S
 -- #check ModularGroup.T
 
-def ModularGroup.I : SL(2, ℤ) := ⟨!![1, 0; 0, 1], by decide⟩
+def ModularGroup.I : SL(2, ℤ) := ⟨!![1, 0; 0, 1], by rfl⟩
 
 end matrices
 
@@ -101,7 +101,7 @@ lemma slashT' (z : ℍ) (F : ℍ → ℂ) : ((F) ∣[(-2 : ℤ)] (T)) (z) =  (F)
   simp [SL_slash_apply, T, denom]
  -- no need for slashT'', as ← slashT already fulfils that role
 
-private lemma S_mul_T : S * T = ⟨!![0, -1; 1, 1], by norm_num [det_fin_two_of]⟩ := by
+private lemma S_mul_T : S * T = ⟨!![0, -1; 1, 1], by rfl⟩ := by
   ext (i : Fin 2) (j : Fin 2)
   fin_cases i <;> fin_cases j <;> simp [S, T]
 
@@ -139,12 +139,11 @@ public lemma ψI_eq :
   rw [Pi.neg_apply, slashST']
   have rewriting (z : ℍ) (F2 F3 F4 : ℍ → ℂ) : (128 • ((F3 + F4) / (F2 ^ 2))) ((S * T) • z) =
       128 • ((F3 ((S * T) • z) + F4 ((S * T) • z)) / ((F2 ((S * T) • z)) ^ 2)) := by
-    simp only [nsmul_eq_mul, Nat.cast_ofNat, sl_moeb, map_mul, Pi.div_apply, Pi.add_apply,
-      Pi.mul_apply, Pi.ofNat_apply, Pi.pow_apply]
+    rfl
   rw [rewriting, slashST'' z ⇑H₂_MF, slashST'' z ⇑H₃_MF, slashST'' z ⇑H₄_MF]
-  have hh2 : (H₂_MF : ℍ → ℂ) = H₂ := by exact rfl
-  have hh3 : (H₃_MF : ℍ → ℂ) = H₃ := by exact rfl
-  have hh4 : (H₄_MF : ℍ → ℂ) = H₄ := by exact rfl
+  have hh2 : (H₂_MF : ℍ → ℂ) = H₂ := by rfl
+  have hh3 : (H₃_MF : ℍ → ℂ) = H₃ := by rfl
+  have hh4 : (H₄_MF : ℍ → ℂ) = H₄ := by rfl
   rw [hh2 , hh3, hh4]
   rw [slash_mul, slash_mul, slash_mul, H₂_S_action, H₃_S_action, H₄_S_action,
     SlashAction.neg_slash, SlashAction.neg_slash, SlashAction.neg_slash, H₂_T_action,
@@ -160,7 +159,7 @@ public lemma ψI_eq :
   simp only [Pi.neg_apply, neg_add_rev, neg_neg, even_two, Even.neg_pow, nsmul_eq_mul,
     Nat.cast_ofNat, Pi.smul_apply, Pi.div_apply, Pi.sub_apply, Pi.pow_apply, mul_eq_mul_left_iff,
     OfNat.ofNat_ne_zero, or_false]
-  rw [sub_eq_add_neg]
+  rfl
 -- this completes the proof of ψI_eq
 
 /-- Explicit formula for `ψT` in terms of the Jacobi theta functions `H₂`, `H₃`, and `H₄`. -/
@@ -191,9 +190,9 @@ public lemma ψS_eq' :
   simp only [Pi.smul_apply, Pi.add_apply, Pi.div_apply, Pi.pow_apply,
     Pi.sub_apply, smul_add, nsmul_eq_mul, Nat.cast_ofNat, Pi.mul_apply, Pi.ofNat_apply]
   rw [slashS'' z ⇑H₂_MF, slashS'' z ⇑H₃_MF, slashS'' z ⇑H₄_MF]
-  have hh2 : (H₂_MF : ℍ → ℂ) = H₂ := by exact rfl
-  have hh3 : (H₃_MF : ℍ → ℂ) = H₃ := by exact rfl
-  have hh4 : (H₄_MF : ℍ → ℂ) = H₄ := by exact rfl
+  have hh2 : (H₂_MF : ℍ → ℂ) = H₂ := by rfl
+  have hh3 : (H₃_MF : ℍ → ℂ) = H₃ := by rfl
+  have hh4 : (H₄_MF : ℍ → ℂ) = H₄ := by rfl
   rw [hh2 , hh3, hh4, H₂_S_action, H₃_S_action, H₄_S_action]
   have z_square_nonzero : (z : ℂ) ^ 2 ≠ 0 := by
     rw [pow_two, mul_self_ne_zero]
@@ -250,7 +249,7 @@ public lemma ψT_slash_T : ψT ∣[-2] T = ψI := by
 
 /-- Modular relation: `ψS ∣[-2] S = ψI`. -/
 public lemma ψS_slash_S : ψS ∣[-2] S = ψI := by
-  have hk : Even (-2 : ℤ) := ⟨-1, by ring⟩
+  have hk : Even (-2 : ℤ) := ⟨-1, by rfl⟩
   rw [ψS, ← slash_mul, ModularGroup.modular_S_sq]
   calc
     ψI ∣[(-2 : ℤ)] (-1 : SL(2, ℤ)) = ψI ∣[(-2 : ℤ)] (1 : SL(2, ℤ)) :=
@@ -260,7 +259,7 @@ public lemma ψS_slash_S : ψS ∣[-2] S = ψI := by
 
 /-- Modular relation: `ψS ∣[-2] (S * T) = ψT`. -/
 public lemma ψS_slash_ST : ψS ∣[-2] (S * T) = ψT := by
-  have hk : Even (-2 : ℤ) := ⟨-1, by ring⟩
+  have hk : Even (-2 : ℤ) := ⟨-1, by rfl⟩
   rw [ψS, ψT, ← slash_mul, ← mul_assoc, ModularGroup.modular_S_sq]
   simp [hk]
 
@@ -428,7 +427,7 @@ lemma ψS_slash_ST_apply (z : ℍ) :
     SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, Int.coe_castRingHom, map_apply,
     of_apply, cons_val', cons_val_zero, cons_val_fin_one, cons_val_one, Int.cast_one, ofReal_one,
     one_mul, neg_neg]
-  norm_cast
+  rfl
 
 lemma ψS_slash_ST_apply' (z : ℍ) : (ψS ∣[-2] (S * T)) z = ψS' (-1 / (z + 1)) * (z + 1) ^ 2 := by
   rw [ψS_slash_ST_apply, ← ψS'_eq_ψS_of_mem]
@@ -441,7 +440,7 @@ lemma ψS_slash_S_apply (z : ℍ) : (ψS ∣[-2] S) z = ψS ⟨-1 / z, neg_inv_m
     SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, Int.coe_castRingHom, map_apply,
     of_apply, cons_val', cons_val_zero, cons_val_fin_one, cons_val_one, Int.cast_one, ofReal_one,
     one_mul, Int.cast_zero, ofReal_zero, add_zero, neg_neg]
-  norm_cast
+  rfl
 
 lemma ψS_slash_S_apply' (z : ℍ) : (ψS ∣[-2] S) z = ψS' (-1 / z) * z ^ 2 := by
   rw [ψS_slash_S_apply, ← ψS'_eq_ψS_of_mem]

@@ -49,7 +49,7 @@ public lemma finiteDimensional_modularForm_weight_zero (Γ : Subgroup SL(2, ℤ)
       obtain ⟨c, hc⟩ :=
         ModularForm.eq_const_of_weight_zero (𝒢 := (Γ : Subgroup (GL (Fin 2) ℝ))) f
       ext z; simp [hc]
-    right_inv := by intro c; simp
+    right_inv := by intro c; rfl
     map_add' := by simp
     map_smul' := by simp }
   exact LinearEquiv.finiteDimensional e.symm

@@ -26,7 +26,7 @@ open Real Complex
 noncomputable section
 
 private lemma complex_eq_ofReal_of_im_eq_zero (z : ℂ) (hz : z.im = 0) : z = (z.re : ℂ) := by
-  exact Complex.ext (by simp) (by simp [hz])
+  exact Complex.ext (by rfl) (by simp [hz])
 
 /-- The constant `c = 18 / π^2` appearing in the definitions of `A` and `B`. -/
 public abbrev c : ℝ := 18 * (π ^ (-2 : ℤ))
@@ -59,16 +59,16 @@ public lemma phi0''_re_I_div (t : ℝ) (ht : 0 < t) :
   calc
     (φ₀'' ((Complex.I : ℂ) / (t : ℂ))).re = (φ₀ z).re := by
       simpa [hz] using congrArg Complex.re (φ₀''_coe_upperHalfPlane z)
-    _ = ((F z) / (Δ z)).re := by simp [φ₀, F]
+    _ = ((F z) / (Δ z)).re := by rfl
     _ = ((FReal s : ℂ) / (Δ.resToImagAxis s)).re := by simp [hF, hΔ]
     _ = ((FReal s : ℂ) / ((Δ.resToImagAxis s).re : ℂ)).re := by
       rw [hΔof]
       rfl
     _ = (FReal s) / (Δ.resToImagAxis s).re := by
       rw [(Complex.ofReal_div (FReal s) (Δ.resToImagAxis s).re).symm]
-      simp
+      rfl
     _ = (FReal (1 / t)) / (Δ.resToImagAxis (1 / t)).re := by
-      simp [s]
+      rfl
 
 /-- Real part of `ψS` on the imaginary axis, written using `GReal` and `Δ`. -/
 public lemma ψS_resToImagAxis_re (s : ℝ) (hs : 0 < s) :
@@ -121,7 +121,7 @@ public lemma ψI'_re_mul_I (t : ℝ) (ht : 0 < t) :
       rw [hψIaxis]
       simp only [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_im, zero_mul, sub_zero]
     _ = -(t ^ (2 : ℕ)) * (ψS.resToImagAxis (1 / t)).re := by
-          simp [s]
+          rfl
 
 /-- Rewrite `A t` as a quotient involving `FReal`, `GReal`, and `Δ` on the imaginary axis. -/
 public lemma A_eq_neg_mul_FG_div_Delta (t : ℝ) (ht : 0 < t) :
@@ -176,7 +176,7 @@ public lemma A_eq_neg_mul_FG_div_Delta (t : ℝ) (ht : 0 < t) :
     _ =
         (-(t ^ (2 : ℕ))) *
           ((FReal (1 / t) + c * GReal (1 / t)) / (Δ.resToImagAxis (1 / t)).re) := by
-          simp [s, Δr, Function.resToImagAxis]
+          rfl
 
 /-- Rewrite `B t` as a quotient involving `FReal`, `GReal`, and `Δ` on the imaginary axis. -/
 public lemma B_eq_neg_mul_FG_div_Delta (t : ℝ) (ht : 0 < t) :
@@ -231,7 +231,7 @@ public lemma B_eq_neg_mul_FG_div_Delta (t : ℝ) (ht : 0 < t) :
     _ =
         (-(t ^ (2 : ℕ))) *
           ((FReal (1 / t) - c * GReal (1 / t)) / (Δ.resToImagAxis (1 / t)).re) := by
-          simp [s, Δr, Function.resToImagAxis]
+          rfl
 
 end
 

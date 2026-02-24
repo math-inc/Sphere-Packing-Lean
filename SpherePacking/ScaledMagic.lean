@@ -51,8 +51,7 @@ public theorem fourier_scaledMagic_zero : FT scaledMagic 0 = (1 / 16 : ℂ) := b
   let A : ℝ⁸ ≃ₗ[ℝ] ℝ⁸ := LinearEquiv.smulOfNeZero (K := ℝ) (M := ℝ⁸) c sqrt2_ne_zero
   have hdet : abs (LinearMap.det (A : ℝ⁸ →ₗ[ℝ] ℝ⁸)) = (16 : ℝ) := by
     have hA : (A : ℝ⁸ →ₗ[ℝ] ℝ⁸) = c • (LinearMap.id : ℝ⁸ →ₗ[ℝ] ℝ⁸) := by
-      ext x
-      simp [A]
+      rfl
     have hc_pow : c ^ 8 = (16 : ℝ) := by
       calc
         c ^ 8 = (c ^ 2) ^ 4 := by simpa using (pow_mul c 2 4)

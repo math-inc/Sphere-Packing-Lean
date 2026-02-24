@@ -59,7 +59,7 @@ public lemma MultipliableEtaProductExpansion (z : ℍ) :
   · rw [← summable_norm_iff]
     simpa using summable_exp_pow z
   intro n
-  simp [sub_eq_add_neg]
+  rfl
 
 /-- A `ℕ+`-indexed variant of `MultipliableEtaProductExpansion`. -/
 public lemma MultipliableEtaProductExpansion_pnat (z : ℍ) :

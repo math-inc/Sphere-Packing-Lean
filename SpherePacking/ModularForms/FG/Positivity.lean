@@ -56,7 +56,7 @@ public lemma F_pos : ResToImagAxis.Pos F := by
           simp [hn]
         _ = Real.exp (-2 * Real.pi * t) ^ n := by
           simpa using (Real.exp_nat_mul (-2 * Real.pi * t) n)
-        _ = r ^ n := by simp [hr]
+        _ = r ^ n := by rfl
     have hr_pos : 0 < r := by
       simpa [hr] using Real.exp_pos (-2 * Real.pi * t)
     have hr_lt_one : r < 1 := by
@@ -161,7 +161,7 @@ public lemma F_pos : ResToImagAxis.Pos F := by
           simp [hterm]
         _ = ((n : ℂ) * (σ 3 n : ℂ)).re * ((r ^ (n : ℕ) : ℂ)).re
               - ((n : ℂ) * (σ 3 n : ℂ)).im * ((r ^ (n : ℕ) : ℂ)).im := by
-          simp [Complex.mul_re]
+          rfl
         _ = (n : ℝ) * (σ 3 n : ℝ) * r ^ (n : ℕ) := by
           simp [hcoeff_re, hcoeff_im, hr_re, hr_im, mul_left_comm, mul_comm]
     have hterm_nonneg (n : ℕ+) : 0 ≤ (term n).re := by
@@ -338,7 +338,7 @@ public lemma E₂_eq_qexp (z : UpperHalfPlane) :
       have :
           (fun n : ℕ => ite (n = 0) 0 (a n * cexp (2 * π * Complex.I * (n : ℂ) * (z : ℂ)))) 0 =
             0 := by
-        simp
+        rfl
       simpa using (tsum_pNat
         (f := fun n : ℕ => ite (n = 0) 0 (a n * cexp (2 * π * Complex.I * (n : ℂ) * (z : ℂ))))
         (hf := this)).symm
@@ -475,7 +475,7 @@ lemma negDE₂_pos : ResToImagAxis.Pos negDE₂ := by
       · have ha : a n = (-24 : ℂ) * (σ 1 n : ℂ) := by simp [a, hn]
         rw [ha]
         ring
-    have hnegDE₂ : negDE₂ τ = -(D E₂ τ) := by simp [negDE₂, Pi.neg_apply]
+    have hnegDE₂ : negDE₂ τ = -(D E₂ τ) := by rfl
     calc
       negDE₂ τ = -(D E₂ τ) := hnegDE₂
       _ = -(∑' n : ℕ, (n : ℂ) * a n * cexp (2 * π * Complex.I * n * τ)) := by rw [hD]
@@ -529,7 +529,7 @@ lemma negDE₂_pos : ResToImagAxis.Pos negDE₂ := by
                           simp [mul_assoc, mul_comm]
                     _ = (24 : ℝ) * (n : ℝ) * (σ 1 n : ℝ) *
                           ‖cexp (2 * π * Complex.I * n * τ)‖ := by
-                          simp [mul_assoc]
+                          rfl
           _ = (24 : ℝ) * (n : ℝ) * (σ 1 n : ℝ) * (r ^ n) := by simp [hqpow]
           _ ≤ (24 : ℝ) * ((n : ℝ) ^ 3 * r ^ n) := by
                 have hn0 : 0 ≤ (n : ℝ) := by positivity
@@ -564,7 +564,7 @@ lemma negDE₂_pos : ResToImagAxis.Pos negDE₂ := by
       set y : ℂ := (rexp (-(2 * π * n * t)) : ℂ)
       have hx : x.im = 0 := by simp [x]
       have hy : y.im = 0 := by
-        simpa [y] using (Complex.ofReal_im (rexp (-(2 * π * n * t))))
+        rfl
       have : (x * y).im = 0 := by simp [Complex.mul_im, hx, hy]
       simpa [x, y, mul_assoc] using this
     have hsum_im :
@@ -595,11 +595,11 @@ lemma negDE₂_pos : ResToImagAxis.Pos negDE₂ := by
       set y : ℂ := (rexp (-(2 * π * n * t)) : ℂ)
       have hx : x.im = 0 := by simp [x]
       have hy : y.im = 0 := by
-        simpa [y] using (Complex.ofReal_im (rexp (-(2 * π * n * t))))
+        rfl
       have hxre : x.re = (24 : ℝ) * (n : ℝ) * (σ 1 n : ℝ) := by
         simp [x, mul_assoc, mul_comm, mul_left_comm]
       have hyre : y.re = rexp (-(2 * π * n * t)) := by
-        simpa [y] using (Complex.ofReal_re (rexp (-(2 * π * n * t))))
+        rfl
       have : (x * y).re = (24 : ℝ) * (n : ℝ) * (σ 1 n : ℝ) * rexp (-(2 * π * n * t)) := by
         simp [Complex.mul_re, hx, hy, hxre, hyre, mul_assoc, mul_comm, mul_left_comm]
       simpa [x, y, mul_assoc, harg] using this
@@ -630,13 +630,13 @@ lemma negDE₂_pos : ResToImagAxis.Pos negDE₂ := by
             have hmul : (-2 * Real.pi * (n : ℝ) * t) = n * (-2 * Real.pi * t) := by
               calc
                 (-2 * Real.pi * (n : ℝ) * t) = (n : ℝ) * (-2 * Real.pi * t) := by ring
-                _ = n * (-2 * Real.pi * t) := by simp
+                _ = n * (-2 * Real.pi * t) := by rfl
             calc
               Real.exp (-2 * Real.pi * (n : ℝ) * t) = Real.exp (n * (-2 * Real.pi * t)) := by
                 rw [hmul]
               _ = Real.exp (-2 * Real.pi * t) ^ n := by
                 simpa using (Real.exp_nat_mul (-2 * Real.pi * t) n)
-              _ = r ^ n := by simp [r]
+              _ = r ^ n := by rfl
           have hn0 : 0 ≤ (n : ℝ) := by positivity
           have hrn : 0 ≤ r ^ n := pow_nonneg hr_nonneg _
           have hσ' : (σ 1 n : ℝ) ≤ (n : ℝ) ^ 2 := hσ n

@@ -17,6 +17,6 @@ namespace MagicFunction
 
 /-- Evaluate `scalarOneForm` as multiplication by `F z`. -/
 @[simp] public lemma scalarOneForm_apply (F : ℂ → ℂ) (z v : ℂ) :
-    scalarOneForm F z v = v * F z := by simp [scalarOneForm]
+    scalarOneForm F z v = v * F z := by rfl
 
 end MagicFunction

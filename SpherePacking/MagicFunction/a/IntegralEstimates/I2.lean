@@ -96,7 +96,7 @@ lemma parametrisation_eq : ∀ t ∈ Ioo (0 : ℝ) 1,
       conv at h => rw [sub_eq_zero]
       -- This has to be the most ridiculous proof ever. It should never have to go down to 0 ≠ 1 :(
       have h₁ : (ofReal t).im = 0 := ofReal_im t
-      have h₂ : (ofReal t).im = 1 := by rw [h]; exact I_im
+      have h₂ : (ofReal t).im = 1 := by rw [h]; rfl
       exact zero_ne_one ((h₁.symm).trans h₂)
   _ = _ := by
       conv_lhs => rw [div_mul_div_comm (-1) (t + I)]
@@ -118,11 +118,9 @@ public lemma im_parametrisation_lower : ∀ t ∈ Ioo (0 : ℝ) 1, 1 / 2 < (-1 /
 
 lemma im_parametrisation_upper : ∀ t ∈ Ioo (0 : ℝ) 1, (-1 / (↑t + I)).im < 1 := by
   intro t ht
-  rw [im_parametrisation_eq t ht, one_div, ← inv_one, inv_lt_inv₀]
-  · obtain ⟨ht₀, ht₁⟩ := ht
-    simp_all only [inv_one, lt_add_iff_pos_left, pow_pos]
-  · positivity
-  · exact one_pos
+  have h : (1 : ℝ) < t ^ 2 + 1 := by nlinarith [sq_pos_of_pos ht.1]
+  simpa [im_parametrisation_eq t ht] using (one_div_lt_one_div_of_lt one_pos h)
+
 end Bounding_Integrand
 
 section Bounding_Integral
@@ -242,7 +240,7 @@ lemma iteratedDeriv_I₂'_eq_integral_gN (n : ℕ) :
           _ = (cexp (-π * I * r) * cexp (π * I * r * t)) * cexp (-π * r : ℂ) := by
                 simp [Complex.exp_add]
           _ = cexp (-π * I * r) * cexp (π * I * r * t) * cexp (-π * r : ℂ) := by
-                ac_rfl
+                rfl
       have hexp' :
           cexp (π * I * r * (z₂' t : ℂ)) =
             cexp (-π * I * r) * cexp (π * I * r * t) * cexp (-π * r : ℂ) := by

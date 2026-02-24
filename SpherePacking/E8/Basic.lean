@@ -84,7 +84,7 @@ public lemma Submodule.coe_evenLattice (R : Type*) (n : ℕ) [Ring R] [CharZero 
   simp only [evenLattice, map_coe, Set.mem_image, SetLike.mem_coe, Set.mem_setOf_eq]
   constructor
   · rintro ⟨f, hf, rfl⟩
-    refine ⟨fun i ↦ ⟨f i, by simp⟩, ?_⟩
+    refine ⟨fun i ↦ ⟨f i, by rfl⟩, ?_⟩
     have hf' : (∑ i, f i : ℤ) ≡ 0 [PMOD 2] := by simpa [evenLatticeInt] using hf
     simpa [Int.cast_sum] using (hf'.intCast (G := R))
   · rintro ⟨hv, hv'⟩

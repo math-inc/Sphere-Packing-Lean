@@ -100,9 +100,7 @@ lemma volume_real_fundamentalDomain_stdBasis :
   have hb :
       ((EuclideanSpace.basisFun (Fin d) ℝ).toBasis).map f.toLinearEquiv =
         Pi.basisFun ℝ (Fin d) := by
-    ext i j
-    -- Both sides are coordinate vectors.
-    simp [f, EuclideanSpace.basisFun_apply, EuclideanSpace.equiv, Pi.single_apply]
+    rfl
   have himage :
       f.toLinearEquiv '' ZSpan.fundamentalDomain ((EuclideanSpace.basisFun (Fin d) ℝ).toBasis) =
         ZSpan.fundamentalDomain (Pi.basisFun ℝ (Fin d)) := by
@@ -112,11 +110,7 @@ lemma volume_real_fundamentalDomain_stdBasis :
   have hpre :
       f ⁻¹' (ZSpan.fundamentalDomain (Pi.basisFun ℝ (Fin d))) =
         ZSpan.fundamentalDomain ((EuclideanSpace.basisFun (Fin d) ℝ).toBasis) := by
-    simpa
-        [Set.preimage_image_eq (f := fun x : E => f x)
-          (s := ZSpan.fundamentalDomain ((EuclideanSpace.basisFun (Fin d) ℝ).toBasis))
-          f.injective]
-      using congrArg (fun s => (fun x : E => f x) ⁻¹' s) himage.symm
+    rfl
   have hcube :
       (volume : Measure (Fin d → ℝ)).real
           (ZSpan.fundamentalDomain (Pi.basisFun ℝ (Fin d))) = 1 := by
@@ -180,7 +174,7 @@ noncomputable def equivStandardLattice : SchwartzMap.standardLattice d ≃ₗ[�
 @[simp]
 lemma equivStandardLattice_apply (x : SchwartzMap.standardLattice d) :
     ((equivStandardLattice (d := d) L x : L) : E) = (Aₗ (d := d) (L := L)) x := by
-  simp [equivStandardLattice] -- `LinearEquiv.ofSubmodules_apply`: coercion to ambient space
+  rfl -- `LinearEquiv.ofSubmodules_apply`: coercion to ambient space
 
 lemma Bₗ_comp_Aadjₗ :
     (Bₗ (d := d) L ∘ₗ Aadjₗ (d := d) L) = (LinearMap.id : E →ₗ[ℝ] E) := by
@@ -191,7 +185,7 @@ lemma Bₗ_comp_Aadjₗ :
     simp [Amap, Bmap]
   calc
     Bₗ (d := d) L ∘ₗ Aadjₗ (d := d) L = Bmap.adjoint ∘ₗ Amap.adjoint := by
-      simp [Bₗ, Aadjₗ, Amap, Bmap]
+      rfl
     _ = (Amap ∘ₗ Bmap).adjoint := by
       exact (LinearMap.adjoint_comp Amap Bmap).symm
     _ = (LinearMap.id : E →ₗ[ℝ] E) := by simp [hcomp]
@@ -205,7 +199,7 @@ lemma Aadjₗ_comp_Bₗ :
     simp [Amap, Bmap]
   calc
     Aadjₗ (d := d) L ∘ₗ Bₗ (d := d) L = Amap.adjoint ∘ₗ Bmap.adjoint := by
-      simp [Bₗ, Aadjₗ, Amap, Bmap]
+      rfl
     _ = (Bmap ∘ₗ Amap).adjoint := by
       exact (LinearMap.adjoint_comp Bmap Amap).symm
     _ = (LinearMap.id : E →ₗ[ℝ] E) := by simp [hcomp]
@@ -278,13 +272,13 @@ noncomputable def equivIntVecToDual : (Fin d → ℤ) ≃ dualLattice (d := d) L
 @[simp]
 lemma equivStandardLatticeToDual_apply (x : SchwartzMap.standardLattice d) :
     ((equivStandardLatticeToDual (d := d) L x : dualLattice (d := d) L) : E) =
-      (Bₗ (d := d) L) x := by simp [equivStandardLatticeToDual, adjointSymmEquiv]
+      (Bₗ (d := d) L) x := by rfl
 
 @[simp]
 lemma equivIntVecToDual_coe (n : Fin d → ℤ) :
     ((equivIntVecToDual (d := d) L n : dualLattice (d := d) L) : E) =
       (Bₗ (d := d) L) (SchwartzMap.PoissonSummation.Standard.intVec (d := d) n) := by
-  simp [equivIntVecToDual]
+  rfl
 
 /--
 Poisson summation over a full-rank `ℤ`-lattice `L`.

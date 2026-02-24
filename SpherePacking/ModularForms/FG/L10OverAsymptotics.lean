@@ -105,11 +105,11 @@ private lemma L₁₀_over_tendsto_atImInfty :
         cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ)) / q₁ z =
           cexp (2 * π * Complex.I * (z : ℂ) * (n : ℂ)) := by
       -- Use `exp(x)/exp(y) = exp(x-y)` and simplify the difference.
-      have hq1 : q₁ z = cexp (2 * π * Complex.I * (z : ℂ)) := by simp [q₁, mul_assoc]
+      have hq1 : q₁ z = cexp (2 * π * Complex.I * (z : ℂ)) := by rfl
       calc
         cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ)) / q₁ z
             = cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ)) /
-                cexp (2 * π * Complex.I * (z : ℂ)) := by simp [hq1]
+                cexp (2 * π * Complex.I * (z : ℂ)) := by rfl
         _ = cexp
               ((2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ)) -
                 (2 * π * Complex.I * (z : ℂ))) := by rw [exp_sub]
@@ -139,7 +139,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
                   _ = (2 * π * Complex.I * (z : ℂ) * (n : ℂ)) := by
                         simp [mul_assoc, mul_left_comm, mul_comm]
               exact congrArg cexp hexp2
-    have hq1 : q₁ z = cexp (2 * π * Complex.I * (z : ℂ)) := by simp [q₁]
+    have hq1 : q₁ z = cexp (2 * π * Complex.I * (z : ℂ)) := by rfl
     -- Combine everything.
     have hA' : A z = (720 : ℂ) * ∑' n : ℕ,
           ((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
@@ -156,7 +156,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
       _ = (720 : ℂ) * (∑' n : ℕ,
             ((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
               cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ))) / q₁ z := by
-            ring_nf
+            rfl
       _ = (720 : ℂ) * ((∑' n : ℕ,
               ((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
                 cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ))) * (q₁ z)⁻¹) := by
@@ -169,7 +169,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
       _ = (720 : ℂ) * ∑' n : ℕ,
             (((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
               cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ))) / q₁ z := by
-            simp [div_eq_mul_inv, mul_assoc]
+            rfl
       _ = (720 : ℂ) * ∑' n : ℕ,
             ((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
               (cexp (2 * π * Complex.I * ((n + 1 : ℕ) : ℂ) * (z : ℂ)) / q₁ z) := by
@@ -196,7 +196,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
       _ = (720 : ℂ) * ∑' n : ℕ,
             ((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ) *
               cexp (2 * π * Complex.I * (z : ℂ) * (n : ℂ)) := by
-            ring_nf
+            rfl
   -- Summability needed for `QExp.tendsto_nat`.
   have hsum_coeff :
       Summable (fun n : ℕ =>
@@ -269,7 +269,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
             Real.exp (-2 * π * n) = Real.exp ((n : ℝ) * (-2 * π)) := by
               simpa using congrArg Real.exp hmul
             _ = Real.exp (-2 * π) ^ n := by simpa using (Real.exp_nat_mul (-2 * π) n)
-            _ = r ^ n := by simp [hr]
+            _ = r ^ n := by rfl
         have :
             ‖(((n + 1 : ℕ) : ℂ) * (σ 3 (n + 1) : ℂ))‖ * Real.exp (-2 * π * n) ≤
               (32 * (n : ℝ) ^ 5) * (r ^ n) := by
@@ -522,7 +522,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
           ring_nf
         _ = (cexp (2 * π * Complex.I * (z : ℂ))) ^ 2 := by
           simpa using (Complex.exp_nat_mul (2 * π * Complex.I * (z : ℂ)) 2)
-        _ = (q₁ z) ^ 2 := by simp [q₁]
+        _ = (q₁ z) ^ 2 := by rfl
     have hA : A z = q₁ z * B z := by
       -- Multiply the defining equation `B = A / q₁` by `q₁` and cancel.
       have hq : q₁ z ≠ 0 := hq₁_ne z
@@ -534,7 +534,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
         _ = q₁ z * B z := by rfl
     -- Now expand `F = A^2` and `F₀ = B^2`.
     calc
-      F z = (A z) ^ 2 := by simp [F, A, A_E]
+      F z = (A z) ^ 2 := by rfl
       _ = (q₁ z * B z) ^ 2 := by simp [hA]
       _ = (q₁ z) ^ 2 * (B z) ^ 2 := by simp [mul_pow]
       _ = q₂ z * F₀ z := by
@@ -557,11 +557,7 @@ private lemma L₁₀_over_tendsto_atImInfty :
       have hz : G z = (H₂ ^ 3 * poly) z := congrArg (fun f : UpperHalfPlane → ℂ => f z) hG_fun
       exact hz.trans rfl
     have hG0z : G₀ z = (H₂' z) ^ 3 * poly z := by
-      have hz :
-          G₀ z =
-            (fun w : UpperHalfPlane => (H₂' w) ^ 3 * poly w) z :=
-        congrArg (fun f : UpperHalfPlane → ℂ => f z) hG0_def
-      exact hz.trans rfl
+      rfl
     -- Rewrite everything in terms of `qπ` and cancel powers.
     rw [hGz, hG0z, hH2, hq3]
     have hpow := (mul_pow (qπ z) (H₂' z) 3)

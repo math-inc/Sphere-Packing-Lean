@@ -144,7 +144,7 @@ theorem Θ₂_imag_axis_real : ResToImagAxis.Real Θ₂ := by
     have h := congrArg Complex.im (Θ₂_term_eq_ofReal_exp_imag_axis (n := n) (t := t) ht)
     -- avoid rewriting `(Real.exp _ : ℂ)` into `Complex.exp _` (whose `im` is not definitionaly `0`)
     have : ((Real.exp (-(Real.pi * (((n : ℝ) + (1 / 2 : ℝ)) ^ 2) * t)) : ℂ)).im = 0 := by
-      simp only [Complex.ofReal_im]
+      rfl
     simpa [τ] using h.trans this
   rw [Θ₂, im_tsum hsum]
   simp [hterm_im]
@@ -227,7 +227,7 @@ public theorem H₂_imag_axis_pos : ResToImagAxis.Pos H₂ := by
   have hΘpos : 0 < (Θ₂ τ).re := by
     simpa [Function.resToImagAxis, ResToImagAxis, ht, τ] using (Θ₂_imag_axis_pos).2 t ht
   have hΘeq : Θ₂ τ = ((Θ₂ τ).re : ℂ) := by
-    refine Complex.ext (by simp) ?_
+    refine Complex.ext (by rfl) ?_
     simpa using hΘreal
   have hre : (H₂ τ).re = (Θ₂ τ).re ^ 4 := by
     have hre' : ((Θ₂ τ) ^ 4).re = (Θ₂ τ).re ^ 4 := by
@@ -240,7 +240,7 @@ public theorem H₂_imag_axis_pos : ResToImagAxis.Pos H₂ := by
               ((Θ₂ τ).re : ℂ) ^ 4 = (↑((Θ₂ τ).re ^ 4) : ℂ) :=
             (Complex.ofReal_pow (Θ₂ τ).re 4).symm
           rw [h]
-          exact Complex.ofReal_re ((Θ₂ τ).re ^ 4)
+          rfl
     simpa [H₂] using hre'
   simpa [hre] using pow_pos hΘpos 4
 
@@ -275,7 +275,7 @@ public lemma H₄_negI_action : (H₄ ∣[(2:ℤ)] negI.1) = H₄ := modular_sla
       Complex.exp_pi_mul_I, neg_one_mul]
   calc
   _ = ∑' (n : ℤ), cexp (π * I * (n + 1 / 2) ^ 2 * ((1 : ℝ) +ᵥ x)) := by
-    simp_rw [Θ₂, Θ₂_term]
+    rfl
   _ = ∑' (n : ℤ), cexp (π * I / 4) * cexp (π * I * (n ^ 2 + n) + π * I * (n + 1 / 2) ^ 2 * x) := by
     apply tsum_congr fun b ↦ ?_
     rw [coe_vadd, ofReal_one]
@@ -598,10 +598,10 @@ lemma norm_Θ₂_term (n : ℤ) (z : ℍ) :
   have him : (π * ((r ^ 2 : ℝ) : ℂ) * z : ℂ).im = π * (r ^ 2) * z.im := by
     calc
       (π * ((r ^ 2 : ℝ) : ℂ) * z : ℂ).im = (((π : ℂ) * ((r ^ 2 : ℝ) : ℂ)) * z : ℂ).im := by
-        simp [mul_assoc]
+        rfl
       _ = (((Real.pi * (r ^ 2) : ℝ) : ℂ) * z : ℂ).im := by simp
       _ = (Real.pi * (r ^ 2)) * z.im := im_ofReal_mul (Real.pi * (r ^ 2)) (z : ℂ)
-      _ = π * (r ^ 2) * z.im := by simp [mul_assoc]
+      _ = π * (r ^ 2) * z.im := by rfl
   calc
     ‖Θ₂_term n z‖ = ‖cexp ((π * ((r ^ 2 : ℝ) : ℂ) * z) * I)‖ := by
       simp [Θ₂_term, one_div, h_mulI]
@@ -611,7 +611,7 @@ lemma norm_Θ₂_term (n : ℤ) (z : ℍ) :
       rw [him]
       simp [mul_assoc]
     _ = rexp (-π * (((n : ℝ) + (2⁻¹ : ℝ)) ^ 2) * z.im) := by
-      simp [r, pow_two, mul_assoc]
+      rfl
 
 lemma summable_exp_neg_pi_mul_int_add_half_sq :
     Summable fun n : ℤ => rexp (-π * ((n : ℝ) + (2⁻¹ : ℝ)) ^ 2) := by
@@ -988,14 +988,14 @@ private theorem tsum_weighted_exp_sq_tendsto_atImInfty
 theorem jacobiTheta₂_zero_apply_tendsto_atImInfty :
     Tendsto (fun x : ℍ ↦ jacobiTheta₂ 0 x) atImInfty (𝓝 1) := by
   simpa [jacobiTheta₂, jacobiTheta₂_term, mul_zero, zero_add] using
-    (tsum_weighted_exp_sq_tendsto_atImInfty (w := fun _ : ℤ ↦ (1 : ℂ)) (by simp)
+    (tsum_weighted_exp_sq_tendsto_atImInfty (w := fun _ : ℤ ↦ (1 : ℂ)) (by rfl)
       (by intro n; simp))
 
 theorem jacobiTheta₂_half_apply_tendsto_atImInfty :
     Tendsto (fun x : ℍ ↦ jacobiTheta₂ (1 / 2 : ℂ) x) atImInfty (𝓝 1) := by
   have hΘ₄ : Tendsto Θ₄ atImInfty (𝓝 1) := by
     simpa [Θ₄, Θ₄_term] using
-      (tsum_weighted_exp_sq_tendsto_atImInfty (w := fun n : ℤ ↦ (-1 : ℂ) ^ n) (by simp)
+      (tsum_weighted_exp_sq_tendsto_atImInfty (w := fun n : ℤ ↦ (-1 : ℂ) ^ n) (by rfl)
         (by intro n; simp))
   simpa [funext Θ₄_as_jacobiTheta₂] using hΘ₄
 
@@ -1136,7 +1136,7 @@ lemma thetaDeltaFun_div_exp_tendsto_atImInfty :
             (Θ₂ z) ^ 4 * (Θ₃ z) ^ 4 * (Θ₄ z) ^ 4 := by
         calc
           (Θ₂ z * Θ₃ z * Θ₄ z) ^ 4 = ((Θ₂ z * Θ₃ z) * Θ₄ z) ^ 4 := by
-            simp [mul_assoc]
+            rfl
           _ = (Θ₂ z * Θ₃ z) ^ 4 * (Θ₄ z) ^ 4 := by
             simp [mul_pow]
           _ = (Θ₂ z) ^ 4 * (Θ₃ z) ^ 4 * (Θ₄ z) ^ 4 := by
@@ -1147,7 +1147,7 @@ lemma thetaDeltaFun_div_exp_tendsto_atImInfty :
         (thetaDelta_f z) ^ 2 = ((Θ₂ z * Θ₃ z * Θ₄ z) ^ 4) ^ 2 := by
           simp [hfz]
         _ = (Θ₂ z * Θ₃ z * Θ₄ z) ^ 8 := by
-          simpa [show 4 * 2 = 8 by norm_num] using (pow_mul (Θ₂ z * Θ₃ z * Θ₄ z) 4 2).symm
+          simpa [show 4 * 2 = 8 by rfl] using (pow_mul (Θ₂ z * Θ₃ z * Θ₄ z) 4 2).symm
     have hΘprod :
         Θ₂ z * Θ₃ z * Θ₄ z = cexp (π * I * (z : ℂ) / 4) * (g z * h z * k z) := by
       calc
@@ -1173,7 +1173,7 @@ lemma thetaDeltaFun_div_exp_tendsto_atImInfty :
     calc
       thetaDeltaFun z / cexp (2 * π * I * (z : ℂ)) =
           ((256 : ℂ)⁻¹) * (thetaDelta_f z) ^ 2 / cexp (2 * π * I * (z : ℂ)) := by
-            simp [thetaDeltaFun, Pi.smul_apply, smul_eq_mul]
+            rfl
       _ = ((256 : ℂ)⁻¹) * (Θ₂ z * Θ₃ z * Θ₄ z) ^ 8 / cexp (2 * π * I * (z : ℂ)) := by
             simp [hfz2]
       _ =
@@ -1205,11 +1205,11 @@ public lemma Delta_eq_H₂_H₃_H₄ (τ : ℍ) :
         (H₂ ∣[(2 : ℤ)] A) * ((H₃ ∣[(2 : ℤ)] A) * (H₄ ∣[(2 : ℤ)] A)) := by
     have h34 :
         ((H₃ * H₄) ∣[(4 : ℤ)] A) = (H₃ ∣[(2 : ℤ)] A) * (H₄ ∣[(2 : ℤ)] A) := by
-      simpa [show (4 : ℤ) = 2 + 2 by norm_num] using (mul_slash_SL2 2 2 A H₃ H₄)
+      simpa [show (4 : ℤ) = 2 + 2 by rfl] using (mul_slash_SL2 2 2 A H₃ H₄)
     have h234 :
         ((H₂ * (H₃ * H₄)) ∣[(6 : ℤ)] A) =
           (H₂ ∣[(2 : ℤ)] A) * ((H₃ * H₄) ∣[(4 : ℤ)] A) := by
-      simpa [show (6 : ℤ) = 2 + 4 by norm_num, mul_assoc] using
+      simpa [show (6 : ℤ) = 2 + 4 by rfl, mul_assoc] using
         (mul_slash_SL2 2 4 A H₂ (H₃ * H₄))
     simp [thetaDelta_f, h234, h34]
   have hprod_S : (thetaDelta_f ∣[(6 : ℤ)] S) = -thetaDelta_f := by
@@ -1223,14 +1223,14 @@ public lemma Delta_eq_H₂_H₃_H₄ (τ : ℍ) :
   -- Squaring removes the sign, so `thetaDeltaFun` is invariant under `S` and `T` at weight 12.
   have thetaDeltaFun_S_action : (thetaDeltaFun ∣[(12 : ℤ)] S) = thetaDeltaFun := by
     have hsq : ((thetaDelta_f ^ 2) ∣[(12 : ℤ)] S) = thetaDelta_f ^ 2 := by
-      simpa [pow_two, show (12 : ℤ) = 6 + 6 by norm_num, hprod_S] using
+      simpa [pow_two, show (12 : ℤ) = 6 + 6 by rfl, hprod_S] using
         (mul_slash_SL2 6 6 S thetaDelta_f thetaDelta_f)
     dsimp [thetaDeltaFun]
     rw [SL_smul_slash]
     simp [hsq]
   have thetaDeltaFun_T_action : (thetaDeltaFun ∣[(12 : ℤ)] T) = thetaDeltaFun := by
     have hsq : ((thetaDelta_f ^ 2) ∣[(12 : ℤ)] T) = thetaDelta_f ^ 2 := by
-      simpa [pow_two, show (12 : ℤ) = 6 + 6 by norm_num, hprod_T] using
+      simpa [pow_two, show (12 : ℤ) = 6 + 6 by rfl, hprod_T] using
         (mul_slash_SL2 6 6 T thetaDelta_f thetaDelta_f)
     dsimp [thetaDeltaFun]
     rw [SL_smul_slash]

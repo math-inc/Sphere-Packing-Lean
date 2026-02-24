@@ -27,7 +27,7 @@ public lemma norm_cexp_ofReal_mul_coeff_of_coeff_re {coeff : ℝ → ℂ} {x t :
       _ = x * (-Real.pi * t) := by simp [hcoeff_re]
       _ = (x * (-Real.pi)) * t := by simp [mul_assoc]
       _ = (-Real.pi * x) * t := by simp [mul_left_comm, mul_comm]
-      _ = -Real.pi * x * t := by simp [mul_assoc]
+      _ = -Real.pi * x * t := by rfl
   calc
     ‖cexp ((x : ℂ) * coeff t)‖ = Real.exp (((x : ℂ) * coeff t).re) := by
       simpa using (Complex.norm_exp ((x : ℂ) * coeff t))

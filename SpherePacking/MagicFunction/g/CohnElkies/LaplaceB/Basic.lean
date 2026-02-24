@@ -140,7 +140,7 @@ public lemma exists_ψI_bound_exp :
     simp [num, ψI_apply_eq_factor]
   calc
     ‖ψI z‖ = ‖num z / (Δ z)‖ := by simp [hfac]
-    _ = ‖num z * (Δ z)⁻¹‖ := by simp [div_eq_mul_inv]
+    _ = ‖num z * (Δ z)⁻¹‖ := by rfl
     _ = ‖num z‖ * ‖(Δ z)⁻¹‖ := by simp
     _ ≤ (2 : ℝ) * (CΔ * Real.exp (2 * π * z.im)) := by
           exact mul_le_mul hnum_le hΔ_le (by positivity) (by positivity)
@@ -318,7 +318,6 @@ public lemma bLaplaceIntegral_convergent {u : ℝ} (hu : 2 < u) :
         have hval : ψI' ((Complex.I : ℂ) * (t : ℂ)) = ψI z := by
           have hz' :
               (⟨(Complex.I : ℂ) * (t : ℂ), by simpa using ht0⟩ : ℍ) = z := by
-            ext
             rfl
           simp [ψI', ht0, hz']
         have hψI'0 : ‖ψI z‖ ≤ CI * Real.exp (2 * π * t) := by

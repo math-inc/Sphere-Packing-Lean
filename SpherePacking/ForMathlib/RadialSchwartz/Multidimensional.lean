@@ -45,6 +45,6 @@ public noncomputable def schwartzMap_multidimensional_of_schwartzMap_real : 𝓢
 
 @[simp] lemma schwartzMap_multidimensional_of_schwartzMap_real_apply (x : F) :
     schwartzMap_multidimensional_of_schwartzMap_real (F := F) f x = f (‖x‖ ^ 2) := by
-  simp [schwartzMap_multidimensional_of_schwartzMap_real]
+  rfl
 
 end SchwartzMap_multidimensional_of_schwartzMap_real

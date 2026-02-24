@@ -28,7 +28,7 @@ open MagicFunction.FourierEigenfunctions
 local notation "FT" => FourierTransform.fourierCLE ℂ (SchwartzMap ℝ⁸ ℂ)
 
 private theorem ofReal_re_eq (z : ℂ) (hz : z.im = 0) : (↑z.re : ℂ) = z := by
-  exact Complex.ext (by simp) (by simp [hz])
+  exact Complex.ext (by rfl) (by simp [hz])
 
 /-- The magic function `g` is real-valued. -/
 public theorem g_real : ∀ x : ℝ⁸, (↑(g x).re : ℂ) = g x := by
@@ -45,7 +45,7 @@ public theorem g_real_fourier : ∀ x : ℝ⁸, (↑((𝓕 g x).re : ℂ)) = (�
   have hFg : FT g = ((↑π * I) / 8640) • a + (I / (240 * (↑π))) • b := by
     simp [g, map_sub, map_smul, MagicFunction.a.Fourier.eig_a, MagicFunction.b.Fourier.eig_b,
       -FourierTransform.fourierCLE_apply]
-  have hF : (𝓕 g) = FT g := by simp
+  have hF : (𝓕 g) = FT g := by rfl
   change ((𝓕 g) x).im = 0
   rw [hF, hFg]
   simp [SchwartzMap.add_apply, SchwartzMap.smul_apply, smul_eq_mul, Complex.add_im, Complex.mul_im,

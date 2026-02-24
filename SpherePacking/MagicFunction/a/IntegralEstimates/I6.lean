@@ -134,8 +134,7 @@ private lemma aestronglyMeasurable_gN (n : ℕ) (r : ℝ) :
   have hcoeff : Continuous coeff := by
     simpa [coeff, mul_assoc] using (continuous_const.mul Complex.continuous_ofReal)
   have hΦ : ContinuousOn (MagicFunction.a.RealIntegrands.Φ₆ (r := r)) (Ici (1 : ℝ)) :=
-    (MagicFunction.a.RealIntegrands.Φ₆_contDiffOn (r := r)).continuousOn.mono
-      (by intro _ hx; exact hx)
+    (MagicFunction.a.RealIntegrands.Φ₆_contDiffOn (r := r)).continuousOn
   have hg : ContinuousOn (g r) (Ici (1 : ℝ)) := hΦ.congr (g_eq_Φ₆ (r := r))
   simpa [gN, μIciOne] using
     (ContinuousOn.aestronglyMeasurable ((hcoeff.pow n).continuousOn.mul hg) measurableSet_Ici)
@@ -400,7 +399,7 @@ lemma iteratedDeriv_bound (n : ℕ) :
         gcongr
       _ = 2 * ((∫ t in Ici (1 : ℝ), B t) * rexp (-π * r)) := by
         exact congrArg (fun v => 2 * v) hmul
-      _ = 2 * (A * rexp (-π * r)) := by simp [A]
+      _ = 2 * (A * rexp (-π * r)) := by rfl
       _ ≤ (2 * (A + 1)) * rexp (-π * r) := by
         have hexp : 0 ≤ rexp (-π * r) := by positivity
         have : A * rexp (-π * r) ≤ (A + 1) * rexp (-π * r) :=

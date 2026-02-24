@@ -125,7 +125,7 @@ lemma exists_phi0_cancellation_bound :
             simp [hS]
           simpa [zI] using this
         _ = (Complex.I : ℂ) / (t : ℂ) := by
-          simp [div_eq_mul_inv]
+          rfl
     have hφ₀S : φ₀'' ((Complex.I : ℂ) / (t : ℂ)) = φ₀ (ModularGroup.S • z) := by
       have hcoe' :
           (Complex.I : ℂ) / (t : ℂ) = ((ModularGroup.S • z : ℍ) : ℂ) := hcoe.symm
@@ -662,7 +662,7 @@ lemma aAnotherIntegrand_integrableOn_Ioc {u : ℝ} (hu : 0 < u) :
         -- `0 ≤ ‖((8640 / π : ℝ) : ℂ)‖`.
         have := mul_le_mul_of_nonneg_left ht_le1 (norm_nonneg ((8640 / π : ℝ) : ℂ))
         simpa using this
-      have hD : ‖D‖ = ‖((18144 / (π ^ (2 : ℕ)) : ℝ) : ℂ)‖ := by simp [D]
+      have hD : ‖D‖ = ‖((18144 / (π ^ (2 : ℕ)) : ℝ) : ℂ)‖ := by rfl
       -- Combine.
       have hcomb :
           ‖A‖ + ‖B‖ + ‖Cc‖ + ‖D‖ ≤
@@ -755,12 +755,12 @@ lemma aAnotherIntegrand_integrableOn_Ici {u : ℝ} (hu : 0 < u) :
               ((18144 / (π ^ (2 : ℕ)) : ℝ) : ℂ))
       have hA : aAnotherIntegrand u t = A * (Real.exp (-π * u * t) : ℂ) := by
         -- Avoid rewriting `Real.exp` into `Complex.exp`.
-        simp [-Complex.ofReal_exp, aAnotherIntegrand, A, mul_left_comm, mul_comm]
+        rfl
       have hExp :
           ‖(Real.exp (-π * u * t) : ℂ)‖ = Real.exp (-π * u * t) := by
         simpa using (norm_ofReal_exp (-π * u * t))
       calc
-        ‖aAnotherIntegrand u t‖ = ‖A * (Real.exp (-π * u * t) : ℂ)‖ := by simp [hA]
+        ‖aAnotherIntegrand u t‖ = ‖A * (Real.exp (-π * u * t) : ℂ)‖ := by rfl
         _ = ‖A‖ * ‖(Real.exp (-π * u * t) : ℂ)‖ := by
               simp
         _ = ‖A‖ * Real.exp (-π * u * t) := by rw [hExp]
@@ -858,7 +858,7 @@ lemma aAnotherIntegrand_integrableOn_Ici {u : ℝ} (hu : 0 < u) :
                   -- Rewrite `2*b*t` using `hb2`, inside the exponential.
                   have harg : (2 * b * t) = (2 * π + π * u) * t := by
                     calc
-                      2 * b * t = (2 * b) * t := by ring
+                      2 * b * t = (2 * b) * t := by rfl
                       _ = (2 * π + π * u) * t := by simp [hb2]
                   have harg' : -(2 * b * t) = -(2 * π + π * u) * t := by
                     -- Multiply `harg` by `-1` and rewrite `-((·) * t)` as `-(·) * t` by `ring`.

@@ -60,7 +60,7 @@ lemma J₃'_eq (x : ℝ) :
       J₃' x
           = ∫ t in (0 : ℝ)..1,
               (Complex.I : ℂ) * ψT' (z₃' t) * cexp (π * (Complex.I : ℂ) * x * (z₃' t)) := by
-              simp [RealIntegrals.J₃']
+              rfl
       _ = ∫ t in (0 : ℝ)..1,
               (Complex.I : ℂ) * ψI' (z₅' t) * cexp (π * (Complex.I : ℂ) * x * (z₅' t)) *
                 cexp (π * (Complex.I : ℂ) * x) := by
@@ -101,10 +101,10 @@ lemma J₃'_eq (x : ℝ) :
     set K : ℂ :=
       ∫ t in (0 : ℝ)..1, (Complex.I : ℂ) * ψI' (z₅' t) * cexp (π * (Complex.I : ℂ) * x * (z₅' t))
     have hJ5 : J₅' x = (-2 : ℂ) * K := by
-      simp [RealIntegrals.J₅', K]
+      rfl
     have : (-1 / 2 : ℂ) * J₅' x = K := by
       calc
-        (-1 / 2 : ℂ) * J₅' x = (-1 / 2 : ℂ) * ((-2 : ℂ) * K) := by simp [hJ5]
+        (-1 / 2 : ℂ) * J₅' x = (-1 / 2 : ℂ) * ((-2 : ℂ) * K) := by rfl
         _ = ((-1 / 2 : ℂ) * (-2 : ℂ)) * K := by ring_nf
         _ = K := by norm_num
     simpa [K] using this.symm

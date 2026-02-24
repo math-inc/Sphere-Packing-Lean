@@ -315,7 +315,7 @@ public theorem exists_bound_norm_ψS_resToImagAxis_exp_Ici_one :
             (H₂ z *
                 (2 * (H₂ z) ^ 2 + 5 * (H₂ z) * (H₄ z) + 5 * (H₄ z) ^ 2)) *
               ((H₃ z) ^ 2 * (H₄ z) ^ 2)⁻¹‖ := by
-          simp [div_eq_mul_inv, mul_assoc]
+          rfl
     _ ≤ (128 : ℝ) * (‖H₂ z‖ * ‖2 * (H₂ z) ^ 2 + 5 * (H₂ z) * (H₄ z) + 5 * (H₄ z) ^ 2‖) *
           ‖((H₃ z) ^ 2 * (H₄ z) ^ 2)⁻¹‖ := by
           -- drop the sign and use submultiplicativity (avoid `simp` timeouts)
@@ -327,7 +327,7 @@ public theorem exists_bound_norm_ψS_resToImagAxis_exp_Ici_one :
                 (‖(-128 : ℂ)‖ * (‖H₂ z‖ * ‖p‖)) * ‖denInv‖ := by
             calc
               ‖(-128 : ℂ) * (H₂ z * p) * denInv‖
-                  = ‖((-128 : ℂ) * (H₂ z * p)) * denInv‖ := by simp [mul_assoc]
+                  = ‖((-128 : ℂ) * (H₂ z * p)) * denInv‖ := by rfl
               _ ≤ ‖(-128 : ℂ) * (H₂ z * p)‖ * ‖denInv‖ := norm_mul_le _ _
               _ ≤ (‖(-128 : ℂ)‖ * ‖H₂ z * p‖) * ‖denInv‖ := by
                     refine mul_le_mul_of_nonneg_right ?_ (norm_nonneg _)

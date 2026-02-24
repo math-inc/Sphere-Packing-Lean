@@ -22,7 +22,7 @@ public theorem ModularGroup.coe_S_smul (z : UpperHalfPlane) :
 
 /-- Explicit matrix for `S * T` in `SL(2, ℤ)`. -/
 @[simp] public theorem ModularGroup.S_mul_T :
-    S * T = ⟨!![0, -1; 1, 1], by norm_num [Matrix.det_fin_two_of]⟩ := by
+    S * T = ⟨!![0, -1; 1, 1], by rfl⟩ := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [S, T]
 

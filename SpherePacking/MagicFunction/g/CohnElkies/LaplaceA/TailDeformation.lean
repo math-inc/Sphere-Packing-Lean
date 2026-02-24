@@ -125,7 +125,7 @@ lemma norm_Φ₂'_strip_le {u x t : ℝ} {Cφ Aφ C₀ : ℝ}
     have harg : ((ModularGroup.S • wH : ℍ) : ℂ) = (-1 : ℂ) / (wH : ℂ) := by
       simpa using (ModularGroup.coe_S_smul (z := wH))
     have hw : (wH : ℂ) = w := by
-      simp [wH]
+      rfl
     -- Rewrite RHS into the common `φ₀'' (-1 / w) * w^2` form.
     rw [hwS, harg, hw]
   have hΦ :
@@ -233,7 +233,7 @@ lemma norm_Φ₄'_strip_le {u x t : ℝ} {Cφ Aφ C₀ : ℝ}
     have harg : ((ModularGroup.S • wH : ℍ) : ℂ) = (-1 : ℂ) / (wH : ℂ) := by
       simpa using (ModularGroup.coe_S_smul (z := wH))
     have hw : (wH : ℂ) = w := by
-      simp [wH]
+      rfl
     rw [hwS, harg, hw]
   have hΦ :
       ‖Φ₄' u ((x : ℂ) + (t : ℂ) * Complex.I)‖ ≤
@@ -378,7 +378,7 @@ lemma I₂'_eq_intervalIntegral_bottom (u : ℝ) :
         ∫ t in (0 : ℝ)..1, g (t + (-1 : ℝ)) := hcongr
     _ = ∫ x in (-1 : ℝ)..0, g x := hshift
     _ = ∫ x in (-1 : ℝ)..0, Φ₂' u ((x : ℂ) + Complex.I) := by
-        simp [g]
+        rfl
 
 lemma I₄'_eq_intervalIntegral_bottom (u : ℝ) :
     MagicFunction.a.RealIntegrals.I₄' u =
@@ -629,7 +629,7 @@ lemma I₆'_eq_deform_imag_axis {u : ℝ} (hu : 2 < u) :
                 (MeasureTheory.integral_sub hf2 hf5')
         _ = ((∫ t, f2 t ∂μ) - ((2 : ℂ) * ∫ t, f5 t ∂μ)) + ∫ t, f4 t ∂μ := by
               rw [MeasureTheory.integral_const_mul (μ := μ) (r := (2 : ℂ)) (f := f5)]
-        _ = (∫ t, f2 t ∂μ) - (2 : ℂ) * (∫ t, f5 t ∂μ) + ∫ t, f4 t ∂μ := by ring
+        _ = (∫ t, f2 t ∂μ) - (2 : ℂ) * (∫ t, f5 t ∂μ) + ∫ t, f4 t ∂μ := by rfl
     -- Put everything back into `setIntegral` notation and pull out the leading `I`.
     have hinner :
         (∫ t in Set.Ioi (1 : ℝ), f2 t - (2 : ℂ) * f5 t + f4 t) =

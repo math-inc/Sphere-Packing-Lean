@@ -71,7 +71,7 @@ lemma aAnotherIntegrandC_eq (u : ℂ) (t : ℝ) :
 
 lemma aAnotherIntegrand_eq (u t : ℝ) :
     aAnotherIntegrand u t = aAnotherBase t * Real.exp (-π * u * t) := by
-  simp [aAnotherIntegrand, aAnotherBase, mul_assoc]
+  rfl
 
 lemma aAnotherIntegrandC_ofReal (u t : ℝ) :
     aAnotherIntegrandC (u : ℂ) t = aAnotherIntegrand u t := by
@@ -114,7 +114,7 @@ public lemma aAnotherIntegralC_analyticOnNhd :
         have him : (((Complex.I : ℂ) / (t : ℂ)) : ℂ).im = t⁻¹ := by
           calc
             (((Complex.I : ℂ) / (t : ℂ)) : ℂ).im
-                = (((Complex.I : ℂ) * (t : ℂ)⁻¹) : ℂ).im := by simp [div_eq_mul_inv]
+                = (((Complex.I : ℂ) * (t : ℂ)⁻¹) : ℂ).im := by rfl
             _ = (((Complex.I : ℂ) * ((t⁻¹ : ℝ) : ℂ)) : ℂ).im := by simp [Complex.ofReal_inv]
             _ = t⁻¹ := by simp
         have : 0 < (((Complex.I : ℂ) / (t : ℂ)) : ℂ).im := by
@@ -330,7 +330,7 @@ public lemma aAnotherIntegralC_analyticOnNhd :
                 -- Rewrite `‖(r : ℂ)‖` using `hr`.
                 exact congrArg (fun x => ‖aAnotherBase t‖ * x) (Complex.norm_of_nonneg hr)
           _ = ‖aAnotherBase t‖ * Real.exp (-π * (ε / 2) * t) := by
-                simp [r]
+                rfl
       calc
         ‖(-(π : ℂ) * (t : ℂ)) * aAnotherIntegrandC z t‖
             = ‖(-(π : ℂ) * (t : ℂ))‖ * ‖aAnotherIntegrandC z t‖ := by simp
@@ -379,8 +379,7 @@ public lemma aAnotherIntegralC_analyticOnNhd :
         HasDerivAt aAnotherIntegralC
           (∫ t in Set.Ioi (0 : ℝ), (-(π : ℂ) * (t : ℂ)) * aAnotherIntegrandC u t) u := by
       have hfun : (fun z : ℂ => ∫ t, aAnotherIntegrandC z t ∂μ) = aAnotherIntegralC := by
-        funext z
-        simp [aAnotherIntegralC, μ, μIoi0]
+        rfl
       have hDerivμ :
           HasDerivAt aAnotherIntegralC
             (∫ t, (-(π : ℂ) * (t : ℂ)) * aAnotherIntegrandC u t ∂μ) u := by

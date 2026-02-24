@@ -158,7 +158,7 @@ public lemma bAnotherIntegralC_analyticOnNhd :
     exact Filter.Eventually.of_forall (fun t => by
       -- Use the factorization `bAnotherIntegrandC u t = base t * ratio u t`.
       calc
-        ratio u t • base t = ratio u t * base t := by simp [smul_eq_mul]
+        ratio u t • base t = ratio u t * base t := by rfl
         _ = base t * ratio u t := by simp [mul_comm]
         _ = bAnotherIntegrandC u t := by simpa using (hfactor u t).symm)
   -- Derivative integrand and domination bound.

@@ -665,11 +665,7 @@ public theorem a_eq_sum_integrals_SchwartzIntegrals : a =
   + MagicFunction.a.SchwartzIntegrals.I₄
   + MagicFunction.a.SchwartzIntegrals.I₅
   + MagicFunction.a.SchwartzIntegrals.I₆ := by
-  ext x
-  simp [a, a', MagicFunction.a.SchwartzIntegrals.I₁, MagicFunction.a.SchwartzIntegrals.I₂,
-    MagicFunction.a.SchwartzIntegrals.I₃, MagicFunction.a.SchwartzIntegrals.I₄,
-    MagicFunction.a.SchwartzIntegrals.I₅, MagicFunction.a.SchwartzIntegrals.I₆,
-    schwartzMap_multidimensional_of_schwartzMap_real, SchwartzMap.add_apply, add_assoc]
+  rfl
 
 end MagicFunction.FourierEigenfunctions
 

@@ -260,7 +260,7 @@ public theorem decay_J₁' :
     _ ≤ x ^ k * (Kn * Real.exp (-2 * Real.pi * Real.sqrt x)) := by gcongr
     _ = Kn * (x ^ k * Real.exp (-2 * Real.pi * Real.sqrt x)) := by ring_nf
     _ ≤ Kn * B := by simpa using (mul_le_mul_of_nonneg_left hpoly hKn0)
-    _ = C := by simp [C]
+    _ = C := by rfl
 
 end
 

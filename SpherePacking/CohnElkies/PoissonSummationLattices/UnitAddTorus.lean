@@ -70,8 +70,8 @@ public theorem isOpenQuotientMap_coeFun (n : ℕ) : IsOpenQuotientMap (coeFun n)
         funext x
         ext i
         cases i using Fin.cases with
-        | zero => simp [coeFun, eY, finSuccPiHomeomorph, eX, Prod.map]
-        | succ i => simp [coeFun, eY, finSuccPiHomeomorph, eX, Prod.map, Fin.tail]
+        | zero => rfl
+        | succ i => rfl
       have hhomeoY : IsOpenQuotientMap eY := eY.isOpenQuotientMap
       -- Compose: `Fin n.succ → ℝ` --eX--> `ℝ × (Fin n → ℝ)` --Prod.map--> ...
       --   --> `Fin n.succ → UnitAddCircle` via the homeomorphism.

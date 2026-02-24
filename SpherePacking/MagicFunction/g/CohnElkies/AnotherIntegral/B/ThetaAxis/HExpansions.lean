@@ -48,7 +48,7 @@ lemma norm_pow4_sub_le (x y : ℂ) :
       _ ≤ (‖x‖ + ‖y‖) ^ 2 * (‖x‖ + ‖y‖) := by
             refine mul_le_mul ?_ hy (by positivity) (by positivity)
             simpa using pow_le_pow_left₀ (norm_nonneg _) hx 2
-      _ = (‖x‖ + ‖y‖) ^ 3 := by ring
+      _ = (‖x‖ + ‖y‖) ^ 3 := by rfl
   have hxy2 : ‖x * y ^ (2 : ℕ)‖ ≤ (‖x‖ + ‖y‖) ^ 3 := by
     calc
       ‖x * y ^ (2 : ℕ)‖ = ‖x‖ * (‖y‖ ^ 2) := by simp [norm_pow]
@@ -383,7 +383,7 @@ public lemma exists_bound_norm_H2_resToImagAxis_sub_two_terms_Ici_one :
           176 * Real.exp (-(5 : ℝ) * Real.pi * t) := add_le_add hpow' hy_tail
     _ ≤ (((4 * (M + 4) ^ 3) * Cθ + 176) * Real.exp (-(5 : ℝ) * Real.pi * t)) := by
           ring_nf
-          linarith
+          rfl
     _ = ((4 * (M + 4) ^ 3) * Cθ + 176) * Real.exp (-(5 : ℝ) * Real.pi * t) := rfl
 
 /-- `H₃(it)` expansion up to the `exp(-2π t)` term on `t ≥ 1`. -/
@@ -482,7 +482,7 @@ lemma exists_bound_norm_H3_resToImagAxis_sub_two_terms_Ici_one :
       have hpow : ‖q'‖ ^ (4 : ℕ) ≤ ‖q'‖ ^ (3 : ℕ) := by
         calc
           ‖q'‖ ^ (4 : ℕ) = ‖q'‖ ^ (3 : ℕ) * ‖q'‖ := by
-            simp [pow_succ, pow_zero, mul_assoc]
+            rfl
           _ ≤ ‖q'‖ ^ (3 : ℕ) * 1 := by
             exact mul_le_mul_of_nonneg_left hq ha3
           _ = ‖q'‖ ^ (3 : ℕ) := by ring
@@ -555,7 +555,7 @@ lemma exists_bound_norm_H3_resToImagAxis_sub_two_terms_Ici_one :
           48 * Real.exp (-(3 : ℝ) * Real.pi * t) := add_le_add hpow' hy4
     _ ≤ (((4 * (1 + C1 + 3) ^ 3) * C2 + 48) * Real.exp (-(3 : ℝ) * Real.pi * t)) := by
           ring_nf
-          linarith
+          rfl
     _ = ((4 * (1 + C1 + 3) ^ 3) * C2 + 48) * Real.exp (-(3 : ℝ) * Real.pi * t) := rfl
 
 /-- `H₄(it)` expansion up to the `exp(-2π t)` term on `t ≥ 1`. -/
@@ -661,7 +661,7 @@ public lemma exists_bound_norm_H4_resToImagAxis_sub_two_terms_Ici_one :
       have ha3 : 0 ≤ ‖q'‖ ^ (3 : ℕ) := by positivity
       have hpow : ‖q'‖ ^ (4 : ℕ) ≤ ‖q'‖ ^ (3 : ℕ) := by
         calc
-          ‖q'‖ ^ (4 : ℕ) = ‖q'‖ ^ (3 : ℕ) * ‖q'‖ := by simp [pow_succ]
+          ‖q'‖ ^ (4 : ℕ) = ‖q'‖ ^ (3 : ℕ) * ‖q'‖ := by rfl
           _ ≤ ‖q'‖ ^ (3 : ℕ) * 1 := mul_le_mul_of_nonneg_left hq ha3
           _ = ‖q'‖ ^ (3 : ℕ) := by ring
       simpa [norm_pow] using hpow
@@ -731,7 +731,7 @@ public lemma exists_bound_norm_H4_resToImagAxis_sub_two_terms_Ici_one :
           48 * Real.exp (-(3 : ℝ) * Real.pi * t) := add_le_add hpow' hy4
     _ ≤ (((4 * (1 + C1 + 3) ^ 3) * C2 + 48) * Real.exp (-(3 : ℝ) * Real.pi * t)) := by
           ring_nf
-          linarith
+          rfl
     _ = ((4 * (1 + C1 + 3) ^ 3) * C2 + 48) * Real.exp (-(3 : ℝ) * Real.pi * t) := rfl
 
 /-- `H₃(it) + H₄(it)` cancellation up to the `exp(-2π t)` term on `t ≥ 1`. -/
@@ -851,7 +851,7 @@ public lemma exists_bound_norm_inv_H3_sq_sub_one_Ici_one :
       intro n
       -- On the imaginary axis, the exponent is real and negative.
       have hcast : ((n : ℂ) + 1) ^ 2 = (((n : ℝ) + 1) ^ 2 : ℂ) := by
-        norm_cast
+        rfl
       have hI_mul (z : ℂ) : (Complex.I : ℂ) * ((Complex.I : ℂ) * z) = -z := I_mul_I_mul z
       have hexp :
           (Real.pi * Complex.I * ((n : ℂ) + 1) ^ 2 * τ : ℂ)
@@ -864,7 +864,7 @@ public lemma exists_bound_norm_inv_H3_sq_sub_one_Ici_one :
                   simp [τ, hI_mul]
           _ = (-(Real.pi : ℂ)) * ((n : ℂ) + 1) ^ 2 * (t : ℂ) := by ring
           _ = (-(Real.pi : ℂ)) * (((n : ℝ) + 1) ^ 2 : ℂ) * (t : ℂ) := by
-                  simp [hcast]
+                  rfl
           _ = (-(Real.pi * (((n : ℝ) + 1) ^ 2) * t) : ℂ) := by
                   simp [mul_assoc]
       simp [f, hexp]

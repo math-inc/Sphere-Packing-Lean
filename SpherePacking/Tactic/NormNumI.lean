@@ -153,9 +153,8 @@ partial def parse (z : Q(ℂ)) :
     return ⟨a, b, q(Eq.trans $hpow $pf)⟩
   | ~q(@HPow.hPow ℂ ℤ ℂ instHPow $w (@OfNat.ofNat ℤ $n (@instOfNat $n))) =>
     let ⟨a, b, pf⟩ ← parse q($w ^ $n)
-    let hpow : Q($w ^ (@OfNat.ofNat ℤ $n (@instOfNat $n)) = $w ^ $n) := q(by
-      dsimp [OfNat.ofNat, instOfNat]
-      exact zpow_natCast (a := $w) $n)
+    let hpow : Q($w ^ (@OfNat.ofNat ℤ $n (@instOfNat $n)) = $w ^ $n) :=
+      q(zpow_natCast (a := $w) $n)
     return ⟨a, b, q(Eq.trans $hpow $pf)⟩
   | ~q(@HPow.hPow ℂ ℕ ℂ instHPow $w $n) =>
     let k? := n.nat?

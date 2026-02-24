@@ -380,11 +380,11 @@ lemma phi4_numerator_bound
       _ ≤ ‖A - B‖ + ‖C‖ := hABC
       _ ≤ (‖A‖ + ‖B‖) + ‖C‖ := by
             simpa [add_assoc, add_left_comm, add_comm] using (add_le_add_left hAB ‖C‖)
-      _ = ‖A‖ + ‖B‖ + ‖C‖ := by simp [add_assoc]
+      _ = ‖A‖ + ‖B‖ + ‖C‖ := by rfl
       _ = ‖(E₄ z) ^ (2 : ℕ) - ((1 : ℂ) + (480 : ℂ) * qC)‖ +
             ‖(Real.exp (2 * π * t) : ℂ) * (Δ z) - ((1 : ℂ) + (-24 : ℂ) * qC)‖ +
             ‖(504 : ℂ) * (Δ z - qC)‖ := by
-            simp [A, B, C]
+            rfl
   have h1 : ‖(E₄ z) ^ (2 : ℕ) - ((1 : ℂ) + (480 : ℂ) * qC)‖ ≤
       ((240 ^ 2 : ℝ) + 2 * B240 * CE4 + CE4 ^ 2) * q ^ (2 : ℕ) := by
     simpa [qC] using hE4sq
@@ -480,7 +480,7 @@ public lemma exists_phi4'_sub_exp_sub_504_bound_ge :
         _ ≤ 1 + 240 * q1 := by
             have : (240 : ℝ) * q ≤ (240 : ℝ) * q1 := by nlinarith [hq_le_q1]
             linarith
-        _ = B240 := by simp [B240]
+        _ = B240 := by rfl
     have haux :=
       norm_base_add_e_sq_sub_one_sub_480q_le (q := q) (CE4 := CE4) (B240 := B240)
         hq_nonneg hq_le_one he hbase_norm
@@ -545,7 +545,7 @@ public lemma exists_phi4'_sub_exp_sub_504_bound_ge :
         calc
           Real.exp (2 * π * t) * (q ^ (3 : ℕ))
               = Real.exp (2 * π * t) * ((q ^ (2 : ℕ)) * q) := by
-                  simp [pow_succ, mul_assoc]
+                  rfl
           _ = (Real.exp (2 * π * t) * q) * (q ^ (2 : ℕ)) := by
                   simp [mul_assoc, mul_comm]
           _ = (q ^ (2 : ℕ)) := by simp [hExpq]

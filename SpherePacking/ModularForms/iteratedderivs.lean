@@ -70,8 +70,7 @@ public theorem iter_div_aut_add (d : ℤ) (k : ℕ) :
   have hfg :
       (fun z : ℂ => 1 / (z - d) + 1 / (z + d)) =
         (fun z : ℂ => 1 / (z - d)) + fun z : ℂ => 1 / (z + d) := by
-    funext z
-    simp [Pi.add_apply]
+    rfl
   -- Put the sum into the canonical `f + g` form used by `iteratedDerivWithin_add`.
   rw [hfg]
   have hs : IsOpen ({z : ℂ | 0 < z.im} : Set ℂ) := by

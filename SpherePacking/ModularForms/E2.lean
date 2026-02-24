@@ -290,7 +290,7 @@ theorem PS3tn22 (z : ℍ) :
   conv at this =>
     enter [2]
     ext m
-    rw [show (m : ℂ) = (m : ℕ+) by simp]
+    rw [show (m : ℂ) = (m : ℕ+) by rfl]
     rw [hp]
   rw [this]
   rw [show -2 * ↑π * Complex.I / ↑z = 0 + -2 * ↑π * Complex.I / ↑z by ring]
@@ -299,7 +299,7 @@ theorem PS3tn22 (z : ℍ) :
   · conv =>
       enter [1]
       ext n
-      rw [show (n : ℂ) = (n : ℤ) by simp]
+      rw [show (n : ℂ) = (n : ℤ) by rfl]
       rw [sum_int_pnat3]
     have := nat_tendsto_pnat _ _ (extracted_12 z)
     exact this
@@ -509,8 +509,7 @@ lemma G2_alt_eq (z : ℍ) : G₂ z = ∑' m : ℤ, ∑' n : ℤ,
       simpa using PS1 z b
   · refine hG2AltProd.congr ?_
     intro b
-    simp only [Fin.isValue, one_div, mul_inv_rev, finTwoArrowEquiv_symm_apply, comp_apply,
-      Matrix.cons_val_zero, Matrix.cons_val_one]
+    rfl
   · refine (summable_zero : Summable fun _ : ℤ => (0 : ℂ)).congr ?_
     intro b
     simpa using (PS1 z b).symm
@@ -565,7 +564,7 @@ lemma D2_mul (A B : SL(2, ℤ)) : D₂ (A * B) = ((D₂ A) ∣[(2 : ℤ)] B) + (
   have : denom (↑A) (num ↑B ↑z / denom ↑B ↑z) = denom ↑A ↑(↑B • z) := by
     congr 1
     simp [UpperHalfPlane.specialLinearGroup_apply]
-    congr
+    rfl
   rw [this]
   rw [sub_div, ← mul_assoc, mul_div_assoc _ (denom _ _ * denom _ _)]
   simp_rw [mul_div_mul_right _ _ hde]
@@ -676,7 +675,7 @@ public lemma G₂_transform (γ : SL(2, ℤ)) : (G₂ ∣[(2 : ℤ)] γ) = G₂ 
       rw [modular_S_smul]
       congr
       · simp [inv_pow, inv_inj]
-        norm_cast
+        rfl
       · simp
     · simpa [D2_T, sub_zero] using G2_periodic
   · simp only [SlashAction.slash_one, D2_one, sub_zero]

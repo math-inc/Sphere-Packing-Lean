@@ -96,7 +96,7 @@ public lemma ψT'_one_add_I_mul (t : ℝ) (ht : 0 < t) :
   have htrans :
       ((1 : ℝ) +ᵥ ⟨(Complex.I : ℂ) * (t : ℂ), hz0⟩ : ℍ) =
         ⟨(1 : ℂ) + (Complex.I : ℂ) * (t : ℂ), hz1⟩ := by
-    ext1; simp
+    rfl
   have hrel :=
     congrArg (fun F : ℍ → ℂ => F ⟨(Complex.I : ℂ) * (t : ℂ), hz0⟩) ψT_slash_T
   have hEq :

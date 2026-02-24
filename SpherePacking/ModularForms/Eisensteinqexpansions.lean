@@ -103,7 +103,7 @@ def GammaSet_one_Equiv : (Fin 2 → ℤ) ≃ (Σn : ℕ, gammaSetN n) where
     by
   by_cases hn : 0 < (v 0).gcd (v 1)
   · apply Set.smul_mem_smul
-    · simp only [Fin.isValue, mem_singleton_iff]
+    · rfl
     · rw [gammaSet_top_mem, Int.isCoprime_iff_gcd_eq_one]
       apply Int.gcd_div_gcd_div_gcd hn
   simp only [Fin.isValue, not_lt, nonpos_iff_eq_zero] at hn
@@ -178,14 +178,13 @@ theorem q_exp_iden_2 (k : ℕ) (hk : 3 ≤ k) (hk2 : Even k) (z : ℍ) :
     apply Summable.of_nat_of_neg_add_one
     · apply this.congr
       intro b
-      simp
+      rfl
     rw [← summable_nat_add_iff 1] at this
     apply this.congr
     intro b
     congr
     rw [Even.neg_pow hk2]
-    simp only [Nat.cast_pow, Nat.cast_add, Nat.cast_one, Int.cast_pow, Int.cast_add,
-      Int.cast_natCast, Int.cast_one]
+    rfl
   · intro n
     simp only [one_div, Int.cast_neg, neg_mul]
     apply symm
@@ -203,9 +202,7 @@ theorem q_exp_iden_2 (k : ℕ) (hk : 3 ≤ k) (hk2 : Even k) (z : ℍ) :
 lemma EQ0 (k : ℕ) (z : ℍ) : ∑' (x : Fin 2 → ℤ),
     1 / (x 0 * (z : ℂ) + x 1) ^ ↑k = ∑' x : ℤ × ℤ, 1 / ((x.1 : ℂ) * z + x.2) ^ k := by
   rw [← (piFinTwoEquiv fun _ => ℤ).tsum_eq]
-  apply tsum_congr
-  intro x
-  simp
+  rfl
 
 lemma EQ1 (k : ℕ) (hk : 3 ≤ (k : ℤ)) (hk2 : Even k) (z : ℍ) : ∑' (x : Fin 2 → ℤ),
     1 / (x 0 * (z : ℂ) + x 1) ^ ↑k = 2 * riemannZeta ↑k +
@@ -285,7 +282,7 @@ lemma EQ22 (k : ℕ) (hk : 3 ≤ (k : ℤ)) (z : ℍ) :
   have := (GammaSet_one_Equiv.symm.summable_iff ( f := fun v => eisSummand k v z)).mpr ?_
   · apply this.congr
     intro b
-    simp
+    rfl
   exact (EisensteinSeries.summable_norm_eisSummand hk z).of_norm
 
 lemma EQ2 (k : ℕ) (hk : 3 ≤ (k : ℤ)) (z : ℍ) : ∑' x : Fin 2 → ℤ,

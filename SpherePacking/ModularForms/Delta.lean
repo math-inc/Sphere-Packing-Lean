@@ -202,7 +202,7 @@ public theorem Delta_boundedfactor :
     have h := log_summable_pow (fun n => -cexp (2 * ↑π * Complex.I * (↑n + 1) * x)) ?_ 24
     · refine h.congr ?_
       intro b
-      rw [sub_eq_add_neg]
+      rfl
     · rw [← summable_norm_iff]
       simpa using (summable_exp_pow x)
   have hcexp :
@@ -357,7 +357,7 @@ public lemma Delta_isTheta_rexp : Delta =Θ[atImInfty] (fun τ => Real.exp (-2 *
     _ = 2 * ‖cexp (2 * π * Complex.I * (z : ℂ)) * g z‖ := by
       simp [mul_comm]
     _ = 2 * ‖Delta z‖ := by
-      simp [Delta_apply, Δ, g, mul_left_comm, mul_comm]
+      rfl
 
 lemma CuspForm_apply (k : ℤ) (f : CuspForm (CongruenceSubgroup.Gamma 1) k) (z : ℍ) :
   f.toFun z = f z := by rfl
@@ -565,7 +565,7 @@ public lemma re_ResToImagAxis_Delta_eq_real_prod (t : ℝ) (ht : 0 < t) :
         (g := Complex.ofRealHom.toMonoidHom)
         (hg := by simpa using Complex.continuous_ofReal)
         (hg' := Complex.continuous_re)
-        (hgg' := by intro x; simp))
+        (hgg' := by intro x; rfl))
   simpa [ResToImagAxis, ht, Delta_apply, Δ, cexp_aux1, cexp_aux2, hMap', fR] using
     Complex.ofReal_re (Real.exp (-2 * π * t) * ∏' n : ℕ, fR n)
 

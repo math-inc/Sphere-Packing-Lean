@@ -89,7 +89,7 @@ private lemma norm_gN_le_const
   calc
     ‖gN (coeff := coeff) (hf := hf) n x t‖ =
         ‖(coeff t) ^ n * (hf t * cexp ((x : ℂ) * coeff t))‖ := by
-          simp [gN, g, mul_comm]
+          rfl
     _ ≤ ‖(coeff t) ^ n‖ * ‖hf t * cexp ((x : ℂ) * coeff t)‖ := by
           exact norm_mul_le _ _
     _ ≤ (2 * Real.pi) ^ n * (M * Real.exp ((|x₀| + 1) * (2 * Real.pi))) := by gcongr

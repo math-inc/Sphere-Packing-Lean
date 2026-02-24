@@ -145,7 +145,7 @@ lemma corrIntegral_eval {u : ℝ} (hu0 : 0 < u) (hu : 2 < u)
     calc
       (((36 / (π ^ (2 : ℕ)) : ℝ) : ℂ) * ((1 / (π * (u - 2)) : ℝ) : ℂ)) =
           (((36 / (π ^ (2 : ℕ)) : ℝ) * (1 / (π * (u - 2)) : ℝ)) : ℂ) := by
-            simp [Complex.ofReal_mul]
+            rfl
       _ = ((36 / (π ^ (3 : ℕ) * (u - 2)) : ℝ) : ℂ) := by
             have hR :
                 (36 / (π ^ (2 : ℕ)) : ℝ) * (1 / (π * (u - 2))) =
@@ -194,7 +194,7 @@ lemma corrIntegral_eval {u : ℝ} (hu0 : 0 < u) (hu : 2 < u)
     calc
       (((18144 / (π ^ (2 : ℕ)) : ℝ) : ℂ) * ((1 / (π * u) : ℝ) : ℂ)) =
           (((18144 / (π ^ (2 : ℕ)) : ℝ) * (1 / (π * u) : ℝ)) : ℂ) := by
-            simp [Complex.ofReal_mul]
+            rfl
       _ = ((18144 / (π ^ (3 : ℕ) * u) : ℝ) : ℂ) := by
             have hR :
                 (18144 / (π ^ (2 : ℕ)) : ℝ) * (1 / (π * u)) =
@@ -207,7 +207,7 @@ lemma corrIntegral_eval {u : ℝ} (hu0 : 0 < u) (hu : 2 < u)
   -- Put the subtraction into `+ (-·)` and normalize the negative quotient.
   rw [sub_eq_add_neg]
   rw [neg_div]
-  abel
+  rfl
 
 lemma assemble_another_integral {u : ℝ} {corr : ℝ → ℂ} {E : ℂ}
     (hLap' :

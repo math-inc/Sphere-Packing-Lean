@@ -30,4 +30,4 @@ lemma zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 :=
   rw [← summable_nat_add_iff 1] at this
   apply this.congr
   intro b
-  congr
+  rfl

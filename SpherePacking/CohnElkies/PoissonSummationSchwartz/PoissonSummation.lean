@@ -228,7 +228,7 @@ lemma mFourierCoeff_descended (n : Fin d → ℤ) :
             UnitAddTorus.mFourier (-n)
                 (PoissonSummation.Standard.coeFunE (d := d) ((ℓ : E) + x)) *
               f ((ℓ : E) + x) := by
-          simp [g, Submodule.vadd_def, vadd_eq_add]
+          rfl
         _ =
             UnitAddTorus.mFourier (-n)
                 (PoissonSummation.Standard.coeFunE (d := d) (x + (ℓ : E))) *

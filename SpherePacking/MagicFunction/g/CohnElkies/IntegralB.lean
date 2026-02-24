@@ -357,16 +357,14 @@ theorem fourier_g_eq_integral_B_of_ne_two {x : ℝ⁸} (hx : 0 < ‖x‖ ^ 2)
       -FourierTransform.fourierCLE_apply]
   -- Reduce to the 1D radial profiles `a'` and `b'`.
   have ha : a x = a' u := by
-    simp [u, MagicFunction.FourierEigenfunctions.a,
-      schwartzMap_multidimensional_of_schwartzMap_real, SchwartzMap.compCLM_apply]
+    rfl
   have hb : b x = b' u := by
-    simp [u, MagicFunction.FourierEigenfunctions.b,
-      schwartzMap_multidimensional_of_schwartzMap_real, SchwartzMap.compCLM_apply]
+    rfl
   have hFourier :
       ((𝓕 g : 𝓢(ℝ⁸, ℂ)) x) =
         ((↑π * I) / 8640 : ℂ) * a' u + (I / (240 * (↑π)) : ℂ) * b' u := by
     rw [hF, hFg]
-    simp [SchwartzMap.add_apply, SchwartzMap.smul_apply, smul_eq_mul, ha, hb]
+    rfl
   -- Apply the "another integral" formulas for `a'` and `b'`.
   have haEq :=
     MagicFunction.g.CohnElkies.IntegralReps.aRadial_eq_another_integral_main
@@ -508,11 +506,11 @@ theorem fourier_g_eq_integral_B_of_ne_two {x : ℝ⁸} (hx : 0 < ‖x‖ ^ 2)
   have hIA :
       (∫ t in Set.Ioi (0 : ℝ),
           MagicFunction.g.CohnElkies.IntegralReps.aAnotherIntegrand u t) = IA := by
-    simp [IA, MagicFunction.g.CohnElkies.IntegralReps.aAnotherIntegrand]
+    rfl
   have hIB :
       (∫ t in Set.Ioi (0 : ℝ),
           MagicFunction.g.CohnElkies.IntegralReps.bAnotherIntegrand u t) = IB := by
-    simp [IB, MagicFunction.g.CohnElkies.IntegralReps.bAnotherIntegrand]
+    rfl
   have hBdecomp :
       (∫ t in Set.Ioi (0 : ℝ), (B t : ℂ) * Real.exp (-π * u * t)) =
         -IA + ((36 / (π ^ (2 : ℕ)) : ℝ) : ℂ) * IB +
@@ -844,7 +842,7 @@ public theorem fourier_g_eq_integral_B {x : ℝ⁸} (hx : 0 < ‖x‖ ^ 2) :
                           ‖((Real.sin (π * (useq n) / 2)) ^ (2 : ℕ) : ℂ)‖ *
                         ‖∫ t in Set.Ioi (0 : ℝ),
                               (B t : ℂ) * Real.exp (-π * (useq n) * t)‖ := by
-                      simp [mul_assoc]
+                      rfl
           _ ≤ ‖(π / 2160 : ℂ)‖ *
                 ‖((Real.sin (π * (useq n) / 2)) ^ (2 : ℕ) : ℂ)‖ * M := by
                 gcongr

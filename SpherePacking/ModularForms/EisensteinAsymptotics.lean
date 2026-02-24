@@ -70,7 +70,7 @@ public lemma D_tendsto_zero_of_tendsto_const {f : ℍ → ℂ}
       have hw_im_ge_A : A ≤ w.im := by
         have habs : |w.im - z.im| ≤ z.im / 2 := by
           calc |w.im - z.im|
-            _ = |(w - z).im| := by simp [Complex.sub_im]
+            _ = |(w - z).im| := by rfl
             _ ≤ ‖w - z‖ := abs_im_le_norm _
             _ = dist w z := (dist_eq_norm _ _).symm
             _ = z.im / 2 := Metric.mem_sphere.mp hw

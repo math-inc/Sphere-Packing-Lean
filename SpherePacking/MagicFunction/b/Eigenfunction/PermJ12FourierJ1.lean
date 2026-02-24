@@ -105,7 +105,7 @@ lemma integrable_permJ1Kernel (w : EuclideanSpace ℝ (Fin 8)) :
         hmul1.mul hgauss.continuousOn
       refine (hphase.continuousOn.mul hmul2).congr ?_
       intro p _hp
-      simp [permJ1Kernel, mul_assoc]
+      rfl
     have hker : AEStronglyMeasurable (permJ1Kernel w) (μProd.restrict sProd) := by
       simpa [μProd] using (hcont.aestronglyMeasurable (μ := μProd) (s := sProd) hsProd)
     simpa [hμ] using hker

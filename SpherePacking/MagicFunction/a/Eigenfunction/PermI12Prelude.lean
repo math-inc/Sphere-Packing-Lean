@@ -101,7 +101,7 @@ lemma φ₀''_inv_add_one_mul_sq (w : ℂ) (hw : 0 < w.im) :
       (-1 / ((-1 / w) + 1))
           = (-1 : ℂ) / ((w - 1) / w) := by
               simp [hden]
-      _ = (-1 : ℂ) * ((w - 1) / w)⁻¹ := by simp [div_eq_mul_inv]
+      _ = (-1 : ℂ) * ((w - 1) / w)⁻¹ := by rfl
       _ = (-1 : ℂ) * (w / (w - 1)) := by
               simp [inv_div]
       _ = (-w) / (w - 1) := by ring

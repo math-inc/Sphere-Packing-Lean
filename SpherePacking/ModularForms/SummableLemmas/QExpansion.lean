@@ -376,7 +376,7 @@ theorem aut_series_ite_deriv_uexp2 (k : ℕ) (x : ℍ) :
       ∑' n : ℕ+, iteratedDerivWithin k (fun z : ℂ => 1 / (z - n) + 1 / (z + n)) {z : ℂ | 0 < z.im} x
         := by
   induction k generalizing x with
-  | zero => simp only [iteratedDerivWithin_zero]
+  | zero => rfl
   | succ k IH =>
     rw [iteratedDerivWithin_succ]
     have HH :

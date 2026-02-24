@@ -69,7 +69,7 @@ public theorem scaledMagic_real_fourier' :
     simpa using (congrArg Complex.im (g_real_fourier (x := y0))).symm
   have hImScaled : (𝓕 scaledMagic x).im = 0 := by
     simpa [y0, Complex.smul_im, hImG] using congrArg Complex.im (fourier_scaledMagic_eq (x := x))
-  exact Complex.ext (by simp) (by simp [hImScaled])
+  exact Complex.ext (by rfl) (by simp [hImScaled])
 
 /--
 Cohn-Elkies sign condition for `scaledMagic` outside the unit ball.

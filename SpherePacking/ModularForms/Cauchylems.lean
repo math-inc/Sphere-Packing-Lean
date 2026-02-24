@@ -25,7 +25,7 @@ open UpperHalfPlane EisensteinSeries Metric Filter Function Complex
 /-- The classical identity `∑_{n ∈ ℤ} (n^2)⁻¹ = 2 ζ(2)` (as a complex series). -/
 public lemma zeta_two_eqn : ∑' (n : ℤ), ((n : ℂ) ^ 2)⁻¹ = 2 * riemannZeta 2 := by
   simpa using
-    (two_mul_riemannZeta_eq_tsum_int_inv_pow_of_even (k := 2) (by simp) (by simp)).symm
+    (two_mul_riemannZeta_eq_tsum_int_inv_pow_of_even (k := 2) (by rfl) (by simp)).symm
 
 private lemma sum_Icc_neg_nat_eq_add_endpoints (f : ℤ → ℂ) (N : ℕ) (hn : 1 ≤ N) :
     ∑ m ∈ Finset.Icc (-N : ℤ) N, f m =
@@ -162,14 +162,14 @@ public theorem extracted_3 (z : ℍ) (b : ℤ) : CauchySeq fun N : ℕ ↦
 public theorem extracted_4 (z : ℍ) (b : ℤ) :
   CauchySeq fun N : ℕ ↦ ∑ n ∈ Finset.Ico (-↑N : ℤ) ↑N, (1 / ((b : ℂ) * ↑z + ↑n) ^ 2 ) := by
   apply Filter.Tendsto.cauchySeq (x := ∑' x : ℤ, (((b : ℂ) * (z : ℂ) + x) ^ 2)⁻¹)
-  have ht := (G2_summable_aux b z 2 (by norm_num)).hasSum.comp Finset.tendsto_Ico_neg
+  have ht := (G2_summable_aux b z 2 (by rfl)).hasSum.comp Finset.tendsto_Ico_neg
   simpa using ht
 
 theorem extracted_5 (z : ℍ) (b : ℤ) :
   CauchySeq fun N : ℕ ↦ ∑ n ∈ Finset.Ico (-↑N : ℤ) ↑N, (1 / ((b : ℂ) * ↑z - ↑n) ^ 2 ) := by
   apply Filter.Tendsto.cauchySeq (x := ∑' x : ℤ, (((b : ℂ) * (z : ℂ) - x) ^ 2)⁻¹)
   simpa [sub_eq_add_neg, add_assoc, add_left_comm, add_comm, one_div] using
-    (summable_neg _ (G2_summable_aux b z 2 (by norm_num))).hasSum.comp Finset.tendsto_Ico_neg
+    (summable_neg _ (G2_summable_aux b z 2 (by rfl))).hasSum.comp Finset.tendsto_Ico_neg
 
 public lemma CauchySeq.congr (f g : ℕ → ℂ) (hf : f = g) (hh : CauchySeq g) : CauchySeq f := by
   simpa [hf] using hh
@@ -227,7 +227,7 @@ public lemma t8 (z : ℍ) :
   let Z : ℍ := ⟨((d : ℤ) + 1) * z, by
     have hd : (0 : ℝ) < ((d : ℤ) + 1 : ℝ) := by exact_mod_cast Nat.succ_pos d
     simpa [mul_im, intCast_re, intCast_im, coe_re, coe_im, zero_mul, add_zero] using mul_pos hd z.2⟩
-  have := q_exp_iden 2 (by norm_num) (z := Z)
+  have := q_exp_iden 2 (by rfl) (z := Z)
   simp only [one_div, neg_mul, even_two, Even.neg_pow, Nat.add_one_sub_one,
     Nat.factorial_one, Nat.cast_one, div_one, pow_one, Z] at *
   simp only [Int.cast_add, Int.cast_one]
@@ -262,7 +262,7 @@ public theorem G2_c_tendsto (z : ℍ) :
         apply Summable.mul_left
         apply this.congr
         intro b
-        congr
+        rfl
     have := hf.hasSum
     have V := this.comp tendsto_finset_range
     simpa [neg_mul, even_two, Even.neg_pow, Nat.add_one_sub_one, Nat.factorial_one,

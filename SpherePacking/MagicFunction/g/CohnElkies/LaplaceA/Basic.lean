@@ -67,7 +67,7 @@ lemma continuousOn_phi0''_div_Ioi :
     have him : (((Complex.I : ℂ) / (t : ℂ)) : ℂ).im = t⁻¹ := by
       calc
         (((Complex.I : ℂ) / (t : ℂ)) : ℂ).im
-            = (((Complex.I : ℂ) * (t : ℂ)⁻¹) : ℂ).im := by simp [div_eq_mul_inv]
+            = (((Complex.I : ℂ) * (t : ℂ)⁻¹) : ℂ).im := by rfl
         _ = (((Complex.I : ℂ) * ((t⁻¹ : ℝ) : ℂ)) : ℂ).im := by simp [Complex.ofReal_inv]
         _ = t⁻¹ := by simp
     simpa [him] using (inv_pos.2 (by simpa using ht) : 0 < (t⁻¹ : ℝ))
@@ -333,7 +333,7 @@ public lemma aLaplaceIntegral_convergent {u : ℝ} (hu : 2 < u) :
           calc
             ‖φ₀ zH‖ =
                 ‖((E₂ zH * E₄ zH - E₆ zH) ^ (2 : ℕ)) * (Δ zH)⁻¹‖ := by
-              simp [φ₀, div_eq_mul_inv]
+              rfl
             _ =
                 ‖(E₂ zH * E₄ zH - E₆ zH) ^ (2 : ℕ)‖ * ‖(Δ zH)⁻¹‖ := by
               simp
@@ -352,7 +352,7 @@ public lemma aLaplaceIntegral_convergent {u : ℝ} (hu : 2 < u) :
             exact mul_le_mul hmulEA hΔ (norm_nonneg _) hB4BA_nonneg
           calc
             ‖φ₂' zH‖ = ‖E₄ zH * (E₂ zH * E₄ zH - E₆ zH) * (Δ zH)⁻¹‖ := by
-              simp [φ₂', div_eq_mul_inv, mul_assoc]
+              rfl
             _ = (‖E₄ zH‖ * ‖E₂ zH * E₄ zH - E₆ zH‖) * ‖(Δ zH)⁻¹‖ := by
               simp [mul_assoc]
             _ ≤ (B4 * BA) * (CΔ * Real.exp (2 * π * t)) := by
@@ -370,7 +370,7 @@ public lemma aLaplaceIntegral_convergent {u : ℝ} (hu : 2 < u) :
             exact mul_le_mul hpow hΔ (norm_nonneg _) (pow_nonneg hB4_nonneg _)
           calc
             ‖φ₄' zH‖ = ‖(E₄ zH) ^ (2 : ℕ) * (Δ zH)⁻¹‖ := by
-              simp [φ₄', div_eq_mul_inv]
+              rfl
             _ = ‖(E₄ zH) ^ (2 : ℕ)‖ * ‖(Δ zH)⁻¹‖ := by
               simp
             _ ≤ (B4 ^ (2 : ℕ)) * (CΔ * Real.exp (2 * π * t)) := hmulAll

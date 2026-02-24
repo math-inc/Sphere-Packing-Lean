@@ -240,7 +240,7 @@ lemma g_continuousOn (r : ℝ) : ContinuousOn (fun s : ℝ ↦ g r s) (Ici (1 : 
     exact h3.mul (exp_div_continuousOn (r := r))
   refine hh.congr ?_
   intro s hs
-  simp [h, g, div_eq_mul_inv, mul_assoc, mul_left_comm, mul_comm]
+  rfl
 
 lemma gN_measurable (n : ℕ) (r : ℝ) : AEStronglyMeasurable (gN n r) μ := by
   have h : ContinuousOn (fun s : ℝ ↦ gN n r s) (Ici (1 : ℝ)) := by
@@ -400,7 +400,7 @@ lemma norm_iteratedDeriv_le (n : ℕ) (x : ℝ) :
   calc
     ‖iteratedDeriv n I₁' x‖ = ‖∫ s, gN n x s ∂μ‖ := by simp [hreprx]
     _ ≤ ∫ s, ‖gN n x s‖ ∂μ := norm_integral_le_integral_norm (gN n x)
-    _ = ∫ s in Ici (1 : ℝ), ‖gN n x s‖ := by simp [μ, SpherePacking.Integration.μIciOne]
+    _ = ∫ s in Ici (1 : ℝ), ‖gN n x s‖ := by rfl
     _ ≤ ∫ s in Ici (1 : ℝ), (2 * π) ^ n * (Cφ * rexp (-2 * π * s) * rexp (-π * x / s)) := hmono
 
 lemma xpow_mul_exp_neg_pi_div_le (k : ℕ) {x s : ℝ} (hx : 0 ≤ x) (hs : 1 ≤ s)

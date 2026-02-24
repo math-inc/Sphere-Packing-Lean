@@ -116,8 +116,7 @@ lemma ψS'_add_one (t : ℝ) (ht : 0 < t) :
   have h := congrArg (fun F : ℍ → ℂ => F z0H) ψS_slash_T
   have hT : ψS ((1 : ℝ) +ᵥ z0H) = -ψS z0H := by simpa [modular_slash_T_apply] using h
   have hvadd : ((1 : ℝ) +ᵥ z0H : ℍ) = ⟨(1 : ℂ) + t * Complex.I, hz1⟩ := by
-    ext1
-    simp [z0H, add_comm]
+    rfl
   have hT' : ψS (⟨(1 : ℂ) + t * Complex.I, hz1⟩ : ℍ) = -ψS z0H := by simpa [hvadd] using hT
   simpa [ψS', hz0, hz1, ht, z0H] using hT'
 

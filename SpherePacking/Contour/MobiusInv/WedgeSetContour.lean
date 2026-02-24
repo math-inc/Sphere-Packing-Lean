@@ -154,7 +154,7 @@ private lemma perm_12_contour_mobiusInv_wedgeSet_aux
               scalarOneForm (Ψ₁' r) z) +
           ∫ᶜ z in Path.segment ((1 : ℂ) + Complex.I) Complex.I,
             scalarOneForm (Ψ₁' r) z) := by
-          simp [ω, δa, δb]
+          rfl
 
 /--
 Assembled contour identity for the `perm_J12` argument, specialized to `mobiusInv` and `wedgeSet`.

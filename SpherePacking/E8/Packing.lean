@@ -80,7 +80,7 @@ lemma span_E8Matrix_eq_E8Lattice :
       simpa [Function.comp] using
         Set.range_comp (WithLp.linearEquiv 2 ℤ (Fin 8 → ℝ)).symm (E8Matrix ℝ).row,
     ← Submodule.map_span, span_E8Matrix ℝ]
-  simp [E8Lattice]
+  rfl
 
 /-- `E8Lattice` spans the ambient space over `ℝ`. -/
 public instance instIsZLatticeE8Lattice : IsZLattice ℝ E8Lattice where

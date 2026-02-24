@@ -157,7 +157,7 @@ public lemma coeff_norm_le (t : ℝ) (ht : t ∈ Ioo (0 : ℝ) 1) :
   have hpi0 : (0 : ℝ) ≤ π := Real.pi_pos.le
   calc
     ‖coeff t‖ = ‖(-π : ℂ) + (π * I) * ((1 : ℂ) - (t : ℂ))‖ := by
-      simp [coeff, sub_eq_add_neg, mul_add, mul_assoc]
+      rfl
     _ ≤ ‖(-π : ℂ)‖ + ‖(π * I) * ((1 : ℂ) - (t : ℂ))‖ := norm_add_le _ _
     _ ≤ π + π := by
       have hleft : ‖(-π : ℂ)‖ = π := by
