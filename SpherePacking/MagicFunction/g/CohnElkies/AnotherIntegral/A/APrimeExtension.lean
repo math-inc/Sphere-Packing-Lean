@@ -930,9 +930,7 @@ lemma I₆'C_differentiableAt (u0 : ℂ) (hu0 : u0 ∈ rightHalfPlane) :
       HasDerivAt I₆'C (2 * ∫ t, I₆IntegrandC_deriv u0 t ∂μ) u0 := by
     have hfun :
         (fun z : ℂ => ∫ t, I₆IntegrandC z t ∂μ) =
-          fun z : ℂ => ∫ t in Set.Ici (1 : ℝ), I₆IntegrandC z t := by
-      funext z
-      simp [μ]
+          fun z : ℂ => ∫ t in Set.Ici (1 : ℝ), I₆IntegrandC z t := rfl
     have hDerivμ :
         HasDerivAt (fun z : ℂ => ∫ t, I₆IntegrandC z t ∂μ)
           (∫ t, I₆IntegrandC_deriv u0 t ∂μ) u0 := hdiffCore

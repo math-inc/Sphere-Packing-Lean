@@ -29,7 +29,7 @@ public lemma iteratedDeriv_eq_of_hasDerivAt_succ
     (hI : ∀ n x, HasDerivAt (fun y : ℝ => I n y) (I (n + 1) x) x) (n : ℕ) :
     iteratedDeriv n (fun x : ℝ => I 0 x) = fun x : ℝ => I n x := by
   induction n with
-  | zero => simp [iteratedDeriv_zero]
+  | zero => rfl
   | succ n ih =>
       funext x
       simpa [iteratedDeriv_succ, ih] using (hI n x).deriv
